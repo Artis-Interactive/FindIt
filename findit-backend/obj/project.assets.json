@@ -428,24 +428,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sebas\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Personal\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sebas\\Development\\FindIt\\findit-backend\\findit-backend.csproj",
+      "projectUniqueName": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\findit-backend.csproj",
       "projectName": "findit-backend",
-      "projectPath": "C:\\Users\\sebas\\Development\\FindIt\\findit-backend\\findit-backend.csproj",
-      "packagesPath": "C:\\Users\\sebas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sebas\\Development\\FindIt\\findit-backend\\obj\\",
+      "projectPath": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\findit-backend.csproj",
+      "packagesPath": "C:\\Users\\Personal\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\sebas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Personal\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

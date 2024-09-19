@@ -34,16 +34,17 @@
     background: var(--Secondary-Background, #e3ddec);
     display: flex;
     align-items: center;
-    gap: 40px 43px;
+    gap: 20px;
     color: #000;
     flex-wrap: wrap;
-    padding: 23px 31px;
+    padding: 10px 20px;
     font: 600 24px/1.3 Montserrat, sans-serif;
     justify-content: space-between;
+    position: relative;
   }
   
   .logo-link {
-    font-size: 48px;
+    font-size: 40px;
     font-family: 600;
     color: inherit;
     text-decoration: none;
@@ -59,22 +60,22 @@
     background-color: #fff;
     align-self: stretch;
     display: flex;
-    gap: 40px 100px;
+    gap: 20px;
     color: rgba(0, 0, 0, 0.7);
     font-weight: 400;
     white-space: nowrap;
     flex-wrap: wrap;
     margin: auto 0;
-    padding: 11px 19px;
+    padding: 5px 10px;
     border: 1px solid #000;
   }
   
   .search-input {
     border: none;
     outline: none;
-    font-size: inherit;
+    font-size: 20px;
     font-family: inherit;
-    width: 1000px;
+    width: 800px;
   }
   
   .search-button {
@@ -101,12 +102,13 @@
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 40px;
+    gap: 20px;
   }
   
   .nav-link {
     text-decoration: none;
     color: inherit;
+    font-size: 20px;
   }
   
   .cart-button {
@@ -115,10 +117,10 @@
     background: var(--buttons-primary, #8263a8);
     align-self: stretch;
     overflow: hidden;
-    font-size: 22px;
+    font-size: 20px;
     color: var(--background, #fbfbfe);
     text-align: center;
-    padding: 19px 25px;
+    padding: 15px 20px;
     border: none;
     cursor: pointer;
   }

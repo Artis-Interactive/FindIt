@@ -1,6 +1,20 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-
 import './index.css'
+import { createRouter, createWebHistory } from 'vue-router'
 
-createApp(App).mount('#app')
+import HelloWorld from './components/HelloWorld.vue'
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes: [
+        {
+            path: "/",
+            name: "Inicio",
+            component: HelloWorld
+        }
+    ]
+})
+
+
+createApp(App).use(router).mount('#app')

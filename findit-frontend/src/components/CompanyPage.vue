@@ -29,8 +29,13 @@
       </article>
 
       <article class="catalog">
-        <h3 class="catalog-title">Catálogo</h3>
-          <ProductCarousel :products="products"/>
+        <div class="catalog-header">
+          <h3 class="catalog-title">Catálogo</h3>
+          <div v-if="isCompanyAccount">
+            <button class="create-product" @click="clickOnCreate()">Añadir producto</button>
+          </div>
+        </div>
+        <ProductCarousel :products="products"/>
       </article>
     </div>
   </div>
@@ -54,6 +59,7 @@
         companyClosingTime: "5:00 PM",
         companyAddress: "Guachipelín, San Rafael de Escazú, San José",
         companyTel: "2222-4444",
+        isCompanyAccount: true,
         products: [
           { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
           { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
@@ -68,6 +74,11 @@
           { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
           { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') }
         ],
+      }
+    },
+    methods: {
+      clickOnCreate() {
+        console.log('Create product');
       }
     }
   }
@@ -94,11 +105,11 @@
 
   }
 
-  .header{
+  .header {
     grid-area: header;
   }
 
-  .main{
+  .main {
     grid-area: main;
   }
 
@@ -107,7 +118,7 @@
     background-color: #E3DDEC;
   }
 
-  .grid-container{
+  .grid-container {
     min-height: 100vh;
     display: grid;
     grid-template: 
@@ -219,13 +230,34 @@
 
   }
 
-  .catalog{
+  .catalog {
     font: montserrat;
   }
 
-  .catalog-title{
+  .catalog-title {
     text-align: left;
-    margin-top: 23px;
+    margin-top: 18px;
     margin-left: 50px;
+  }
+
+  .create-product {
+    border-radius: 10px;
+    background: var(--buttons-primary, #8263a8);
+    overflow: hidden;
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+    border: none;
+    margin-top: 15px;
+    margin-left: 25px;
+  }
+
+  .create-product:hover {
+    background-color: #966dc9;
+    transition: background-color 0.2s ease;
+  }
+
+  .catalog-header {
+    display: flex;
   }
 </style>

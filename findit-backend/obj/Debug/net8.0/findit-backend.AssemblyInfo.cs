@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("findit-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+689ba5b972ebacf5a0697b7b398a1608c20259d8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bdfa50fccb2b490010dd7a99d54960c72ea19b2d")]
 [assembly: System.Reflection.AssemblyProductAttribute("findit-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("findit-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

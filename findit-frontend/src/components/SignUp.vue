@@ -40,6 +40,18 @@
 					</div>
 
 					<div>
+						<label for="legalID">Cédula:</label>
+						<input type="legalID"
+										id="legalID"
+										v-model="form.legalID"
+										minlength="9"
+										maxlength="15"
+										required
+										pattern="\d*"
+										placeholder="123456789" />
+					</div>
+
+					<div>
 						<label for="phone">Teléfono:</label>
 						<input type="tel"
 										id="phone"
@@ -52,10 +64,12 @@
 					</div>
 
 					<div>
-						<label for="FechaNacimiento">Fecha de Nacimiento:</label>
+						<label for="birthdate">Fecha de Nacimiento:</label>
 						<input type="date"
 										id="birthdate"
 										v-model="form.birthdate"
+										:max="currentDate"
+										min="1924-01-01"
 										required />
 					</div>
 
@@ -124,7 +138,7 @@
 											v-model="form.signs"
 											placeholder="De la Iglesia de San Pedro 200 metros al sur"
 											required
-											pattern="[A-Za-zÀ-ÿ\s]+" />
+											pattern="[A-Za-zÀ-ÿ0-9\s\.\-,#]+" />
 						</div>
 
 					</div>
@@ -162,6 +176,30 @@
 						</div>
 
 						<div>
+							<label for="cardNumber">Número de tarjeta:</label>
+							<input type="text"
+											id="cardNumber"
+											v-model="form.cardNumber"
+											@input="formatCardNumber"
+											placeholder="1111 2222 3333 4444"
+											maxlength="19"
+											minlength="19"
+											pattern="\d*"
+											required />
+						</div>
+
+						<div>
+							<label for="cvv">CVV:</label>
+							<input type="text"
+											id="cvv"
+											v-model="form.cvv"
+											required
+											maxlength="3"
+											placeholder="123"
+											pattern="\d{3}" />
+						</div>
+
+						<div>
 							<label for="expiraryDate">Fecha de expiración:</label>
 							<input type="text"
 											id="expiraryDate"
@@ -173,15 +211,6 @@
 											required />
 						</div>
 
-						<div>
-							<label for="cvv">CVV:</label>
-							<input type="text"
-											id="cvv"
-											v-model="form.cvv"
-											required
-											maxlength="3"
-											pattern="\d{3}" />
-						</div>
 					</div>
 
 					<div>
@@ -216,19 +245,30 @@
 					name: '',
 					lastName: '',
 					birthdate: '',
+					legalID: '',
 					email: '',
 					phone: '',
 					password: '',
 				},
+				currentDate: new Date().toISOString().split('T')[0],
 				selectedDirection: '',
 				selectedPaymentMethod: ''
 			};
 		},
 		methods: {
-			formatexpiraryDate() {
-				if (this.form.expiraryDate.length === 2 && !this.form.expiraryDate.includes('/')) {
-					this.form.expiraryDate += '/';
+			formatexpiraryDate(event) {
+				let input = event.target.value.replace(/\D/g, '');
+				if (input.length >= 2) {
+					let month = input.substring(0, 2);
+					if (parseInt(month, 10) > 12) {
+						month = '12';
+					} else if (parseInt(month, 10) < 1) {
+						month = '01';
+					}
+					input = month + (input.length > 2 ? '/' + input.substring(2, 6) : '');
 				}
+				event.target.value = input;
+				this.form.expiraryDate = input;
 			},
 			formatTelephone(event) {
 				let input = event.target.value.replace(/\D/g, '');
@@ -237,6 +277,14 @@
 				}
 				event.target.value = input.slice(0, 9);
 				this.form.phone = event.target.value;
+			},
+			formatCardNumber(event) {
+				let input = event.target.value.replace(/\D/g, '');
+				if (input.length > 4) {
+						input = input.match(/.{1,4}/g).join(' ');
+				}
+				event.target.value = input;
+				this.form.cardNumber = input;
 			},
 			handleSubmit() {
 				this.submitted = true;
@@ -344,7 +392,7 @@
 		}
 
 		.radio-group input[type="radio"]:checked + span {
-      background-color: #8263A8; /* Custom color when checked */
+      background-color: #8263A8;
     }
 
 	.custom-select {
@@ -375,7 +423,7 @@
 	}
 
 	.side-image {
-    width: 300px; /* Adjust width as needed */
+    width: 300px;
     height: auto;
   }
 

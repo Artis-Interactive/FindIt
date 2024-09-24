@@ -35,7 +35,7 @@
               Nombre Empresa: <span class="text-red-600">*</span>
             </label>
             <input v.model="formData.companyName" id="companyName" type="text" maxlength="150"
-              class="px-16 pt-1.5 pb-10 mt-1 text-sm whitespace-nowrap bg-white rounded-3xl text-stone-900 text-opacity-50 max-md:pl-5 max-md:max-w-full"
+              class="flex self-stretch px-4 py-6 mt-1.5 text-base whitespace-nowrap bg-white rounded-3xl text-stone-900 text-opacity-50 max-md:pr-5 max-md:max-w-full"
               placeholder="Tu Empresa" required />
           </div>
           <div class="flex flex-col flex-1 grow shrink-0 basis-0 w-fit max-md:max-w-full">
@@ -101,7 +101,7 @@
                   <label for="addressInput" class="my-auto text-xl font-medium leading-tight text-black">
                     Dirección:
                   </label>
-                  <input type="checkbox" v.model="formData." id="mapMarker"
+                  <input type="checkbox" v.model="formData.addressType" id="mapMarker"
                     class="flex shrink-0 w-7 h-7 bg-white rounded-full" />
                   <label for="manualAddress" class="my-auto basis-auto">Manual</label>
                   <input type="checkbox" v.model="formData." id="mapMarker"
@@ -180,6 +180,7 @@ export default {
         scheduleEnd: "",
         phoneNumber: "",
         idNumber: "",
+        addressType: "",
         addressProvince: "",
         addressCanton: "",
         addressDistrict: "",

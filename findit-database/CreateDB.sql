@@ -11,11 +11,12 @@ create table Users(
 	Email				varchar(50)			NOT NULL UNIQUE,
 	[Name]				varchar(50)			NOT NULL,	
     LastNames			varchar(100)		NOT NULL,
-	PasswordHash		varchar(20)			NOT NULL,
+	PasswordHash		varchar(100)		NOT NULL,
 	PhoneNumber			varchar(8)			NOT NULL,
 	BirthDate			date				NOT NULL,
-	UserType			varchar(3)			NOT NULL,
-	IsOwner				bit,
+	UserType			varchar(3)			NOT NULL DEFAULT 'CON',
+	IsOwner				bit					NOT NULL DEFAULT 0,
+	IsVerified			bit					NOT NULL DEFAULT 0,
 	-- Constraints:
 	CONSTRAINT Check_UserType CHECK (UserType IN ('CON', 'EMP', 'ADM')),
 );

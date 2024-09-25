@@ -5,7 +5,6 @@ using findit_backend.Models;
 using findit_backend.Handlers;
 using System.Linq.Expressions;
 
-
 namespace findit_backend.Controllers
 {
     [Route("api/[controller]")]

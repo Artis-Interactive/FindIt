@@ -14,7 +14,7 @@
 											maxlength="50"
 											placeholder="Juan"
 											pattern="[A-Za-zÀ-ÿ\s]+"
-											title="Nombre sólo debe contener letras" />
+											title="Nombre sólo debe contener letras." />
 						</div>
 
 						<div class="form-group">
@@ -26,7 +26,7 @@
 											maxlength="100"
 											placeholder="Ramírez Ortega"
 											pattern="[A-Za-zÀ-ÿ\s]+"
-											title="Los apellidos sólo deben contener letras" />
+											title="Los apellidos sólo deben contener letras." />
 						</div>
 					</div>
 
@@ -35,6 +35,7 @@
 						<input type="email"
 										id="email"
 										v-model="form.email"
+										pattern="[A-Za-z0-9@.]+"
 										required
 										placeholder="juan.ortega@xxxx.xxxx" />
 					</div>
@@ -47,8 +48,9 @@
 										minlength="9"
 										maxlength="15"
 										required
-										pattern="\d*"
-										placeholder="123456789" />
+										pattern="\d+"
+										placeholder="123456789"
+										title="La cédula sólo debe tener números." />
 					</div>
 
 					<div>
@@ -59,7 +61,8 @@
 										required
 										maxlength="8"
 										placeholder="XXXXXXXX" 
-										pattern="\d{8}" />
+										pattern="\d{8}" 
+										title="El teléfono sólo debe tener números" />
 					</div>
 
 					<div>

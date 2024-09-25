@@ -3,34 +3,13 @@ using System.Data;
 using System.Data.SqlClient;
 namespace findit_backend.Handlers
 {
-    public class UserHandler
+    public class UserHandler : BaseHandler
     {
-        private SqlConnection _connection;
-        private string _connectionRoute;
-        public UserHandler()
-        {
-            var builder = WebApplication.CreateBuilder();
-            _connectionRoute = builder.Configuration.GetConnectionString("PIUsers");
-            _connection = new SqlConnection(_connectionRoute);
-        }
-        private DataTable CreateQueryTable(string query)
-        {
-            SqlCommand commandForQuery = new
-            SqlCommand(query, _connection);
-            SqlDataAdapter tableAdapter = new
-            SqlDataAdapter(commandForQuery);
-            DataTable queryTableFormat = new DataTable();
-            _connection.Open();
-            tableAdapter.Fill(queryTableFormat);
-            _connection.Close();
-            return queryTableFormat;
-        }
         public List<UserModel> ObtainUsers()
         {
             List<UserModel> users = new List<UserModel>();
             string query = "SELECT * FROM dbo.Users ";
-            DataTable tableResult =
-            CreateQueryTable(query);
+            DataTable tableResult = CreateQueryTable(query);
             foreach (DataRow column in tableResult.Rows)
             {
                 users.Add(
@@ -64,13 +43,8 @@ namespace findit_backend.Handlers
             queryCommand.Parameters.AddWithValue("@PhoneNumber", user.PhoneNumber);
             queryCommand.Parameters.AddWithValue("@Birthdate", user.BirthDate);
 
-            _connection.Open();
-            bool success = queryCommand.ExecuteNonQuery() >= 1;
-            _connection.Close();
-
-            return success;
+            return ExecuteNonQuery(queryCommand);
         }
-
 
     }
 }

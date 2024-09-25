@@ -5,47 +5,47 @@ namespace findit_backend.Handlers
 {
     public class UserHandler
     {
-        private SqlConnection _conexion;
-        private string _rutaConexion;
+        private SqlConnection _connection;
+        private string _connectionRoute;
         public UserHandler()
         {
             var builder = WebApplication.CreateBuilder();
-            _rutaConexion = builder.Configuration.GetConnectionString("PIUsers");
-            _conexion = new SqlConnection(_rutaConexion);
+            _connectionRoute = builder.Configuration.GetConnectionString("PIUsers");
+            _connection = new SqlConnection(_connectionRoute);
         }
-        private DataTable CrearTablaConsulta(string consulta)
+        private DataTable CreateQueryTable(string query)
         {
-            SqlCommand comandoParaConsulta = new
-            SqlCommand(consulta, _conexion);
-            SqlDataAdapter adaptadorParaTabla = new
-            SqlDataAdapter(comandoParaConsulta);
-            DataTable consultaFormatoTabla = new DataTable();
-            _conexion.Open();
-            adaptadorParaTabla.Fill(consultaFormatoTabla);
-            _conexion.Close();
-            return consultaFormatoTabla;
+            SqlCommand commandForQuery = new
+            SqlCommand(query, _connection);
+            SqlDataAdapter tableAdapter = new
+            SqlDataAdapter(commandForQuery);
+            DataTable queryTableFormat = new DataTable();
+            _connection.Open();
+            tableAdapter.Fill(queryTableFormat);
+            _connection.Close();
+            return queryTableFormat;
         }
-        public List<UserModel> ObtenerUsuarios()
+        public List<UserModel> ObteinUsers()
         {
-            List<UserModel> usuarios = new List<UserModel>();
-            string consulta = "SELECT * FROM dbo.Users ";
-            DataTable tablaResultado =
-            CrearTablaConsulta(consulta);
-            foreach (DataRow columna in tablaResultado.Rows)
+            List<UserModel> users = new List<UserModel>();
+            string query = "SELECT * FROM dbo.Users ";
+            DataTable tableResult =
+            CreateQueryTable(query);
+            foreach (DataRow column in tableResult.Rows)
             {
-                usuarios.Add(
+                users.Add(
                 new UserModel
                 {
-                    LegalId = Convert.ToString(columna["LegalId"]),
-                    Name = Convert.ToString(columna["Name"]),
-                    LastNames = Convert.ToString(columna["LastNames"]),
-                    Email = Convert.ToString(columna["Email"]),
-                    BirthDate = Convert.ToString(columna["BirthDate"]),
-                    PhoneNumber = Convert.ToString(columna["PhoneNumber"]),
-                    Password = Convert.ToString(columna["PasswordHash"]),
+                    LegalId = Convert.ToString(column["LegalId"]),
+                    Name = Convert.ToString(column["Name"]),
+                    LastNames = Convert.ToString(column["LastNames"]),
+                    Email = Convert.ToString(column["Email"]),
+                    BirthDate = Convert.ToString(column["BirthDate"]),
+                    PhoneNumber = Convert.ToString(column["PhoneNumber"]),
+                    Password = Convert.ToString(column["PasswordHash"]),
                 });
             }
-            return usuarios;
+            return users;
         }
 
         public bool CreateUser(UserModel user)
@@ -54,7 +54,7 @@ namespace findit_backend.Handlers
                                                       [PhoneNumber], [BirthDate])
                         VALUES (@Name, @LastNames, @LegalID, @Email, @PasswordHash, @PhoneNumber, @BirthDate)";
 
-            var queryCommand = new SqlCommand(query, _conexion);
+            var queryCommand = new SqlCommand(query, _connection);
 
             queryCommand.Parameters.AddWithValue("@Name", user.Name);
             queryCommand.Parameters.AddWithValue("@LastNames", user.LastNames);
@@ -64,9 +64,9 @@ namespace findit_backend.Handlers
             queryCommand.Parameters.AddWithValue("@PhoneNumber", user.PhoneNumber);
             queryCommand.Parameters.AddWithValue("@Birthdate", user.BirthDate);
 
-            _conexion.Open();
+            _connection.Open();
             bool success = queryCommand.ExecuteNonQuery() >= 1;
-            _conexion.Close();
+            _connection.Close();
 
             return success;
         }

@@ -287,10 +287,17 @@
 					alert('Las contraseñas no coinciden.');
 					return;
 				}
-				this.submitted = true;
-				console.log('Form Submitted', this.form);
-				axios
-					.post("https://localhost:7262/api/UserDataSignUp",  {
+				try{
+					const emailExits = axios.get("https://localhost:7262/api/UserDataSignUp", {
+						params: {
+							email: this.form.email
+						}
+					});
+					if (emailExits) {
+						alert('El correo ya está registrado.');
+						return;
+					}
+					axios.post("https://localhost:7262/api/UserDataSignUp",  {
 						name: this.form.name,
 						LastNames: this.form.LastNames,
 						birthdate: this.form.birthdate,
@@ -300,12 +307,14 @@
 						password: this.form.password
 					})
 					.then(function (response) {
+						alert ('Usuario registrado con éxito.');
 						console.log(response);
 						window.location.href = "/";
 					})
-					.catch(function (error) {
-						console.log(error);
-					});
+				}
+				catch(error) {
+					console.log(error);
+				}
 			},
 		},
 		computed: {

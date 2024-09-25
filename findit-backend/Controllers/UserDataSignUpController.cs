@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 
 using findit_backend.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using findit_backend.Handlers;
 using System.Linq.Expressions;
 
@@ -22,10 +20,15 @@ namespace findit_backend.Controllers
         }
 
         [HttpGet]
-        public List<UserModel> Get()
+        public ActionResult EmailExists(string email)
         {
-            var usuarios = _userHandler.ObtenerUsuarios();
-            return usuarios;
+            var users = _userHandler.ObteinUsers();
+            var emailAccountExits = users.Any(user => user.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+            if (emailAccountExits)
+            {
+                ModelState.AddModelError("Email", "User with this email already exists.");
+            }
+            return Ok();
         }
 
         [HttpPost]

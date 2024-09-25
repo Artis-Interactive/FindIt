@@ -1,4 +1,3 @@
 import { createApp } from 'vue'
-import CompanyPage from '@/components/CompanyPage.vue'
-
-createApp(CompanyPage).mount('#app')
+import RegisterCompanyPrev from '@/components/RegisterCompanyPrev.vue'
+createApp(RegisterCompanyPrev).mount('#app')

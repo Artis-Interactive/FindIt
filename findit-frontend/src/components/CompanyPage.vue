@@ -115,7 +115,6 @@
 
   .catalog{
     grid-area: catalog;
-    background-color: #E3DDEC;
   }
 
   .grid-container {
@@ -205,7 +204,7 @@
     color: inherit;
     border: none;
     cursor: pointer;
-    padding: 0;
+    text-decoration: underline;
   }
 
   .telephone-section {
@@ -226,6 +225,7 @@
     font-family: montserrat;
     font-weight: 400;
     right: -20px;
+    bottom: -15px;
     position: relative;
 
   }
@@ -238,6 +238,7 @@
     text-align: left;
     margin-top: 18px;
     margin-left: 50px;
+    font-weight: 700;
   }
 
   .create-product {

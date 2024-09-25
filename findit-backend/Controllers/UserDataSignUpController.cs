@@ -19,14 +19,26 @@ namespace findit_backend.Controllers
             _userHandler = new UserHandler();
         }
 
-        [HttpGet]
+        [HttpGet("Email/{email}")]
         public ActionResult EmailExists(string email)
         {
-            var users = _userHandler.ObteinUsers();
+            var users = _userHandler.ObtainUsers();
             var emailAccountExits = users.Any(user => user.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
             if (emailAccountExits)
             {
-                ModelState.AddModelError("Email", "User with this email already exists.");
+                return BadRequest();
+            }
+            return Ok();
+        }
+
+        [HttpGet("LegalID/{legalID}")]
+        public ActionResult LegalIDExists(string legalID)
+        {
+            var users = _userHandler.ObtainUsers();
+            var legalIDExits = users.Any(user => user.LegalId.Equals(legalID, StringComparison.Ordinal));
+            if (legalIDExits)
+            {
+                return BadRequest();
             }
             return Ok();
         }

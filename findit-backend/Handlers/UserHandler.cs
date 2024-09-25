@@ -25,7 +25,7 @@ namespace findit_backend.Handlers
             _connection.Close();
             return queryTableFormat;
         }
-        public List<UserModel> ObteinUsers()
+        public List<UserModel> ObtainUsers()
         {
             List<UserModel> users = new List<UserModel>();
             string query = "SELECT * FROM dbo.Users ";

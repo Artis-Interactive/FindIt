@@ -237,7 +237,6 @@
 						<button type="submit">Registrarme</button>
 					</div>
 				</form>
-				<p v-if="submitted">Form submitted! Data: {{ form }}</p>
 			</div>
 		</div>
 	</div>
@@ -245,8 +244,11 @@
 </template>
 
 <script>
+	import bcrypt from 'bcryptjs';
 	import axios from 'axios';
+
 	export default {
+
 		data() {
 			return {
 				form: {
@@ -265,14 +267,6 @@
 			};
 		},
 		methods: {
-			formatTelephone(event) {
-				let input = event.target.value.replace(/\D/g, '');
-				if (input.length > 4) {
-					input = input.slice(0, 4) + '-' + input.slice(4, 8);
-				}
-				event.target.value = input.slice(0, 9);
-				this.form.phone = event.target.value;
-			},
 			formatCardNumber(event) {
 				let input = event.target.value.replace(/\D/g, '');
 				this.unformattedCardNumber = input;
@@ -283,21 +277,50 @@
 				this.form.cardNumber = input;
 			},
 			handleSubmit() {
-				if (this.form.password !== this.form.confirmPassword) {
-					alert('Las contraseñas no coinciden.');
+				if (!this.validatePassword()) {
 					return;
 				}
-				try{
-					const emailExits = axios.get("https://localhost:7262/api/UserDataSignUp", {
-						params: {
-							email: this.form.email
+				this.emailAndLegalIDExists(this.form.email, this.form.legalID)
+					.then(isValid => {
+						if (isValid) {
+							this.registerUser();
 						}
+					})
+					.catch(error => {
+						console.log(error);
 					});
-					if (emailExits) {
-						alert('El correo ya está registrado.');
-						return;
+			},
+			validatePassword() {
+				if (this.form.password !== this.form.confirmPassword) {
+					alert('Las contraseñas no coinciden.');
+					return false;
+				}
+				return true;
+			},
+			async emailAndLegalIDExists(email, legalID) {
+				try{
+					await axios.get(`https://localhost:7262/api/UserDataSignUp/Email/${encodeURIComponent(email)}`);
+					
+					await axios.get(`https://localhost:7262/api/UserDataSignUp/LegalID/${legalID}`);
+					
+					return true;
+				}
+				catch(error) {
+					if (error.config.url.includes('Email')) {
+						alert('El correo ya se encuentra registrado.');
+					} else if (error.config.url.includes('LegalID')) {
+						alert('La cédula ya se encuentra registrada.');
+					} else {
+						console.log(error);
 					}
-					axios.post("https://localhost:7262/api/UserDataSignUp",  {
+					return false;
+				}
+			},
+			registerUser() {
+				const salt = bcrypt.genSaltSync(10);
+				const hash = bcrypt.hashSync(this.form.password, salt);
+				this.form.password = hash;
+				axios.post("https://localhost:7262/api/UserDataSignUp",  {
 						name: this.form.name,
 						LastNames: this.form.LastNames,
 						birthdate: this.form.birthdate,
@@ -306,16 +329,15 @@
 						PhoneNumber: this.form.PhoneNumber,
 						password: this.form.password
 					})
-					.then(function (response) {
-						alert ('Usuario registrado con éxito.');
-						console.log(response);
-						window.location.href = "/";
-					})
-				}
-				catch(error) {
+				.then(function (response) {
+					alert ('Usuario registrado con éxito.');
+					console.log(response);
+					window.location.href = "/";
+				})
+				.catch(error => {
 					console.log(error);
-				}
-			},
+				});
+			}
 		},
 		computed: {
 			minDate() {

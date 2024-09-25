@@ -21,11 +21,11 @@
 							<label for="lastName">Apellidos:</label>
 							<input type="text"
 											id="lastName"
-											v-model="form.lastName"
+											v-model="form.LastNames"
 											required
 											maxlength="100"
 											placeholder="Ramírez Ortega"
-											pattern="[A-Za-zÀ-ÿ\s]++"
+											pattern="[A-Za-zÀ-ÿ\s]+"
 											title="Los apellidos sólo deben contener letras" />
 						</div>
 					</div>
@@ -55,12 +55,11 @@
 						<label for="phone">Teléfono:</label>
 						<input type="tel"
 										id="phone"
-										v-model="form.phone"
-										@input="formatTelephone"
+										v-model="form.PhoneNumber"
 										required
-										maxlength="9"
-										placeholder="XXXX-XXXX" 
-										pattern="\d{4}-\d{4}" />
+										maxlength="8"
+										placeholder="XXXXXXXX" 
+										pattern="\d{8}" />
 					</div>
 
 					<div>
@@ -184,7 +183,7 @@
 											placeholder="1111 2222 3333 4444"
 											maxlength="19"
 											minlength="19"
-											pattern="\d*"
+											pattern="\d{4} \d{4} \d{4} \d{4}"
 											required />
 						</div>
 
@@ -200,17 +199,14 @@
 						</div>
 
 						<div>
-							<label for="expiraryDate">Fecha de expiración:</label>
-							<input type="text"
+							<label for="expiraryDate">Fecha de Experación:</label>
+							<input type="date"
 											id="expiraryDate"
 											v-model="form.expiraryDate"
-											@input="formatexpiraryDate"
-											placeholder="mm/aaaa"
-											maxlength="7"
-											pattern="(0[1-9]|1[0-2])\/[0-9]{4}"
+											:max="maxDate"
+											:min="minDate"
 											required />
 						</div>
-
 					</div>
 
 					<div>
@@ -226,6 +222,17 @@
 										<small class="small-text">La contraseña debe contener al menos una letra, un número y un caracter especial ($, !, %, &, *, ?).</small>
 					</div>
 
+					<div>
+              <label for="confirmPassword">Confirmar Contraseña:</label>
+              <input type="password"
+                     id="confirmPassword"
+                     v-model="form.confirmPassword"
+                     required
+                     minlength="10"
+                     maxlength="20"
+                     placeholder="Reingrese la contraseña para confirmar." />
+            </div>
+
 					<div class="button-container">
 						<button type="submit">Registrarme</button>
 					</div>
@@ -238,38 +245,26 @@
 </template>
 
 <script>
+	import axios from 'axios';
 	export default {
 		data() {
 			return {
 				form: {
-					name: '',
-					lastName: '',
-					birthdate: '',
-					legalID: '',
-					email: '',
-					phone: '',
-					password: '',
+					name: "",
+					lastName: "",
+					birthdate: "",
+					legalID: "",
+					email: "",
+					phone: "",
+					password: "",
 				},
+				submitted: false,
 				currentDate: new Date().toISOString().split('T')[0],
-				selectedDirection: '',
-				selectedPaymentMethod: ''
+				selectedDirection: "",
+				selectedPaymentMethod: ""
 			};
 		},
 		methods: {
-			formatexpiraryDate(event) {
-				let input = event.target.value.replace(/\D/g, '');
-				if (input.length >= 2) {
-					let month = input.substring(0, 2);
-					if (parseInt(month, 10) > 12) {
-						month = '12';
-					} else if (parseInt(month, 10) < 1) {
-						month = '01';
-					}
-					input = month + (input.length > 2 ? '/' + input.substring(2, 6) : '');
-				}
-				event.target.value = input;
-				this.form.expiraryDate = input;
-			},
 			formatTelephone(event) {
 				let input = event.target.value.replace(/\D/g, '');
 				if (input.length > 4) {
@@ -280,6 +275,7 @@
 			},
 			formatCardNumber(event) {
 				let input = event.target.value.replace(/\D/g, '');
+				this.unformattedCardNumber = input;
 				if (input.length > 4) {
 						input = input.match(/.{1,4}/g).join(' ');
 				}
@@ -287,8 +283,39 @@
 				this.form.cardNumber = input;
 			},
 			handleSubmit() {
+				if (this.form.password !== this.form.confirmPassword) {
+					alert('Las contraseñas no coinciden.');
+					return;
+				}
 				this.submitted = true;
-				console.log('Form Data:', this.form);
+				console.log('Form Submitted', this.form);
+				axios
+					.post("https://localhost:7262/api/UserDataSignUp",  {
+						name: this.form.name,
+						LastNames: this.form.LastNames,
+						birthdate: this.form.birthdate,
+						legalID: this.form.legalID,
+						email: this.form.email,
+						PhoneNumber: this.form.PhoneNumber,
+						password: this.form.password
+					})
+					.then(function (response) {
+						console.log(response);
+						window.location.href = "/";
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+			},
+		},
+		computed: {
+			minDate() {
+				return this.currentDate;
+			},
+			maxDate() {
+				const maxDate = new Date();
+				maxDate.setFullYear(maxDate.getFullYear() + 5);
+				return maxDate.toISOString().split('T')[0];
 			}
 		}
 	};

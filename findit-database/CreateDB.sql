@@ -37,6 +37,20 @@ create table UserCards(
 	CONSTRAINT PK_UserCards PRIMARY KEY (CardID, UserID),
 );
 
+-- Create Address table:
+create table Address(
+	AddressID			uniqueidentifier	NOT NULL PRIMARY KEY DEFAULT NewID(),
+	UserID				uniqueidentifier,
+	CompanyID			uniqueidentifier,
+	Province			varchar(12)			NOT NULL,
+	Canton				varchar(50)			NOT NULL,
+	District			varchar(50)			NOT NULL,
+	Details				varchar(1000)		NOT NULL,
+	Coords				geography,
+	-- Foreign keys
+	CONSTRAINT FK_UserID FOREIGN KEY (UserID) REFERENCES Users (UserID) ON DELETE CASCADE
+)
+
 -- Create Products table:
 create table Products(
 	ProductID			uniqueidentifier	NOT NULL PRIMARY KEY DEFAULT NewID(),

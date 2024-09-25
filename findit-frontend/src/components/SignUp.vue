@@ -120,7 +120,8 @@
 											v-model="form.canton"
 											placeholder="Montes de Oca"
 											required
-											pattern="[A-Za-zÀ-ÿ\s]+" />
+											pattern="[A-Za-zÀ-ÿ\s]+" 
+											title="El cantón sólo debe tener números"/>
 						</div>
 
 						<div>
@@ -130,7 +131,8 @@
 											v-model="form.distrito"
 											placeholder="San Pedro"
 											required
-											pattern="[A-Za-zÀ-ÿ\s]+" />
+											pattern="[A-Za-zÀ-ÿ\s]+" 
+											title="El distrito sólo debe tener letras."/>
 						</div>
 
 						<div>

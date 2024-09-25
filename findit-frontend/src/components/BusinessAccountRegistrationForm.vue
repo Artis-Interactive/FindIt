@@ -1,6 +1,6 @@
 <template>
   <div class="flex overflow-hidden flex-col pb-10 bg-white">
-    <header
+    <!--<header
       class="flex flex-wrap gap-10 items-center px-8 py-6 text-2xl font-semibold leading-tight text-black bg-zinc-200 max-md:px-5">
       <h1 class="grow shrink self-stretch my-auto text-5xl w-[153px] max-md:text-4xl">
         Find It!
@@ -25,7 +25,7 @@
         class="overflow-hidden self-stretch px-6 py-5 text-2xl text-center rounded-xl bg-slate-500 text-slate-50 max-md:px-5">
         Carrito (0)
       </button>
-    </header>
+    </header>-->
     <main
       class="flex flex-col self-center px-5 pt-11 pb-3.5 mt-8 w-full shadow-sm bg-zinc-200 max-w-[900px] rounded-[36px] max-md:max-w-full">
       <form @submit.prevent="registerBusinessAccount">
@@ -98,15 +98,15 @@
                   </div>
                 </div>
                 <div class="flex gap-10 mt-10 max-w-full w-[335px]">
-                  <label for="addressInput" class="my-auto text-xl font-medium leading-tight text-black">
+                  <label for="" class="my-auto text-xl font-medium leading-tight text-black">
                     Dirección:
                   </label>
+                  <label for="manualAddress" class="my-auto basis-auto">Manual</label>
+                  <input type="checkbox" v.model="formData.addressType" id="manualAddress"
+                  class="flex shrink-0 w-7 h-7 bg-white rounded-full" />
+                  <label for="mapMarker" class="my-auto basis-auto">Mapa</label>
                   <input type="checkbox" v.model="formData.addressType" id="mapMarker"
                     class="flex shrink-0 w-7 h-7 bg-white rounded-full" />
-                  <label for="manualAddress" class="my-auto basis-auto">Manual</label>
-                  <input type="checkbox" v.model="formData." id="mapMarker"
-                    class="flex shrink-0 w-7 h-7 bg-white rounded-full" />
-                  <label for="mapMarker" class="my-auto basis-auto">Mapa</label>
                 </div>
               </div>
             </div>
@@ -152,7 +152,7 @@
         </label>
         <textarea v.model="formData.offeredProducts" id="offeredProducts"
           class="px-4 pt-4 pb-20 mt-3 w-full text-base font-medium leading-tight bg-white rounded-3xl text-stone-900 text-opacity-70 max-md:pr-5"
-          placeholder="Ingrese los diferentes productos que ofrece:"></textarea>
+          placeholder="Ingrese una descripción de los diferentes productos que ofrece:"></textarea>
         <button type="submit"
           class="overflow-hidden self-center px-6 py-5 mt-8 ml-3 max-w-full text-2xl font-semibold leading-tight text-center rounded-xl bg-slate-500 text-slate-50 w-[259px] max-md:px-5">
           Registrar empresa

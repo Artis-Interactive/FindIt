@@ -188,7 +188,7 @@ export default {
     },
 
     registerUser() {
-				axios.post("https://localhost:7150/api/BusinessAccountRegistration",  {
+				axios.post("https://localhost:7150/api/CreateBusinessAccount",  {
 						companyName: this.formData.companyName,
             companyEmail: this.formData.companyEmail,
             ownerName: this.formData.ownerName,

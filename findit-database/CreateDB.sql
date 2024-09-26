@@ -37,11 +37,23 @@ create table UserCards(
 	CONSTRAINT PK_UserCards PRIMARY KEY (CardID, UserID),
 );
 
+-- Create Companies table:
+create table Companies(
+	CompanyID		uniqueidentifier	NOT NULL PRIMARY KEY DEFAULT NewID(),
+	Name			varchar(150)		NOT NULL UNIQUE,
+	Type			varchar(8)			CHECK (Type IN ('physical', 'legal')),
+	Description		varchar(1000),		
+	Email			varchar(50),
+	PhoneNumber		int,
+	Logo			varchar(250),
+	HeroImage		varchar(250)
+)
+
 -- Create Address table:
 create table Address(
 	AddressID			uniqueidentifier	NOT NULL PRIMARY KEY DEFAULT NewID(),
-	UserID				uniqueidentifier,
-	CompanyID			uniqueidentifier,
+	UserID				uniqueidentifier	FOREIGN KEY REFERENCES Users(UserID),
+	CompanyID			uniqueidentifier	FOREIGN KEY REFERENCES Companies(CompanyID),	
 	Province			varchar(12)			NOT NULL,
 	Canton				varchar(50)			NOT NULL,
 	District			varchar(50)			NOT NULL,
@@ -51,19 +63,35 @@ create table Address(
 	CONSTRAINT FK_UserID FOREIGN KEY (UserID) REFERENCES Users (UserID) ON DELETE CASCADE
 )
 
+-- Create WorkingDays table:
+create table WorkingDays(
+	CompanyID		uniqueidentifier	FOREIGN KEY REFERENCES Companies(CompanyID),
+	Day				varchar(9)			NOT NULL	CHECK (Day IN ('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo')),
+	StartTime		time				NOT NULL,
+	EndTime			time				NOT NULL
+)
+
+-- Create Categories table:
+create table Categories(
+	CategoryID		uniqueidentifier	NOT NULL  PRIMARY KEY DEFAULT NewID(),
+	CategoryName	varchar(20)			NOT NULL
+)
+
 -- Create Products table:
 create table Products(
-	ProductID			uniqueidentifier	NOT NULL PRIMARY KEY DEFAULT NewID(),
+	ProductID		uniqueidentifier	NOT NULL PRIMARY KEY DEFAULT NewID(),
 	CategoryID		uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Categories(CategoryID),
-	CompanyID			uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Companies(CompanyID),
-	ProductName		varchar(100) 			NOT NULL,
-	Description		varchar(1000)			NOT NULL,
-	Image					varchar(250)			NOT NULL,
-	Price 				int 							NOT NULL
+	CompanyID		uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Companies(CompanyID),
+	ProductName		varchar(100) 		NOT NULL,
+	Description		varchar(1000)		NOT NULL,
+	Image			varchar(250)		NOT NULL,
+	Price 			money 				NOT NULL
 )
 
 -- Create NonPerishableProducts table:
 create table NonPerishableProducts(
 	ProductID		uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Products(ProductID) ON DELETE CASCADE,
-	Amount 			int 							NOT NULL
+	Amount 			int 				NOT NULL
 )
+
+

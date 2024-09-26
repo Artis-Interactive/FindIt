@@ -11,6 +11,7 @@ module.exports = defineConfig({
         stream: require.resolve('stream-browserify'),
         buffer: require.resolve('buffer/'),
         vm: require.resolve('vm-browserify'),
+        "process": require.resolve("process/browser")
       },
     },
     plugins: [

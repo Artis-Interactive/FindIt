@@ -1,18 +1,15 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import './index.css'
 import { createRouter, createWebHistory } from 'vue-router'
 
-import HelloWorld from './components/HelloWorld.vue'
+import CompanyPage from './components/CompanyPage.vue'
+import RegisterCompanyPrev from './components/RegisterCompanyPrev.vue'
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {
-            path: "/",
-            name: "Inicio",
-            component: HelloWorld
-        }
+        {path: "/", name: "Empresa", component: CompanyPage},
+        {path: "/reg-prev", name: "Ingresar a registro de empresa", component: RegisterCompanyPrev}
     ]
 })
 

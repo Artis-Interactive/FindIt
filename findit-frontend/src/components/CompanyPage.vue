@@ -19,7 +19,7 @@
           <h2 class="company-schedule">Horario: {{ companyOpeningTime }} - {{ companyClosingTime }}</h2>
           <div class="address-section">
             <img src="@/assets/address_icon.png" alt="Adress Icon" class="address-icon">
-            <a :href="`https://www.google.com/maps?q=${encodeURIComponent(companyAddress)}`" class="company-address"> {{ companyAddress }}</a>
+            <a :href="`https://www.google.com/maps?q=${encodeURIComponent(companyAddress)}`" class="company-address">{{ companyAddress }}</a>
           </div>
           <div class="telephone-section">
             <img src="@/assets/telephone_icon.png" alt="Telephone Icon" class="telephone-icon">
@@ -31,7 +31,7 @@
       <article class="catalog">
         <div class="catalog-header">
           <h3 class="catalog-title">Catálogo</h3>
-          <div v-if="isCompanyAccount">
+          <div v-if="isCompanyUser">
             <button class="create-product" @click="clickOnCreate()">Añadir producto</button>
           </div>
         </div>
@@ -50,6 +50,7 @@
       AppHeader,
       ProductCarousel
     },
+
     data() {
       return {
         heroImage: require("@/assets/company_page_hero.jpg"),
@@ -59,7 +60,8 @@
         companyClosingTime: "5:00 PM",
         companyAddress: "Guachipelín, San Rafael de Escazú, San José",
         companyTel: "2222-4444",
-        isCompanyAccount: true,
+        isCompanyUser: false,
+        isCompanySection: true,
         products: [
           { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
           { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
@@ -76,6 +78,7 @@
         ],
       }
     },
+
     methods: {
       clickOnCreate() {
         console.log('Create product');
@@ -84,13 +87,7 @@
   }
 </script>
 
-<style>
-  html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-  }
+<style scoped>
 
   .container {
     display: flex;
@@ -260,5 +257,112 @@
 
   .catalog-header {
     display: flex;
+  }
+
+  @media (max-width: 1200px) {
+    .company-profile {
+        width: 90px; 
+        height: 90px; 
+    }
+
+    .company-name {
+        font-size: 1.8rem; 
+    }
+
+    .company-schedule, .company-telephone, .company-address {
+        font-size: 1.1rem; 
+    }
+
+    .catalog-title {
+        font-size: 1.3rem; 
+    }
+
+    .create-product {
+        font-size: 0.9rem; 
+    }
+  }
+
+  @media (max-width: 992px) {
+    .grid-container {
+        grid-template:
+            "header" auto
+            "main" 1fr
+            "catalog" auto;
+    }
+
+    .company-profile {
+        width: 80px; 
+        height: 80px; 
+    }
+
+    .company-name {
+        font-size: 1.5rem; 
+    }
+
+    .company-schedule, .company-telephone, .company-address {
+        font-size: 1rem; 
+    }
+
+    .catalog-title {
+        font-size: 1.2rem; 
+    }
+
+    .create-product {
+        font-size: 0.8rem; 
+    }
+  }
+
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template:
+        "header" auto
+        "main" 1fr
+        "catalog" auto;
+    }
+
+    .company-profile {
+      width: 70px; 
+      height: 70px; 
+    }
+
+    .company-name {
+      font-size: 1.2rem; 
+    }
+
+    .company-schedule, .company-telephone, .company-address {
+      font-size: 0.9rem; 
+    }
+
+    .catalog-title {
+      font-size: 1rem; 
+    }
+
+    .create-product {
+      width: 100%; 
+      font-size: 0.8rem; 
+    }
+  }
+
+  @media (max-width: 480px) {
+    .company-profile {
+      width: 60px; 
+      height: 60px; 
+    }
+
+    .company-name {
+      font-size: 1rem; 
+    }
+
+    .company-schedule, .company-telephone, .company-address {
+      font-size: 0.8rem; 
+    }
+
+    .catalog-title {
+      font-size: 0.9rem; 
+    }
+
+    .create-product {
+      font-size: 0.7rem; 
+    }
   }
 </style>

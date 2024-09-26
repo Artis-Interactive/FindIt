@@ -137,23 +137,139 @@
     border: 0;
   }
   
-  @media (max-width: 991px) {
+  @media (max-width: 1524px) {
     .header {
-      padding: 0 20px;
+      padding: 6px 10px;
+      font: 600 20px/1.3 Montserrat, sans-serif;
     }
-  
-    .logo {
-      font-size: 40px;
+
+    .logo-link {
+      font-size: 28px;
     }
-  
+
     .search-form {
-      max-width: 100%;
-      padding-left: 20px;
-      white-space: initial;
+      padding: 3px 6px;
     }
-  
+
+    .search-input {
+      font-size: 16px;
+      max-width: 150px;
+    }
+
+    .search-icon {
+      width: 25px;
+    }
+
+    .nav-link {
+      font-size: 16px;
+      padding: 4px 8px;
+    }
+
     .cart-button {
-      padding: 19px 20px;
+      font-size: 16px;
+      padding: 8px 12px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      padding: 4px 6px;
+      font: 600 16px/1.3 Montserrat, sans-serif;
+    }
+
+    .logo-link {
+      font-size: 24px;
+    }
+
+    .search-form {
+      padding: 2px 4px;
+    }
+
+    .search-input {
+      font-size: 14px;
+      max-width: 120px;
+    }
+
+    .search-icon {
+      width: 22px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      padding: 2px 4px;
+    }
+
+    .cart-button {
+      font-size: 14px;
+      padding: 6px 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header {
+      padding: 2px 4px;
+      font: 600 12px/1.3 Montserrat, sans-serif;
+    }
+
+    .logo-link {
+      font-size: 18px;
+    }
+
+    .search-form {
+      padding: 2px 2px;
+    }
+
+    .search-input {
+      font-size: 10px;
+      max-width: 80px;
+    }
+
+    .search-icon {
+      width: 18px;
+    }
+
+    .nav-link {
+      font-size: 10px;
+      padding: 2px 2px;
+    }
+
+    .cart-button {
+      font-size: 10px;
+      padding: 2px 4px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .header {
+      padding: 1px 2px;
+      font: 600 10px/1.3 Montserrat, sans-serif;
+    }
+
+    .logo-link {
+      font-size: 16px;
+    }
+
+    .search-form {
+      padding: 1px 2px;
+    }
+
+    .search-input {
+      font-size: 8px;
+      max-width: 60px;
+    }
+
+    .search-icon {
+      width: 16px;
+    }
+
+    .nav-link {
+      font-size: 8px;
+      padding: 1px 2px;
+    }
+
+    .cart-button {
+      font-size: 8px;
+      padding: 1px 2px;
     }
   }
 </style>

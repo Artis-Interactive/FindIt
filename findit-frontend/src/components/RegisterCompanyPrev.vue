@@ -29,6 +29,15 @@
     width: 100%;
     height: 100%;
   }
+</style>
+
+<style scoped>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
 
   .container {
     display: flex;
@@ -83,4 +92,51 @@
   .register-button:hover {
     background-color: var(--buttons-primary-hover, #6f4e94);
   } 
+
+  @media (max-width: 768px) {
+    .main h1 {
+      font-size: 20px;
+      text-align: center; 
+    }
+
+    .register-button {
+      font-size: 18px;
+      padding: 12px 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .main h1 {
+      font-size: 16px;
+      padding: 0 10px; 
+    }
+
+    .register-button {
+      font-size: 16px;
+      width: 100%; 
+      padding: 10px; 
+    }
+  }
+
+  @media (max-width: 375px) {
+    .main h1 {
+      font-size: 18px;
+    }
+
+    .register-button {
+      font-size: 16px;
+      padding: 10px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .main h1 {
+      font-size: 14px;
+    }
+
+    .register-button {
+      font-size: 14px;
+      padding: 8px;
+    }
+  }
 </style>

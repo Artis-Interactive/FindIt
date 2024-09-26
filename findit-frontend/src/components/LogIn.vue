@@ -20,19 +20,68 @@
       </form>
       <nav class="auth-nav">
         <a href="#" class="auth-link">Registrarme</a>
-        <a href="#" class="auth-link">Ingresar sin cuenta</a>
+        <a href="#" class="auth-link">Continuar sin cuenta</a>
       </nav>
+      <!-- modal component for alerts -->
+      <ModalComponent
+        :isVisible="isModalVisible"
+        :title="modalTitle"
+        @close="isModalVisible = false"
+      >
+        <template #body>
+          <p>{{ modalMessage }}</p>
+        </template>
+      </ModalComponent>
     </main>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import ModalComponent from './ModalComponent.vue';
+
 export default {
-  name: 'Login',
+  name: 'LoginComponent',
+  components: {
+    ModalComponent,
+  },
+  data() {
+      return {
+        modalTitle: '',
+        modalMessage: '',
+        isModalVisible: false,
+      };
+    },
   methods: {
     async handleSubmit() {
-     
+      // Get input data:
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      // Send to backend:
+      axios.post("https://localhost:7262/api/Users", { email, password })
+        .then((response) => {
+          // Process response:
+          const data = response.data;
+          console.log(data);
+          if (data === "NoUser") {
+            this.modalTitle = "Error de inicio de sesión";
+            this.modalMessage = "El correo ingresado no está asociado a ninguna cuenta.";
+            this.isModalVisible = true;
+          } else if (data === "NotVer") {
+            this.modalTitle = "Error de inicio de sesión";
+            this.modalMessage = "El correo asociado a la cuenta con la desea ingresar aún no ha sido verificado.";
+            this.isModalVisible = true;
+          } else if (data === "NotPass") {
+            this.modalTitle = "Error de inicio de sesión";
+            this.modalMessage = "La contraseña ingresada no es correcta.";
+            this.isModalVisible = true;
+          } else if (data === "Allow") {
+            this.$router.push("/home");
+          }
+        })
+        .catch((error) => {
+          console.error("Error al enviar la solicitud:", error);
+        });
     }
   }
 }
@@ -40,47 +89,69 @@ export default {
 
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 .login-page {
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
   overflow: hidden;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  padding: 0 20px 40px 0;
+  transform: translateY(-10px)
 }
 
 .header {
-  align-self: flex-end;
-  width: 723px;
-  max-width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 288px;
+  margin: 0 auto;
   gap: 20px;
+  padding-left: 20px;
 }
 
 .logo-container {
-  width: 57%;
+  display: flex;
+  height: 124.8px;
+  justify-content: center;
+  padding-right: 25px;
 }
 
 .logo-text {
   color: #000;
   text-align: center;
-  margin-top: 166px;
-  font: 600 96px/1.3 Montserrat, sans-serif;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Montserrat;
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 124.8px */
+  margin: 40px 0 0 0;
 }
 
 .image-container {
-  width: 43%;
+  position: absolute;
+  right: 300px;
+  display: flex;
+  justify-content: flex-end;
+  width: 246px;
+  height: 288px;
+  flex-shrink: 0;
 }
 
 .logo-image {
   aspect-ratio: 0.85;
   object-fit: contain;
   object-position: center;
-  width: 100%;
+  width: 246px;
   max-width: 200px;
-  height: auto;
+  height: 288px;
 }
 
 .main-content {
@@ -88,10 +159,9 @@ export default {
   background: var(--Secondary-Background, #e3ddec);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   width: 552px;
+  height: 524;
   max-width: 100%;
   padding: 72px 39px 15px;
-  margin-bottom: 200px;
-  font: 500 20px/1.3 Montserrat, sans-serif;
 }
 
 .login-form {
@@ -100,20 +170,33 @@ export default {
 }
 
 .form-label {
-  align-self: flex-start;
-  margin-bottom: 22px;
+  display: flex;
+  width: 212px;
+  height: 34px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #000;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
 }
 
 .form-input {
-  font-size: 24px;
+  font-size: 20px;
   border-radius: 20px;
   background-color: #fff;
   height: 57px;
-  margin-bottom: 67px;
+  margin-bottom: 62px;
+  border: none;
+  padding: 20px;
 }
 
 .submit-button {
-  font-feature-settings: "liga" off, "clig" off;
+  display:inline-flex;
   border-radius: 10px;
   background: var(--buttons-primary, #8263a8);
   align-self: center;
@@ -124,7 +207,11 @@ export default {
   color: var(--background, #fbfbfe);
   font-weight: 600;
   text-align: center;
-  padding: 19px 37px;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Montserrat;
+  padding: 18.5px 36px 18.5px 37px;
+  justify-content: center;
+  align-items: center;
   border: none;
   cursor: pointer;
 }
@@ -133,15 +220,25 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 14px;
 }
 
 .auth-link {
-  font-size: 18px;
-  text-align: center;
-  margin-top: 16px;
+  display: flex;
+  width: 212px;
+  height: 34px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
   text-decoration: none;
   color: #000;
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Montserrat;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 23.4px */
+  text-decoration-line: underline;
 }
 
 @media (max-width: 991px) {

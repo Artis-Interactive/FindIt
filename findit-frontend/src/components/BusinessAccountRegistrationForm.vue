@@ -87,18 +87,18 @@
           <div class="radio-group">
             <h3>Dirección:</h3>
             <label>
-              <input type="radio" name="direction" value="manual" v-model="addressType" required />
+              <input type="radio" name="direction" value="manual" v-model="formData.addressType" required />
               Manual
             </label>
 
             <label>
-              <input type="radio" name="direction" value="map" v-model="addressType" required />
+              <input type="radio" name="direction" value="map" v-model="formData.addressType" required />
               Marcar en mapa
             </label>
           </div>
 
           <!-- Aditional spaces if manual address is selected -->
-          <div v-if="addressType === 'manual'">
+          <div v-if="formData.addressType === 'manual'">
             <div class="row">
               <div class="column-3">
                 <div>
@@ -141,7 +141,7 @@
           </div>
 
           <!-- Aditional spaces if map address is selected -->
-          <div v-if="addressType === 'map'">
+          <div v-if="formData.addressType === 'map'">
             <div>
               <!-- Map Selection Component -->
             </div>
@@ -158,7 +158,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 
 export default {
   data() {
@@ -172,13 +172,13 @@ export default {
         scheduleEnd: "",
         phoneNumber: "",
         idNumber: "",
+        addressType: "",
         addressProvince: "",
         addressCanton: "",
         addressDistrict: "",
         addressAdditionalDetails: "",
         offeredProducts: "",
       },
-      addressType: "",
     };
   },
   methods: {
@@ -194,7 +194,34 @@ export default {
       }).catch(function (error) {
         console.log(error);
       });*/
-    }
+    },
+
+    registerUser() {
+				axios.post("https://localhost:7262/api/UserDataSignUp",  {
+						companyName: this.formData.companyName,
+            companyEmail: this.formData.companyEmail,
+            ownerName: this.formData.ownerName,
+						ownerLastNames: this.formData.ownerLastNames,
+						phoneNumber: this.formData.phoneNumber,
+            scheduleStart: this.formData.scheduleStart,
+            scheduleEnd: this.formData.scheduleEnd,
+						idNumber: this.form.idNumber,
+						offeredProducts: this.form.offeredProducts,
+            addressType: this.formData.addressType,
+            addressProvince: this.formData.addressProvince,
+            addressCanton: this.formData.addressCanton,
+            addressDistrict: this.formData.addressDistrict,
+            addressAdditionalDetails: this.formData.addressAdditionalDetails
+					})
+				.then(function (response) {
+					alert ('Empresa registrada con éxito.');
+					console.log(response);
+					window.location.href = "/";
+				})
+				.catch(error => {
+					console.log(error);
+				});
+			}
   }
 }
 </script>

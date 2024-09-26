@@ -184,20 +184,11 @@ export default {
   methods: {
     handleSubmit() {
       console.log("Datos: ", this.formData);
-      /*axios.post("https://localhost:7150/api/Paises", {
-        nombre: this.formData.nombre,
-        continente: this.formData.continente,
-        idioma: this.formData.idioma,
-      }).then(function (response) {
-        console.log(response);
-        window.location.href = "/";
-      }).catch(function (error) {
-        console.log(error);
-      });*/
+      this.registerUser();
     },
 
     registerUser() {
-				axios.post("https://localhost:7262/api/UserDataSignUp",  {
+				axios.post("https://localhost:7150/api/BusinessAccountRegistration",  {
 						companyName: this.formData.companyName,
             companyEmail: this.formData.companyEmail,
             ownerName: this.formData.ownerName,

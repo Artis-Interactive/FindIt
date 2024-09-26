@@ -3,6 +3,7 @@ import App from './App.vue'
 import './index.css'
 import { createRouter, createWebHistory } from 'vue-router'
 import SignUp from './components/SignUp.vue'
+import BusinessAccountRegistrationForm from './components/BusinessAccountRegistrationForm.vue'
 
 const router = createRouter({
 	history: createWebHistory(),

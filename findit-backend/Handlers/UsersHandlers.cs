@@ -1,13 +1,17 @@
 ﻿using findit_backend.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.Data.SqlClient;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 namespace findit_backend.Handlers
 {
     public class UsersHandler
     {
         private SqlConnection _connection;
         private string _connectionRoute;
+
         public UsersHandler()
         {
             var builder = WebApplication.CreateBuilder();

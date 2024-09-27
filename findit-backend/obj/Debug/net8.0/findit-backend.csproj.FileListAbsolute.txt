@@ -37,3 +37,11 @@ C:\Users\menar\OneDrive\Documents\Repositorios\FindIt\findit-backend\obj\Debug\n
 C:\Users\menar\OneDrive\Documents\Repositorios\FindIt\findit-backend\obj\Debug\net8.0\findit-backend.pdb
 C:\Users\menar\OneDrive\Documents\Repositorios\FindIt\findit-backend\obj\Debug\net8.0\findit-backend.genruntimeconfig.cache
 C:\Users\menar\OneDrive\Documents\Repositorios\FindIt\findit-backend\obj\Debug\net8.0\ref\findit-backend.dll
+C:\Users\menar\OneDrive\Documents\Repositorios\FindIt\findit-backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\menar\OneDrive\Documents\Repositorios\FindIt\findit-backend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\menar\OneDrive\Documents\Repositorios\FindIt\findit-backend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\menar\OneDrive\Documents\Repositorios\FindIt\findit-backend\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\menar\OneDrive\Documents\Repositorios\FindIt\findit-backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\menar\OneDrive\Documents\Repositorios\FindIt\findit-backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\menar\OneDrive\Documents\Repositorios\FindIt\findit-backend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\menar\OneDrive\Documents\Repositorios\FindIt\findit-backend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

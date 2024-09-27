@@ -20,7 +20,7 @@
       </form>
       <nav class="auth-nav">
         <a href="#" class="auth-link">Registrarme</a>
-        <a href="#" class="auth-link">Continuar sin cuenta</a>
+        <a href="/home" class="auth-link">Continuar sin cuenta</a>
       </nav>
       <!-- modal component for alerts -->
       <ModalComponent
@@ -63,19 +63,30 @@ export default {
           // Process response:
           const data = response.data;
           console.log(data);
-          if (data === "NoUser") {
+          if (data.message === "NoUser") {
             this.modalTitle = "Error de inicio de sesión";
             this.modalMessage = "El correo ingresado no está asociado a ninguna cuenta.";
             this.isModalVisible = true;
-          } else if (data === "NotVer") {
+          }
+          else if (data.message === "Ban") {
+            this.modalTitle = "Error de inicio de sesión";
+            this.modalMessage = "Esta cuenta se encuentra deshabilitada.";
+            this.isModalVisible = true;
+          }
+          else if (data.message === "NotVer") {
             this.modalTitle = "Error de inicio de sesión";
             this.modalMessage = "El correo asociado a la cuenta con la desea ingresar aún no ha sido verificado.";
             this.isModalVisible = true;
-          } else if (data === "NotPass") {
+          }
+          else if (data.message === "NotPass") {
             this.modalTitle = "Error de inicio de sesión";
             this.modalMessage = "La contraseña ingresada no es correcta.";
             this.isModalVisible = true;
-          } else if (data === "Allow") {
+          }
+          else if (data.message === "Allow") {
+            // Store log in token:
+            localStorage.setItem('token', data.token);
+            // Go to home menu:
             this.$router.push("/home");
           }
         })

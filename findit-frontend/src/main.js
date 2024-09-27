@@ -10,7 +10,10 @@ import LoginComponent from "./components/LogIn.vue";
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {path: "/", name: "Login", component: LoginComponent},
+        {
+            path: "/",
+            name: "Login",
+            component: LoginComponent},
         {
             path: "/home",
             name: "Home",

@@ -45,8 +45,13 @@ namespace findit_backend.Handlers
             else
             {
                 DataRow userRow = resultingTable.Rows[0];
+                // User is banned:
+                if (Convert.ToString(userRow["AccountState"]) == "BAN")
+                {
+                    result = "Ban";
+                }
                 // User is not verified yet:
-                if (!Convert.ToBoolean(userRow["IsVerified"]))
+                else if (Convert.ToString(userRow["AccountState"]) == "NotVER")
                 {
                     result = "NotVer";
                 }

@@ -15,10 +15,11 @@ create table Users(
 	PhoneNumber			varchar(8)			NOT NULL,
 	BirthDate			date				NOT NULL,
 	UserType			varchar(3)			NOT NULL DEFAULT 'CON',
-	IsOwner				bit					NOT NULL DEFAULT 0,
-	IsVerified			bit					NOT NULL DEFAULT 0,
+	AccountState		varchar(6)			NOT NULL DEFAULT 'NotVER',
+
 	-- Constraints:
 	CONSTRAINT Check_UserType CHECK (UserType IN ('CON', 'EMP', 'ADM')),
+	CONSTRAINT Check_AccountState CHECK (AccountState IN ('NotVer', 'ACT', 'BAN')),
 );
 
 -- Create Cards table:
@@ -31,7 +32,7 @@ create table Cards(
 
 -- Create UserCards table:
 create table UserCards(
-	CardID				uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Cards(CardID) ON DELETE CASCADE,
+	CardID				uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Cards(CardID),
 	UserID				uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Users(UserID) ON DELETE CASCADE,
 	-- Primary key:
 	CONSTRAINT PK_UserCards PRIMARY KEY (CardID, UserID),
@@ -47,6 +48,13 @@ create table Companies(
 	PhoneNumber		int,
 	Logo			varchar(250),
 	HeroImage		varchar(250)
+)
+
+-- Create User/Company table:
+create table UsersCompany(
+	UserID				uniqueidentifier	PRIMARY KEY FOREIGN KEY REFERENCES Users(UserID) ON DELETE CASCADE,
+	CompanyID			uniqueidentifier	FOREIGN KEY REFERENCES Companies(CompanyID),	
+	IsOwner				bit					NOT NULL,
 )
 
 -- Create Address table:
@@ -93,5 +101,3 @@ create table NonPerishableProducts(
 	ProductID		uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Products(ProductID) ON DELETE CASCADE,
 	Amount 			int 				NOT NULL
 )
-
-

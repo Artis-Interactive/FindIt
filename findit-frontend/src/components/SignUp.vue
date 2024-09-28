@@ -1,5 +1,10 @@
 <template>
-	<h1 class="text-center">Find It!</h1>
+	<div class="header-container">
+		<h1 class="text-center">Find It!</h1>
+		<div class="image-container">
+			<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/b9ce2ece67c8fb0de62d5843afb86d04349a5358848c169eb76f6b945b456c7f?placeholderIfAbsent=true&apiKey=6ec5dbc4b236439ba7ab2d7565d1deca" class="logo-image" alt="Find It! logo" />
+		</div>
+	</div>
 	<div class="d-flex justify-content-center align-items-center flex-column">
 		<div class="background-box">
 			<div class="form-container">
@@ -358,6 +363,23 @@
 
 <style scoped>
 	@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+	.header-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.image-container {
+		position: absolute;
+		top: 0px;
+		right: 200px;
+		display: flex;
+		justify-content: flex-end;
+		width: 246px;
+		height: 288px;
+		flex-shrink: 0;
+	}
 
 	.d-flex {
     display: flex;

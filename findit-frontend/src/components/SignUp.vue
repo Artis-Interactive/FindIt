@@ -324,7 +324,6 @@
 			registerUser() {
 				const salt = bcrypt.genSaltSync(10);
 				const hash = bcrypt.hashSync(this.form.password, salt);
-				this.form.password = hash;
 				axios.post("https://localhost:7262/api/UserDataSignUp",  {
 						name: this.form.name,
 						LastNames: this.form.LastNames,
@@ -332,7 +331,7 @@
 						legalID: this.form.legalID,
 						email: this.form.email,
 						PhoneNumber: this.form.PhoneNumber,
-						password: this.form.password
+						password: hash,
 					})
 				.then(function (response) {
 					alert ('Usuario registrado con éxito.');

@@ -2,7 +2,6 @@
 {
     public class UserModel
     {
-        public string UserID { get; set; }
         public string LegalId { get; set; }
         public string Name { get; set; }
         public string LastNames { get; set; }

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "znIGA5wICYaCv2egjR/X/8PGb78ZJZqfvbYqWGb+wmg=",
+  "Source": "findit-backend",
+  "BasePath": "_content/findit-backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

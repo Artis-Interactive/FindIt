@@ -7,23 +7,23 @@
 
         <div class="hero">
           <div class="image-container">
-            <img :src="heroImage" alt="Hero Image" class="hero-image">
+            <img :src="companyHeroImage" alt="Hero Image" class="hero-image">
           </div>
         </div>
 
         <div class="company-header">
           <div class="company-profile">
-            <img :src="companyProfile" alt="Company Profile Picture" class="company-profile-img"/>
+            <img :src="companyProfileImage" alt="Company Profile Picture" class="company-profile-img"/>
           </div>
-          <h1 class="company-name">{{ companyName }}</h1>
-          <h2 class="company-schedule">Horario: {{ companyOpeningTime }} - {{ companyClosingTime }}</h2>
+          <h1 class="company-name">{{ companyData.name }}</h1>
+          <h2 class="company-schedule">Horario: {{ companyStartTime }} - {{ companyEndTime }}</h2>
           <div class="address-section">
             <img src="@/assets/address_icon.png" alt="Adress Icon" class="address-icon">
             <a :href="`https://www.google.com/maps?q=${encodeURIComponent(companyAddress)}`" class="company-address">{{ companyAddress }}</a>
           </div>
           <div class="telephone-section">
             <img src="@/assets/telephone_icon.png" alt="Telephone Icon" class="telephone-icon">
-            <h2 class="company-telephone"> {{ companyTel }} </h2>
+            <h2 class="company-telephone"> {{ companyData.phoneNumber }} </h2>
           </div>
         </div>
       </article>
@@ -42,50 +42,105 @@
 </template>
   
 <script>
-  import AppHeader from './AppHeader.vue'
-  import ProductCarousel from './ProductCarousel.vue'
-  export default {
-    name: 'CompanyPage',
-    components: {
-      AppHeader,
-      ProductCarousel
-    },
+import axios from "axios";
+import AppHeader from './AppHeader.vue'
+import ProductCarousel from './ProductCarousel.vue'
 
-    data() {
-      return {
-        heroImage: require("@/assets/company_page_hero.jpg"),
-        companyProfile: require("@/assets/company_profile.png"),
-        companyName: "N&W Jewerly",
-        companyOpeningTime: "10:00 AM",
-        companyClosingTime: "5:00 PM",
-        companyAddress: "Guachipelín, San Rafael de Escazú, San José",
-        companyTel: "2222-4444",
-        isCompanyUser: false,
-        isCompanySection: true,
-        products: [
-          { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
-          { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
-          { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
-          { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
-          { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
-          { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
-          { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
-          { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
-          { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
-          { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
-          { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') },
-          { name: "Anillo", price: "₡18.000", image: require('@/assets/product.png') }
-        ],
-      }
-    },
+export default {
+  name: 'CompanyPage',
+  components: {
+    AppHeader,
+    ProductCarousel
+  },
 
-    methods: {
-      clickOnCreate() {
-        console.log('Create product');
-      }
+  data() {
+    return {
+      companyHeroImage: "",
+      companyProfileImage: "",
+      companyStartTime:"",
+      companyEndTime:"",
+      companyAddress:"",
+      isCompanyUser: true,
+      isCompanySection: true,
+      companyId: "b3ad3854-758d-4288-bd50-04d8933c664d",
+      companyData: "",
+      isCompanyDataReady: false,
+      products: [],
     }
-  }
+  },
+
+  methods: {
+    clickOnCreate() {
+      console.log('Create product');
+    },
+
+    async obtainData() {
+      try {
+        const responseCompany = await axios.get(`https://localhost:7262/api/Company/CompanyID/${this.companyId}`);
+        this.companyData = responseCompany.data;
+        console.log("Datos empresa: ", this.companyData);
+        this.isCompanyDataReady = true;
+
+        const responseProducts = await axios.get(`https://localhost:7262/api/Product/CompanyID/${this.companyId}`);
+        this.products = responseProducts.data;
+        console.log("Datos productos: ", this.products);
+      } catch (error) {
+        console.error("Error al obtener los datos:", error);
+      }
+    },
+
+    async setCompanyData() {
+      if (this.companyData) {
+        this.companyProfileImage = require(`@/${this.companyData.logo}`);
+        console.log("Logo: ", this.companyProfileImage);
+        this.companyHeroImage = require(`@/${this.companyData.heroImage}`);
+        this.companyAddress = this.companyData.address.details +
+                              ', ' + 
+                              this.companyData.address.district +
+                              ', ' + 
+                              this.companyData.address.canton +
+                              ', ' + 
+                              this.companyData.address.province
+                              
+      } else {
+        console.error("Company data is not available");
+      }
+    },
+
+    formatTime(timeString) {
+      let [hours, minutes] = timeString.split(':');
+      
+      hours = parseInt(hours);
+      let ampm;
+      if(hours < 12){
+        ampm = 'AM';
+      } else{
+        ampm = 'PM';
+      }
+      
+      hours = hours % 12;
+      
+      return `${hours}:${minutes} ${ampm}`;
+    },
+    
+  },
+
+  watch: {
+    isCompanyDataReady(newValue) {
+      if (newValue && this.companyData) {
+        this.setCompanyData();
+        this.companyStartTime = this.formatTime(this.companyData.startTime);
+        this.companyEndTime = this.formatTime(this.companyData.endTime);
+      }
+    },
+  },
+
+  created() {
+    this.obtainData();
+  },
+};
 </script>
+
 
 <style scoped>
 

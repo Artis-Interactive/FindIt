@@ -11,22 +11,31 @@ namespace findit_backend.Controllers
     [ApiController]
     public class AddressController : ControllerBase
     {
-       private readonly AddressHandler _addressHandler;
+        private readonly AddressHandler _addressHandler;
 
-            public AddressController()
-            {
+        public AddressController()
+        {
             _addressHandler = new AddressHandler();
-            }
-
-            [HttpGet]
-            public List<AddressModel> Get() {
-            {
-                var address = _addressHandler.GetAddresses();
-                return address;
-            }
-
-            
-
         }
+
+        [HttpGet]
+        public List<AddressModel> Get()
+        {
+            var address = _addressHandler.GetAddresses();
+            return address;
+        }
+
+        [HttpGet("CompanyID/{companyId}")]
+        public ActionResult GetAddressById(string companyId)
+        {
+            var address = _addressHandler.GetByCompany(companyId);
+            if (address == null)
+            {
+                return BadRequest();
+            }
+            return Ok(address);
+        }
+
+
     }
 }

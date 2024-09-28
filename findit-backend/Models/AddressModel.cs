@@ -2,6 +2,8 @@
 {
     public class AddressModel
     {
+        public string CompanyID { get; set; }
+        public string UserID { get; set; }
         public string Province { get; set; }
         public string Canton { get; set; }
         public string District { get; set; }

@@ -1,14 +1,15 @@
 <template>
   <div id="dynamic-carousel" class="carousel slide">
+
     <div class="carousel-inner">
       <div v-for="(group, index) in groupedProducts" :key="index" :class="['carousel-item', { active: index == 0 }]">
         <div class="row">
           <div class="col-md-2" v-for="product in group" :key="product.name">
             <button class="product-card" @click="clickOnProduct(product)">
-              <img :src="product.image" class="d-block w-100" :alt="product.name">
+              <img :src="require(`@/${product.image}`)" class="d-block w-100" :alt="product.name">
               <div class="product-card-info">
-                <p>{{ product.name }}</p>
-                <p>{{ product.price }}</p>
+                <div class="product-name" :title="product.name">{{ product.name }}</div>
+                <p>₡{{ product.price }}</p>
               </div>
             </button>
           </div>
@@ -19,6 +20,7 @@
     <button class="carousel-control-prev" type="button" data-bs-target="#dynamic-carousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" style="filter: invert(100%);"></span>
     </button>
+    
     <button class="carousel-control-next" type="button" data-bs-target="#dynamic-carousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"  style="filter: invert(100%);"></span>
     </button>
@@ -120,10 +122,22 @@
     transition: background-color 0.2s ease;
   }
 
-  .product-card-info{
+  .product-card-info {
     display: flex;
-    gap: 100px;
+    flex-direction: column;
+    gap: 5px;
     font-size: 20px;
+}
+
+  .product-name {
+    display: -webkit-box; 
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    max-width: 100%; 
+    line-height: 1.2; 
+    
   }
 
   @media (max-width: 1200px) {

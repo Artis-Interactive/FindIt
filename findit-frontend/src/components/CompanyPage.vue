@@ -1,60 +1,53 @@
 <template>
-  <div class="container">
-    <div class="grid-container">
-      <header class="header"> <AppHeader /> </header>
+  <header class="header"> <AppHeader /> </header>
+   
+  <div class="hero-container">
+    <img :src="companyHeroImage" alt="Hero Image" class="hero-image">
+  </div>
 
-      <article class="main">
-
-        <div class="hero">
-          <div class="image-container">
-            <img :src="companyHeroImage" alt="Hero Image" class="hero-image">
-          </div>
-        </div>
-
-        <div class="company-profile">
-          <img :src="companyProfileImage" alt="Company Profile Picture" class="company-profile-img"/>
-        </div>
-
-        <div class="name-and-schedule">
-          <h1 class="company-name">{{ companyData.name }}</h1>
-          <a class="company-schedule" @click="showModal()">Ver Horario</a>
-        </div>
-        
-        <div class="address-and-tel">
-          <div class="address-section">
-            <img src="@/assets/address_icon.png" alt="Adress Icon" class="address-icon">
-            <a :href="`https://www.google.com/maps?q=${encodeURIComponent(companyAddress)}`" class="company-address">{{ companyAddress }}</a>
-          </div>
-
-          <div class="telephone-section">
-            <img src="@/assets/telephone_icon.png" alt="Telephone Icon" class="telephone-icon">
-            <h2 class="company-telephone"> {{ companyData.phoneNumber }} </h2>
-          </div>
-        </div>
-        
-      </article>
-
-      <article class="catalog">
-        <h3 class="catalog-title">Catálogo</h3>
-        <div v-if="isCompanyUser">
-          <button class="create-product" @click="clickOnCreate()">Añadir producto</button>
-        </div>
-        <div class="catalog-carousel-container">
-          <ProductCarousel :products="products"/>
-        </div>
-      </article>
+  <div class="info-container">
+    <div class="profile-container">
+      <img :src="companyProfileImage" alt="Company Profile Picture" class="profile-image"/>
     </div>
 
-    <ModalComponent
-      :isVisible="isModalVisible"
-      :title="modalTitle"
-      @close="isModalVisible = false"
-    >
-      <template #body>
-        <p v-html="modalMessage"></p>
-      </template>
-    </ModalComponent>
-  </div>
+    <div class="name-and-schedule">
+      <h1 class="company-name">{{ companyData.name }}</h1>
+      <a class="company-schedule" @click="showModal()">Ver Horario</a>
+    </div>
+        
+    <div class="address-and-tel">
+      <div class="address-section">
+        <img src="@/assets/address_icon.png" alt="Adress Icon" class="address-icon">
+        <a :href="`https://www.google.com/maps?q=${encodeURIComponent(companyAddress)}`" class="company-address">{{ companyAddress }}</a>
+      </div>
+
+      <div class="telephone-section">
+        <img src="@/assets/telephone_icon.png" alt="Telephone Icon" class="telephone-icon">
+        <h2 class="company-telephone"> {{ companyData.phoneNumber }} </h2>
+      </div>
+    </div>
+  </div> 
+  <div class="catalog-container">
+    <div class="catalog-header">
+      <h3 class="catalog-title">Catálogo</h3>
+      <div v-if="isCompanyUser">
+        <button class="create-product" @click="clickOnCreate()">Añadir producto</button>
+      </div>
+    </div>
+    <div class="catalog-carousel">
+      <ProductCarousel :products="products"/>
+    </div>
+  </div> 
+
+  <ModalComponent
+    :isVisible="isModalVisible"
+    :title="modalTitle"
+    @close="isModalVisible = false"
+  >
+    <template #body>
+      <p v-html="modalMessage"></p>
+    </template>
+  </ModalComponent>
 </template>
   
 <script>
@@ -110,7 +103,7 @@
           this.products = responseProducts.data;
           console.log("Datos productos: ", this.products);
         } catch (error) {
-          console.error("Error al obtener los datos:", error);
+          console.error("Cannot obtain data:", error);
         }
       },
 
@@ -128,6 +121,7 @@
                                 this.companyData.address.canton +
                                 ', ' + 
                                 this.companyData.address.province;   
+
           for(let index = 0; index < this.companyData.workingDays.length; index++) {
             this.modalMessage += this.companyData.workingDays[index].day + ": " 
                               + this.companyData.workingDays[index].startTime + " - " 
@@ -179,44 +173,21 @@
   };
 </script>
 
-
 <style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
   .container {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh; 
+    min-width: 100%;
+    min-height: 100%;
+    background-color: aquamarine;
   }
 
-  .grid-container > * {
-    height: 100%;
-    text-align: center;
+  .header{
+    width: 100%;
+    min-height: 100%;
   }
 
-  .header {
-    grid-area: header;
-  }
-
-  .main {
-    grid-area: main;
-  }
-
-  .catalog{
-    grid-area: catalog;
-    font: montserrat;
-  }
-
-  .grid-container {
-    min-height: 100vh;
-    display: grid;
-    grid-template: 
-      "header" 73px
-      "main" 460px
-      "catalog" 395px;
-  }
-
-  .image-container {
-    width: 1879px;
+  .hero-container {
+    width: 100%;
     height: 300px;
     overflow: hidden;
     position: relative;
@@ -228,7 +199,12 @@
     object-fit: cover;
   }
 
-  .company-profile {
+  .info-container{
+    display: flex;
+    height: 200px;
+  }
+
+  .profile-container {
     width: 250px; 
     height: 250px; 
     border-radius: 50%; 
@@ -241,7 +217,7 @@
     top: -75px;
   }
 
-  .company-profile-img {
+  .profile-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -250,8 +226,8 @@
   .name-and-schedule{
     display: flex;
     flex-direction: column;
-    bottom: 45%;
-    left: 25%;
+    left: 12%;
+    top: 20%;
     text-align: left;
     position: relative;
     width: 30%;
@@ -286,9 +262,9 @@
 
   .address-and-tel{
     display: flex;
+    left: 20%;
+    top: 10%;
     flex-direction: column;
-    bottom: 66%;
-    left: 60%;
     text-align: left;
     position: relative;
     width: 30%;
@@ -351,12 +327,21 @@
     left: 15px;
   }
 
+  .catalog-container {
+    height: 350px;
+  }
+  
+  .catalog-header {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+  }
+
   .catalog-title {
     width: 7%;
     font-weight: 700;
     position: relative;
-    left: 5%;
-    top: 10%;
+    left: 4%;
   }
 
   .create-product {
@@ -368,10 +353,8 @@
     padding: 10px;
     border: none;
     position: relative;
-    left: 40%;
-    text-align: center;
-    align-self: stretch;
     cursor: pointer;
+    right: 50%;
   }
 
   .create-product:hover {
@@ -379,7 +362,9 @@
     transition: background-color 0.2s ease;
   }
 
-  .catalog-carousel-container{
+  .catalog-carousel {
     position: relative;
+    bottom: 40px;
   }
+
 </style>

@@ -20,7 +20,6 @@ namespace findit_backend.Handlers
         companyId = Convert.ToString(column["CompanyID"]);
         CompanyModel company = new CompanyModel
         {
-          CompanyID = Convert.ToString(column["CompanyID"]),
           Name = Convert.ToString(column["Name"]),
           LegalID = Convert.ToString(column["LegalID"]),
           Type = Convert.ToString(column["Type"]),
@@ -52,7 +51,6 @@ namespace findit_backend.Handlers
       DataRow column = tableResult.Rows[0];
       CompanyModel company = new CompanyModel
       {
-        CompanyID = Convert.ToString(column["CompanyID"]),
         Name = Convert.ToString(column["Name"]),
         LegalID = Convert.ToString(column["LegalID"]),
         Type = Convert.ToString(column["Type"]),

@@ -1,15 +1,11 @@
 <template>
-  <div class="container">
-    <div class="grid-container">
-      <header class="header"><AppHeader/></header>
-      <div class="main">
-        <h1 style="font-weight: 530;">
-            Comienza tu camino al éxito. <br>
-            Registra tu empresa y lleva tus productos al siguiente nivel.
-        </h1>
-        <button class="register-button" @click="handleRegister">Regístrate</button>
-      </div>
+  <header class="header"><AppHeader/></header>
+  <div class="main">
+    <div>
+      <h1 class="tab" style="font-weight: 530;">Comienza tu camino al éxito.<br></h1>
+      <h1 style="font-weight: 530;">Registra tu empresa y lleva tus productos al siguiente nivel.</h1>
     </div>
+    <button class="register-button" @click="handleRegister">Regístrate</button>
   </div>
 </template>
 
@@ -22,57 +18,22 @@
   }
 </script>
 
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>
-
 <style scoped>
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;  
-    height: 100vh; 
-  }
-
-  .grid-container {
-    display: grid;
-    width: 100%;  
-    height: 100%; 
-    grid-template:
-      "header header header" 73px
-      "main main main" 1fr;
-  }
-
-  .grid-container > * {
-    text-align: center;
-    height: 100%;
-  }
-
-  .header {
-    grid-area: header;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
   .main {
-    grid-area: main;
-    font-family: montserrat;
+    font: Montserrat, sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 35px;
+    min-width: 100vw;
+    min-height: 91.8vh;
+  }
+
+  .tab {
+    text-indent: 250px;
   }
 
   .register-button {

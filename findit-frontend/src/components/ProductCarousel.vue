@@ -2,6 +2,7 @@
   <div id="dynamic-carousel" class="carousel slide">
 
     <div class="carousel-inner">
+      <!-- Make sections, iterations in groups and single products -->
       <div v-for="(group, index) in groupedProducts" :key="index" :class="['carousel-item', { active: index == 0 }]">
         <div class="row">
           <div class="col-md-2" v-for="product in group" :key="product.name">
@@ -62,6 +63,7 @@
 </script>
   
 <style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
   .carousel-item {
     padding: 50px;
   }
@@ -105,6 +107,7 @@
 
   .product-card-info {
     display: flex;
+    font: Montserrat, sans-serif;
     flex-direction: column;
     gap: 5px;
     font-size: 20px;
@@ -119,7 +122,6 @@
     max-width: 100%; 
     line-height: 1.2; 
   }
-
 
   .carousel-control-prev {
     width: 2%;
@@ -144,4 +146,5 @@
   .carousel-control-next:hover {
     color: #966dc9;
   }
+
 </style>

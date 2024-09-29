@@ -2,7 +2,6 @@
 {
   public class CompanyModel
   {
-    public string CompanyID { get; set; }
     public string Name { get; set; }
     public string LegalID { get; set; }
     public string Type { get; set; }

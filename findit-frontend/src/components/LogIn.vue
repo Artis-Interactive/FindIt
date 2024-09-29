@@ -58,11 +58,10 @@ export default {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
       // Send to backend:
-      axios.post("https://localhost:7262/api/Users", { email, password })
+      axios.post("https://localhost:7262/api/User", { email, password })
         .then((response) => {
           // Process response:
           const data = response.data;
-          console.log(data);
           if (data.message === "NoUser") {
             this.modalTitle = "Error de inicio de sesión";
             this.modalMessage = "El correo ingresado no está asociado a ninguna cuenta.";

@@ -17,7 +17,7 @@
 
         <div class="name-and-schedule">
           <h1 class="company-name">{{ companyData.name }}</h1>
-          <h2 class="company-schedule">Horario: {{ companyStartTime }} - {{ companyEndTime }}</h2>
+          <a class="company-schedule" @click="showModal()">Ver Horario</a>
         </div>
         
         <div class="address-and-tel">
@@ -43,114 +43,140 @@
           <ProductCarousel :products="products"/>
         </div>
       </article>
-
     </div>
+
+    <ModalComponent
+      :isVisible="isModalVisible"
+      :title="modalTitle"
+      @close="isModalVisible = false"
+    >
+      <template #body>
+        <p v-html="modalMessage"></p>
+      </template>
+    </ModalComponent>
   </div>
 </template>
   
 <script>
-import axios from "axios";
-import AppHeader from './AppHeader.vue'
-import ProductCarousel from './ProductCarousel.vue'
+  import axios from "axios";
+  import AppHeader from './AppHeader.vue'
+  import ProductCarousel from './ProductCarousel.vue'
+  import ModalComponent from "./ModalComponent.vue";
 
-export default {
-  name: 'CompanyPage',
-  components: {
-    AppHeader,
-    ProductCarousel
-  },
-
-  data() {
-    return {
-      companyHeroImage: "",
-      companyProfileImage: "",
-      companyStartTime:"",
-      companyEndTime:"",
-      companyAddress:"",
-      isCompanyUser: true,
-      isCompanySection: true,
-      companyId: "b3ad3854-758d-4288-bd50-04d8933c664d",
-      companyData: "",
-      isCompanyDataReady: false,
-      products: [],
-    }
-  },
-
-  methods: {
-    clickOnCreate() {
-      console.log('Create product');
+  export default {
+    name: 'CompanyPage',
+    components: {
+      AppHeader,
+      ProductCarousel,
+      ModalComponent
     },
 
-    async obtainData() {
-      try {
-        const responseCompany = await axios.get(`https://localhost:7262/api/Company/CompanyID/${this.companyId}`);
-        this.companyData = responseCompany.data;
-        console.log("Datos empresa: ", this.companyData);
-        this.isCompanyDataReady = true;
-
-        const responseProducts = await axios.get(`https://localhost:7262/api/Product/CompanyID/${this.companyId}`);
-        this.products = responseProducts.data;
-        console.log("Datos productos: ", this.products);
-      } catch (error) {
-        console.error("Error al obtener los datos:", error);
+    data() {
+      return {
+        companyHeroImage: "",
+        companyProfileImage: "",
+        companyStartTime:"",
+        companyEndTime:"",
+        companyAddress:"",
+        isCompanyUser: true,
+        isCompanySection: true,
+        companyId: "84BE4251-B257-4665-9E0F-95BEE6415BA9",
+        companyData: "",
+        isCompanyDataReady: false,
+        products: [],
+        modalMessage: "",
+        modalTitle: "Horario",
+        isModalVisible: false,
       }
     },
 
-    async setCompanyData() {
-      if (this.companyData) {
-        this.companyProfileImage = require(`@/${this.companyData.logo}`);
-        console.log("Logo: ", this.companyProfileImage);
-        this.companyHeroImage = require(`@/${this.companyData.heroImage}`);
-        this.companyAddress = this.companyData.address.details +
-                              ', ' + 
-                              this.companyData.address.district +
-                              ', ' + 
-                              this.companyData.address.canton +
-                              ', ' + 
-                              this.companyData.address.province;                  
-      } else {
-        console.error("Company data is not available");
+    methods: {
+      clickOnCreate() {
+        console.log('Create product');
+      },
+
+      showModal() {
+        this.isModalVisible = true;
+      },
+
+      async obtainData() {
+        try {
+          const responseCompany = await axios.get(`https://localhost:7262/api/Company/CompanyID/${this.companyId}`);
+          this.companyData = responseCompany.data;
+          console.log("Datos empresa: ", this.companyData);
+          this.isCompanyDataReady = true;
+
+          const responseProducts = await axios.get(`https://localhost:7262/api/Product/CompanyID/${this.companyId}`);
+          this.products = responseProducts.data;
+          console.log("Datos productos: ", this.products);
+        } catch (error) {
+          console.error("Error al obtener los datos:", error);
+        }
+      },
+
+      async setCompanyData() {
+        if (this.companyData) {
+
+          this.companyProfileImage = require(`@/${this.companyData.logo}`);
+        
+          this.companyHeroImage = require(`@/${this.companyData.heroImage}`);
+
+          this.companyAddress = this.companyData.address.details +
+                                ', ' + 
+                                this.companyData.address.district +
+                                ', ' + 
+                                this.companyData.address.canton +
+                                ', ' + 
+                                this.companyData.address.province;   
+          for(let index = 0; index < this.companyData.workingDays.length; index++) {
+            this.modalMessage += this.companyData.workingDays[index].day + ": " 
+                              + this.companyData.workingDays[index].startTime + " - " 
+                              + this.companyData.workingDays[index].endTime + "<br>";
+          }
+                
+        } else {
+          console.error("Company data is not available");
+        }
+      },
+
+      toAMPM(timeString) {
+        let [hours, minutes] = timeString.split(':');
+        
+        hours = parseInt(hours);
+        let ampm;
+        if(hours < 12){
+          ampm = 'AM';
+        } else{
+          ampm = 'PM';
+        }
+        hours = hours % 12;
+        console.log("hola");
+        return `${hours}:${minutes} ${ampm}`;
+      },
+
+      formatSchedule(){
+        for(let index = 0; index < this.companyData.workingDays.length; index++) {
+          this.companyData.workingDays[index].startTime = this.toAMPM(this.companyData.workingDays[index].startTime);
+          this.companyData.workingDays[index].endTime = this.toAMPM(this.companyData.workingDays[index].endTime);
+        }
       }
+
     },
 
-    toAMPM(timeString) {
-      let [hours, minutes] = timeString.split(':');
-      
-      hours = parseInt(hours);
-      let ampm;
-      if(hours < 12){
-        ampm = 'AM';
-      } else{
-        ampm = 'PM';
-      }
-      hours = hours % 12;
-      console.log("hola");
-      return `${hours}:${minutes} ${ampm}`;
+    watch: {
+      isCompanyDataReady(newValue) {
+        if (newValue && this.companyData) {
+          this.formatSchedule();
+          this.setCompanyData();
+          console.log("Horario: ", this.companyData.workingDays);
+        }
+      },
     },
 
-    formatSchedule(){
-      for(let index = 0; index < this.companyData.workingDays.length; index++) {
-        this.companyData.workingDays[index].startTime = this.toAMPM(this.companyData.workingDays[index].startTime);
-        this.companyData.workingDays[index].endTime = this.toAMPM(this.companyData.workingDays[index].endTime);
-      }
-    }
-
-  },
-
-  watch: {
-    isCompanyDataReady(newValue) {
-      if (newValue && this.companyData) {
-        this.setCompanyData();
-        this.formatSchedule();
-        console.log("Horario: ", this.companyData.workingDays);
-      }
+    created() {
+      this.obtainData();
     },
-  },
-
-  created() {
-    this.obtainData();
-  },
-};
+  };
 </script>
 
 
@@ -165,7 +191,6 @@ export default {
   .grid-container > * {
     height: 100%;
     text-align: center;
-
   }
 
   .header {
@@ -186,8 +211,8 @@ export default {
     display: grid;
     grid-template: 
       "header" 73px
-      "main" 490px
-      "catalog" 365px;
+      "main" 460px
+      "catalog" 395px;
   }
 
   .image-container {
@@ -247,12 +272,22 @@ export default {
     font-size: 20px;
     font-family: montserrat;
     font-weight: 400;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    white-space: nowrap;
+    width: 10%;
+  }
+
+  .company-schedule:hover {
+    color: #966dc9;
+    transition: background-color 0.2s ease;
   }
 
   .address-and-tel{
     display: flex;
     flex-direction: column;
-    bottom: 63%;
+    bottom: 66%;
     left: 60%;
     text-align: left;
     position: relative;
@@ -289,10 +324,14 @@ export default {
     width: 87%;
   }
 
+  .company-address:hover {
+    color: #966dc9;
+    transition: background-color 0.2s ease;
+  }
+
   .telephone-section {
     display: flex;
     position: relative;
-
   }
 
   .telephone-icon {
@@ -308,7 +347,7 @@ export default {
     white-space: nowrap;
     font-weight: 400;
     position: relative;
-    bottom: 10px;
+    top: 15px;
     left: 15px;
   }
 
@@ -330,16 +369,17 @@ export default {
     border: none;
     position: relative;
     left: 40%;
-    
+    text-align: center;
+    align-self: stretch;
+    cursor: pointer;
   }
 
   .create-product:hover {
     background-color: #966dc9;
     transition: background-color 0.2s ease;
   }
+
   .catalog-carousel-container{
     position: relative;
-    bottom: 8%;
   }
-
 </style>

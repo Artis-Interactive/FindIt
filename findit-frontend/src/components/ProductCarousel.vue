@@ -44,25 +44,6 @@
       };
     },
 
-    mounted() {
-      const link = document.createElement("link");
-      link.href =
-        "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css";
-      link.rel = "stylesheet";
-      link.integrity =
-        "sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH";
-      link.crossOrigin = "anonymous";
-      document.head.appendChild(link);
-
-      const script = document.createElement("script");
-      script.src =
-        "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js";
-      script.integrity =
-        "sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz";
-      script.crossOrigin = "anonymous";
-      document.body.appendChild(script);
-    },
-
     computed: {
       groupedProducts() {
         const groups = [];
@@ -137,5 +118,30 @@
     text-overflow: ellipsis; 
     max-width: 100%; 
     line-height: 1.2; 
+  }
+
+
+  .carousel-control-prev {
+    width: 2%;
+    height: 10%;
+    top: 30%;
+    left: 8%;
+
+  }
+
+  .carousel-control-prev:hover {
+    color: #966dc9;
+  }
+
+  .carousel-control-next {
+    width: 2%;
+    height: 10%;
+    top: 30%;
+    left: 90%;
+
+  }
+
+  .carousel-control-next:hover {
+    color: #966dc9;
   }
 </style>

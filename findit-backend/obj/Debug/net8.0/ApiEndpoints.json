@@ -140,6 +140,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "findit_backend.Controllers.UserController",
+    "Method": "userLogin",
+    "RelativePath": "api/User",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "findit_backend.Models.UserLoginModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "findit_backend.Controllers.UserDataSignUpController",
     "Method": "CreateUser",
     "RelativePath": "api/UserDataSignUp",

@@ -22,6 +22,7 @@ namespace findit_backend.Handlers
         {
           CompanyID = Convert.ToString(column["CompanyID"]),
           Name = Convert.ToString(column["Name"]),
+          LegalID = Convert.ToString(column["LegalID"]),
           Type = Convert.ToString(column["Type"]),
           Description = Convert.ToString(column["Description"]),
           PhoneNumber = Convert.ToInt32(column["PhoneNumber"]),
@@ -53,6 +54,7 @@ namespace findit_backend.Handlers
       {
         CompanyID = Convert.ToString(column["CompanyID"]),
         Name = Convert.ToString(column["Name"]),
+        LegalID = Convert.ToString(column["LegalID"]),
         Type = Convert.ToString(column["Type"]),
         Description = Convert.ToString(column["Description"]),
         PhoneNumber = Convert.ToInt32(column["PhoneNumber"]),

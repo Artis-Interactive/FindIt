@@ -11,7 +11,7 @@ namespace findit_backend.Handlers
         public BaseHandler()
         {
             var builder = WebApplication.CreateBuilder();
-            _connectionRoute = builder.Configuration.GetConnectionString("PIUsers");
+            _connectionRoute = builder.Configuration.GetConnectionString("FindItDatabase");
             _connection = new SqlConnection(_connectionRoute);
         }
 

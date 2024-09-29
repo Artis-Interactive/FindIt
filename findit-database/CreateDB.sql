@@ -75,7 +75,7 @@ create table Address(
 -- Create WorkingDays table:
 create table WorkingDays(
 	CompanyID		uniqueidentifier	FOREIGN KEY REFERENCES Companies(CompanyID),
-	Day				varchar(9)			NOT NULL	CHECK (Day IN ('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo')),
+	Day				varchar(9)			NOT NULL	CHECK (Day IN ('Lunes', 'Martes', 'Miï¿½rcoles', 'Jueves', 'Viernes', 'Sï¿½bado', 'Domingo')),
 	StartTime		time				NOT NULL,
 	EndTime			time				NOT NULL
 )
@@ -101,4 +101,18 @@ create table Products(
 create table NonPerishableProducts(
 	ProductID		uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Products(ProductID) ON DELETE CASCADE,
 	Amount 			int 				NOT NULL
+)
+
+-- Create PerishableProducts table:
+create table PerishableProducts(
+	ProductID		uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Products(ProductID) ON DELETE CASCADE,
+	Lifespan 			int 				NOT NULL
+)
+
+-- Create ProductionBatch table:
+create table ProductionBatch(
+	ProductID		uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Products(ProductID) ON DELETE CASCADE,
+	Amount 			int 				NOT NULL,
+	OrderDeadline	time				NOT NULL,
+	ProductionDate	date				NOT NULL
 )

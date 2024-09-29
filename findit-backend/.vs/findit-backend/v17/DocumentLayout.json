@@ -1,6 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\",
+  "WorkspaceRootPath": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\",
   "Documents": [
     {
       "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -54,8 +55,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 51,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 8,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -116,7 +121,7 @@
               "RelativeToolTip": "Controllers\\UserController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T15:59:01.35Z",
+              "WhenOpened": "2024-09-29T17:43:58.258Z",
               "EditorCaption": ""
             },
             {
@@ -129,7 +134,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T19:24:51.575Z",
+              "WhenOpened": "2024-09-29T17:41:24.566Z",
               "EditorCaption": ""
             },
             {
@@ -211,10 +216,12 @@
               "DocumentIndex": 8,
               "Title": "AddressModel.cs",
               "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\AddressModel.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\AddressModel.cs",
               "RelativeDocumentMoniker": "Models\\AddressModel.cs",
               "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\AddressModel.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\AddressModel.cs",
               "RelativeToolTip": "Models\\AddressModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-28T03:13:48.967Z"
             },

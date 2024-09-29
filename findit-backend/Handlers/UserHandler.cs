@@ -45,7 +45,64 @@ namespace findit_backend.Handlers
 
             return ExecuteNonQuery(queryCommand);
         }
+        public async Task<string> validateUser(UserLoginModel user)
+        {
+            // Creates query and stores resulting table:
+            string query = $"SELECT * FROM dbo.Users WHERE Email = '{user.Email}'";
+            DataTable resultingTable = this.CreateQueryTable(query);
 
+            string result;
+            // User doesn't exist:
+            if (resultingTable.Rows.Count == 0)
+            {
+                result = "NoUser";
+            }
+            else
+            {
+                DataRow userRow = resultingTable.Rows[0];
+                // User is banned:
+                if (Convert.ToString(userRow["AccountState"]) == "BAN")
+                {
+                    result = "Ban";
+                }
+                // User is not verified yet:
+                else if (Convert.ToString(userRow["AccountState"]) == "NotVER")
+                {
+                    result = "NotVer";
+                }
+                else
+                {
+                    // Check password:
+                    if (Convert.ToString(userRow["PasswordHash"]) == user.Password)
+                    {
+                        result = "Allow";
+                    }
+                    else
+                    {
+                        result = "NotPass";
+                    }
+                }
+            }
+            return result;
+        }
+        public async Task<string> getUserRole(UserLoginModel user)
+        {
+            // Creates query and stores resulting table:
+            string query = $"SELECT * FROM dbo.Users WHERE Email = '{user.Email}'";
+            DataTable resultingTable = this.CreateQueryTable(query);
+
+            // User doesn't exist:
+            if (resultingTable.Rows.Count == 0)
+            {
+                return "NoUser";
+            }
+            else
+            {
+                DataRow userRow = resultingTable.Rows[0];
+                return Convert.ToString(userRow["AccountState"]);
+            }
+                
+        } 
     }
 }
 

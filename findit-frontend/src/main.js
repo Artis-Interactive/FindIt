@@ -10,9 +10,9 @@ import SignUp from './components/SignUp.vue'
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {path: "/", name: "Empresa", component: CompanyPage},
-        {path: "/regPrev", name: "Ingresar a registro de empresa", component: RegisterCompanyPrev},
-        {path: "/logIn", name: "Log In", component: LogIn},
+        {path: "/", name: "Log In", component: LogIn},
+        {path: "/business", name: "Empresa", component: CompanyPage},
+        {path: "/business/register", name: "Ingresar a registro de empresa", component: RegisterCompanyPrev},
         {path: "/signUp", name: "Sign Up", component: SignUp},
     ]
 })

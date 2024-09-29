@@ -42,6 +42,7 @@ create table UserCards(
 create table Companies(
 	CompanyID		uniqueidentifier	NOT NULL PRIMARY KEY DEFAULT NewID(),
 	Name			varchar(150)		NOT NULL UNIQUE,
+	LegalID			varchar(15)			NOT NULL UNIQUE,
 	Type			varchar(8)			CHECK (Type IN ('physical', 'legal')),
 	Description		varchar(1000),		
 	Email			varchar(50),

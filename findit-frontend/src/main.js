@@ -5,8 +5,9 @@ import 'bootstrap';
 import { createRouter, createWebHistory } from 'vue-router'
 
 import HelloWorld from './components/HelloWorld.vue'
-import LoginComponent from "./components/LogIn.vue";
 import SignUp from './components/SignUp.vue'
+import GeneralProductList from './components/GeneralProductList.vue';
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -19,7 +20,7 @@ const router = createRouter({
         {
             path: "/",
             name: "Login",
-            component: LoginComponent
+            component: GeneralProductList
         },
         {
 			path: "/signup",

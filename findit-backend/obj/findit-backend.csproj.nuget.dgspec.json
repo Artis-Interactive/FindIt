@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\findit-backend.csproj": {}
+    "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\findit-backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\findit-backend.csproj": {
+    "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\findit-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\findit-backend.csproj",
+        "projectUniqueName": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\findit-backend.csproj",
         "projectName": "findit-backend",
-        "projectPath": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\findit-backend.csproj",
-        "packagesPath": "C:\\Users\\menar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\obj\\",
+        "projectPath": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\findit-backend.csproj",
+        "packagesPath": "C:\\Users\\Personal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\menar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Personal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -78,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -12,21 +12,50 @@ namespace findit_backend.Controllers
     public class AddressController : ControllerBase
     {
        private readonly AddressHandler _addressHandler;
+       private readonly UserIdHandler _userIdHandler;
 
-            public AddressController()
-            {
+        public AddressController()
+        {
             _addressHandler = new AddressHandler();
-            }
+            _userIdHandler = new UserIdHandler();
+        }
 
-            [HttpGet]
-            public List<AddressModel> Get() {
+        [HttpGet("Address")]
+        public List<AddressModel> Get()
+        {
+            var address = _addressHandler.GetAddresses();
+            return address;
+        }
+
+        [HttpPost("AddAddress")]
+        public ActionResult<bool> CreateAddress(AddressModel address, string legalId)
+        {
+            try
             {
-                var address = _addressHandler.GetAddresses();
-                return address;
+                if (address == null)
+                {
+                    return BadRequest("Invalid input. Address is missing.");
+                }
+
+                // Retrieve the UserID based on the LegalId
+                UserIdHandler userIdHandler = new UserIdHandler();
+                var userId = userIdHandler.GetUserId(legalId);
+
+                if (userId == Guid.Empty)
+                {
+                    return BadRequest("Invalid Legal ID.");
+                }
+
+                // Create the address in the DB with the UserID
+                AddressHandler addressHandler = new AddressHandler();
+                var result = addressHandler.CreateAddress(address, userId);
+
+                return new JsonResult(result);
             }
-
-            
-
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }

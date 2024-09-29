@@ -7,26 +7,26 @@ namespace findit_backend.Handlers
 {
     public class AddressHandler : BaseHandler
     {
-        public bool CreateAddress(AddressModel address)
+        public bool CreateAddress(AddressModel address, Guid userId)
         {
-            var query = @"INSERT INTO [dbo].[Address] ([Province], [Canton], [District], [Details])
-                        VALUES (@Province, @Canton, @District, @Details)"
-            ;
+            var query = @"INSERT INTO dbo.Address (UserID, Province, Canton, District, Details)
+                  VALUES (@UserID, @Province, @Canton, @District, @Details)";
 
             var queryCommand = new SqlCommand(query, _connection);
-
+            
+            queryCommand.Parameters.AddWithValue("@UserID", userId);
             queryCommand.Parameters.AddWithValue("@Province", address.Province);
             queryCommand.Parameters.AddWithValue("@Canton", address.Canton);
             queryCommand.Parameters.AddWithValue("@District", address.District);
             queryCommand.Parameters.AddWithValue("@Details", address.Details);
 
-            return ExecuteNonQuery(queryCommand);
+            return ExecuteNonQuery(queryCommand);  
         }
 
         public List<AddressModel> GetAddresses() 
         { 
             List<AddressModel> addresses = new List<AddressModel>();
-            string query = "SELECT * FROM dbo.Address";
+            string query = "SELECT Province, Canton, District, Details FROM dbo.Address"; ;
             DataTable tableResult = CreateQueryTable(query);
             foreach (DataRow row in tableResult.Rows)
             {

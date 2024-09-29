@@ -102,9 +102,9 @@
 					<!-- Aditional spaces if manual is selected -->
 					<div v-if="selectedDirection === 'manual'">
 						<div>
-							<label for="provincia">Provincia:</label>
-							<select v-model="form.provincia"
-											id="provincia"
+							<label for="province">Provincia:</label>
+							<select v-model="form.province"
+											id="province"
 											required
 											class="form-control custom-select">
 								<option value="" disabled>Seleccione una provincia</option>
@@ -130,10 +130,10 @@
 						</div>
 
 						<div>
-							<label for="distrito">Distrito:</label>
+							<label for="district">Distrito:</label>
 							<input type="text"
-											id="distrito"
-											v-model="form.distrito"
+											id="district"
+											v-model="form.district"
 											placeholder="San Pedro"
 											required
 											pattern="[A-Za-zÀ-ÿ\s]+" 
@@ -141,10 +141,10 @@
 						</div>
 
 						<div>
-							<label for="signs">Otras señas:</label>
+							<label for="details">Otras señas:</label>
 							<input type="text"
-											id="signs"
-											v-model="form.signs"
+											id="details"
+											v-model="form.details"
 											placeholder="De la Iglesia de San Pedro 200 metros al sur"
 											required
 											pattern="[A-Za-zÀ-ÿ0-9\s\.\-,#]+" />
@@ -248,19 +248,35 @@
 					</div>
 				</form>
 			</div>
+			<ModalComponent
+        :isVisible="isModalVisible"
+        :title="modalTitle"
+        @close="isModalVisible = false"
+      >
+        <template #body>
+          <p>{{ modalMessage }}</p>
+        </template>
+      </ModalComponent>
 		</div>
 	</div>
 
 </template>
 
 <script>
+	import ModalComponent from './ModalComponent.vue';
 	import bcrypt from 'bcryptjs';
 	import axios from 'axios';
 
 	export default {
-
+		name: 'SignUpComponent',
+		components: {
+			ModalComponent,
+		},
 		data() {
 			return {
+				modalTitle: '',
+				modalMessage: '',
+				isModalVisible: false,
 				form: {
 					name: "",
 					lastName: "",
@@ -278,7 +294,7 @@
 		},
 		methods: {
 			formatCardNumber(event) {
-				let input = event.target.value.replace(/\D/g, '');
+				var input = event.target.value.replace(/\D/g, '');
 				this.unformattedCardNumber = input;
 				if (input.length > 4) {
 						input = input.match(/.{1,4}/g).join(' ');
@@ -302,7 +318,9 @@
 			},
 			validatePassword() {
 				if (this.form.password !== this.form.confirmPassword) {
-					alert('Las contraseñas no coinciden.');
+					this.modalTitle = "Error de contraseña";
+					this.modalMessage = "Las contraseñas no coinciden.";
+					this.isModalVisible = true;
 					return false;
 				}
 				return true;
@@ -317,9 +335,13 @@
 				}
 				catch(error) {
 					if (error.config.url.includes('Email')) {
-						alert('El correo ya se encuentra registrado.');
+						this.modalTitle = "Error de registro";
+						this.modalMessage = "El correo ya se encuentra registrado.";
+						this.isModalVisible = true;
 					} else if (error.config.url.includes('LegalID')) {
-						alert('La cédula ya se encuentra registrada.');
+						this.modalTitle = "Error de registro";
+						this.modalMessage = "La cédula ya se encuentra registrada.";
+						this.isModalVisible = true;
 					} else {
 						console.log(error);
 					}
@@ -338,13 +360,28 @@
 						PhoneNumber: this.form.PhoneNumber,
 						password: hash,
 					})
-				.then(function (response) {
-					alert ('Usuario registrado con éxito.');
+				.then((response) => {
 					console.log(response);
-					window.location.href = "/";
+					return this.registerAddress(this.form.legalID);
+				})
+				.then((response) => {
+					this.modalTitle = "Usuario registrado";
+					this.modalMessage = "El usuario fue registrado exitosamente..";
+					this.isModalVisible = true;
+					console.log(response);
+					this.$router.push("/home");
+
 				})
 				.catch(error => {
-					console.log(error);
+					console.log("Error al registrar usuario: ", error);
+				});
+			},
+			registerAddress(legalID) {
+				return axios.post(`https://localhost:7262/api/Address/AddAddress?legalId=${legalID}`, {
+					province: this.form.province,
+					canton: this.form.canton,
+					district: this.form.district,
+					details: this.form.details
 				});
 			}
 		},

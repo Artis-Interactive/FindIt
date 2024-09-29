@@ -14,7 +14,7 @@ namespace findit_backend.Handlers
             {
                 users.Add(
                 new UserModel
-                {
+                {   
                     LegalId = Convert.ToString(column["LegalId"]),
                     Name = Convert.ToString(column["Name"]),
                     LastNames = Convert.ToString(column["LastNames"]),
@@ -22,7 +22,7 @@ namespace findit_backend.Handlers
                     BirthDate = Convert.ToString(column["BirthDate"]),
                     PhoneNumber = Convert.ToString(column["PhoneNumber"]),
                     Password = Convert.ToString(column["PasswordHash"]),
-                });
+                }); 
             }
             return users;
         }

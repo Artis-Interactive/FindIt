@@ -1,4 +1,6 @@
-﻿namespace findit_backend.Models
+﻿using System.Globalization;
+
+namespace findit_backend.Models
 {
     public class AddressModel
     {
@@ -6,5 +8,6 @@
         public string Canton { get; set; }
         public string District { get; set; }
         public string Details { get; set; }
+        public string? Coords { get; set; }
     }
 }

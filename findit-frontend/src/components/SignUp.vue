@@ -174,10 +174,10 @@
 					<!-- Aditional spaces if card is selected -->
 					<div v-if="selectedPaymentMethod === 'card'">
 						<div>
-							<label for="nameCard">Nombre:</label>
+							<label for="nameOnCard">Nombre:</label>
 							<input type="text"
-											id="nameCard"
-											v-model="form.nameCard"
+											id="nameOnCard"
+											v-model="form.nameOnCard"
 											placeholder="Juan Ramirez M"
 											maxlength="100"
 											required
@@ -189,11 +189,10 @@
 							<input type="text"
 											id="cardNumber"
 											v-model="form.cardNumber"
-											@input="formatCardNumber"
-											placeholder="1111 2222 3333 4444"
-											maxlength="19"
-											minlength="19"
-											pattern="\d{4} \d{4} \d{4} \d{4}"
+											placeholder="1111222233334444"
+											maxlength="16"
+											minlength="16"
+											pattern="\d{16}"
 											required />
 						</div>
 
@@ -209,7 +208,7 @@
 						</div>
 
 						<div>
-							<label for="expiraryDate">Fecha de Experación:</label>
+							<label for="expiraryDate">Fecha de Expiración:</label>
 							<input type="date"
 											id="expiraryDate"
 											v-model="form.expiraryDate"
@@ -293,15 +292,6 @@
 			};
 		},
 		methods: {
-			formatCardNumber(event) {
-				var input = event.target.value.replace(/\D/g, '');
-				this.unformattedCardNumber = input;
-				if (input.length > 4) {
-						input = input.match(/.{1,4}/g).join(' ');
-				}
-				event.target.value = input;
-				this.form.cardNumber = input;
-			},
 			handleSubmit() {
 				if (!this.validatePassword()) {
 					return;
@@ -365,6 +355,10 @@
 					return this.registerAddress(this.form.legalID);
 				})
 				.then((response) => {
+					console.log(response);
+					return this.registerCardInfo(this.form.legalID);
+				})
+				.then((response) => {
 					this.modalTitle = "Usuario registrado";
 					this.modalMessage = "El usuario fue registrado exitosamente..";
 					this.isModalVisible = true;
@@ -382,6 +376,13 @@
 					canton: this.form.canton,
 					district: this.form.district,
 					details: this.form.details
+				});
+			},
+			registerCardInfo(legalID) {
+				return axios.post(`https://localhost:7262/api/Card?legalId=${legalID}`, {
+					cardNumber: this.form.cardNumber,
+					nameOnCard: this.form.nameOnCard,
+					expiraryDate: this.form.expiraryDate
 				});
 			}
 		},

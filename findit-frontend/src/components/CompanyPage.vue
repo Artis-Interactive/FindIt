@@ -11,32 +11,39 @@
           </div>
         </div>
 
-        <div class="company-header">
-          <div class="company-profile">
-            <img :src="companyProfileImage" alt="Company Profile Picture" class="company-profile-img"/>
-          </div>
+        <div class="company-profile">
+          <img :src="companyProfileImage" alt="Company Profile Picture" class="company-profile-img"/>
+        </div>
+
+        <div class="name-and-schedule">
           <h1 class="company-name">{{ companyData.name }}</h1>
           <h2 class="company-schedule">Horario: {{ companyStartTime }} - {{ companyEndTime }}</h2>
+        </div>
+        
+        <div class="address-and-tel">
           <div class="address-section">
             <img src="@/assets/address_icon.png" alt="Adress Icon" class="address-icon">
             <a :href="`https://www.google.com/maps?q=${encodeURIComponent(companyAddress)}`" class="company-address">{{ companyAddress }}</a>
           </div>
+
           <div class="telephone-section">
             <img src="@/assets/telephone_icon.png" alt="Telephone Icon" class="telephone-icon">
             <h2 class="company-telephone"> {{ companyData.phoneNumber }} </h2>
           </div>
         </div>
+        
       </article>
 
       <article class="catalog">
-        <div class="catalog-header">
-          <h3 class="catalog-title">Catálogo</h3>
-          <div v-if="isCompanyUser">
-            <button class="create-product" @click="clickOnCreate()">Añadir producto</button>
-          </div>
+        <h3 class="catalog-title">Catálogo</h3>
+        <div v-if="isCompanyUser">
+          <button class="create-product" @click="clickOnCreate()">Añadir producto</button>
         </div>
-        <ProductCarousel :products="products"/>
+        <div class="catalog-carousel-container">
+          <ProductCarousel :products="products"/>
+        </div>
       </article>
+
     </div>
   </div>
 </template>
@@ -100,14 +107,13 @@ export default {
                               ', ' + 
                               this.companyData.address.canton +
                               ', ' + 
-                              this.companyData.address.province
-                              
+                              this.companyData.address.province;                  
       } else {
         console.error("Company data is not available");
       }
     },
 
-    formatTime(timeString) {
+    toAMPM(timeString) {
       let [hours, minutes] = timeString.split(':');
       
       hours = parseInt(hours);
@@ -117,20 +123,26 @@ export default {
       } else{
         ampm = 'PM';
       }
-      
       hours = hours % 12;
-      
+      console.log("hola");
       return `${hours}:${minutes} ${ampm}`;
     },
-    
+
+    formatSchedule(){
+      for(let index = 0; index < this.companyData.workingDays.length; index++) {
+        this.companyData.workingDays[index].startTime = this.toAMPM(this.companyData.workingDays[index].startTime);
+        this.companyData.workingDays[index].endTime = this.toAMPM(this.companyData.workingDays[index].endTime);
+      }
+    }
+
   },
 
   watch: {
     isCompanyDataReady(newValue) {
       if (newValue && this.companyData) {
         this.setCompanyData();
-        this.companyStartTime = this.formatTime(this.companyData.startTime);
-        this.companyEndTime = this.formatTime(this.companyData.endTime);
+        this.formatSchedule();
+        console.log("Horario: ", this.companyData.workingDays);
       }
     },
   },
@@ -143,7 +155,6 @@ export default {
 
 
 <style scoped>
-
   .container {
     display: flex;
     justify-content: center; 
@@ -167,15 +178,16 @@ export default {
 
   .catalog{
     grid-area: catalog;
+    font: montserrat;
   }
 
   .grid-container {
     min-height: 100vh;
     display: grid;
     grid-template: 
-      "header header header" 73px
-      "main main main" 490px
-      "catalog catalog catalog" 365px;
+      "header" 73px
+      "main" 490px
+      "catalog" 365px;
   }
 
   .image-container {
@@ -210,34 +222,47 @@ export default {
     object-fit: cover;
   }   
 
+  .name-and-schedule{
+    display: flex;
+    flex-direction: column;
+    bottom: 45%;
+    left: 25%;
+    text-align: left;
+    position: relative;
+    width: 30%;
+  }
+
   .company-name {
-    top: -75px;
-    right: -245px;
     position: relative;
     font-size: 40px;
     font-family: montserrat;
     font-weight: 600;
-  }
-
-  .company-header {
-    display: flex;
-    align-items: center;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
   }
 
   .company-schedule {
-    position: relative;
-    left: -27px;
-    top: -30px;
     font-size: 20px;
     font-family: montserrat;
     font-weight: 400;
   }
 
+  .address-and-tel{
+    display: flex;
+    flex-direction: column;
+    bottom: 63%;
+    left: 60%;
+    text-align: left;
+    position: relative;
+    width: 30%;
+  }
+
   .address-section {
     display: flex;
     position: relative;
-    right: -450px;
-    top: -70px;
+    height: 100px;
   }
 
   .address-icon {
@@ -249,21 +274,24 @@ export default {
     font-size: 20px;
     font-family: montserrat;
     font-weight: 400;
-    right: -20px;
-    bottom: -20px;
     position: relative;
     text-decoration: none;
     color: inherit;
     border: none;
     cursor: pointer;
     text-decoration: underline;
+    top: 15px;
+    left: 15px;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: normal; 
+    height: 80%;
+    width: 87%;
   }
 
   .telephone-section {
     display: flex;
     position: relative;
-    left: -35px;
-    bottom: -5px;
 
   }
 
@@ -275,22 +303,21 @@ export default {
   .company-telephone {
     font-size: 20px;
     font-family: montserrat;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-weight: 400;
-    right: -20px;
-    bottom: -15px;
     position: relative;
-
-  }
-
-  .catalog {
-    font: montserrat;
+    bottom: 10px;
+    left: 15px;
   }
 
   .catalog-title {
-    text-align: left;
-    margin-top: 18px;
-    margin-left: 50px;
+    width: 7%;
     font-weight: 700;
+    position: relative;
+    left: 5%;
+    top: 10%;
   }
 
   .create-product {
@@ -301,123 +328,18 @@ export default {
     color: white;
     padding: 10px;
     border: none;
-    margin-top: 15px;
-    margin-left: 25px;
+    position: relative;
+    left: 40%;
+    
   }
 
   .create-product:hover {
     background-color: #966dc9;
     transition: background-color 0.2s ease;
   }
-
-  .catalog-header {
-    display: flex;
+  .catalog-carousel-container{
+    position: relative;
+    bottom: 8%;
   }
 
-  @media (max-width: 1200px) {
-    .company-profile {
-        width: 90px; 
-        height: 90px; 
-    }
-
-    .company-name {
-        font-size: 1.8rem; 
-    }
-
-    .company-schedule, .company-telephone, .company-address {
-        font-size: 1.1rem; 
-    }
-
-    .catalog-title {
-        font-size: 1.3rem; 
-    }
-
-    .create-product {
-        font-size: 0.9rem; 
-    }
-  }
-
-  @media (max-width: 992px) {
-    .grid-container {
-        grid-template:
-            "header" auto
-            "main" 1fr
-            "catalog" auto;
-    }
-
-    .company-profile {
-        width: 80px; 
-        height: 80px; 
-    }
-
-    .company-name {
-        font-size: 1.5rem; 
-    }
-
-    .company-schedule, .company-telephone, .company-address {
-        font-size: 1rem; 
-    }
-
-    .catalog-title {
-        font-size: 1.2rem; 
-    }
-
-    .create-product {
-        font-size: 0.8rem; 
-    }
-  }
-
-  @media (max-width: 768px) {
-    .grid-container {
-      grid-template:
-        "header" auto
-        "main" 1fr
-        "catalog" auto;
-    }
-
-    .company-profile {
-      width: 70px; 
-      height: 70px; 
-    }
-
-    .company-name {
-      font-size: 1.2rem; 
-    }
-
-    .company-schedule, .company-telephone, .company-address {
-      font-size: 0.9rem; 
-    }
-
-    .catalog-title {
-      font-size: 1rem; 
-    }
-
-    .create-product {
-      width: 100%; 
-      font-size: 0.8rem; 
-    }
-  }
-
-  @media (max-width: 480px) {
-    .company-profile {
-      width: 60px; 
-      height: 60px; 
-    }
-
-    .company-name {
-      font-size: 1rem; 
-    }
-
-    .company-schedule, .company-telephone, .company-address {
-      font-size: 0.8rem; 
-    }
-
-    .catalog-title {
-      font-size: 0.9rem; 
-    }
-
-    .create-product {
-      font-size: 0.7rem; 
-    }
-  }
 </style>

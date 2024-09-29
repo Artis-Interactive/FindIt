@@ -62,15 +62,15 @@
       script.crossOrigin = "anonymous";
       document.body.appendChild(script);
     },
+
     computed: {
       groupedProducts() {
         const groups = [];
-        for (let i = 0; i < this.products.length; i += this.itemsPerSlide) {
-          groups.push(this.products.slice(i, i + this.itemsPerSlide));
+        for (let index = 0; index < this.products.length; index += this.itemsPerSlide) {
+          groups.push(this.products.slice(index, index + this.itemsPerSlide));
         }
         return groups;
       },
-
     },
     methods: {
       clickOnProduct(product) {
@@ -103,6 +103,8 @@
     border-radius: 8px;
     width: 230px;
     border: none;
+    transition: 0.2s ease;
+    gap: 10%;
   }
 
   .product-card img {
@@ -111,15 +113,13 @@
     max-height: 150px;
     object-fit: cover;
     box-shadow: inset;
-    box-shadow: 1px 1px 1px 1px rgba(172, 171, 171, 0.5);
+    box-shadow: 8px 10px 4px 0px rgba(230, 229, 229, 0.808);
     border-radius: 8px;
   }
 
   .product-card:hover {
-    background-color: #825BB1;
-    border: 1px solid #825BB1;
-    color: white;
     transition: background-color 0.2s ease;
+    scale: 1.05;
   }
 
   .product-card-info {
@@ -137,74 +137,5 @@
     text-overflow: ellipsis; 
     max-width: 100%; 
     line-height: 1.2; 
-    
-  }
-
-  @media (max-width: 1200px) {
-    .product-card {
-      height: 180px;
-    }
-
-    .product-card-info {
-      font-size: 15px;
-    }
-  }
-
-  @media (max-width: 992px) {
-    .product-card {
-      height: 160px;
-    }
-
-    .product-card-info {
-      font-size: 14px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .product-card {
-      height: 150px;
-    }
-
-    .product-card-info {
-      font-size: 13px;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .product-card {
-      height: 140px;
-    }
-
-    .product-card-info {
-      font-size: 12px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .product-card {
-      height: 130px;
-    }
-
-    .product-card img {
-      max-height: 80px;
-    }
-
-    .product-card-info {
-      font-size: 10px;
-    }
-  }
-
-  @media (max-width: 360px) {
-    .product-card {
-      height: 120px;
-    }
-
-    .product-card img {
-      max-height: 70px;
-    }
-
-    .product-card-info {
-      font-size: 9px;
-    }
   }
 </style>

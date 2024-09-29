@@ -3,44 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\models\\companymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\companymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\handlers\\workingdayhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\workingdayhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\controllers\\workingdaycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\workingdaycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\handlers\\companyhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\companyhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\handlers\\addresshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\addresshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\models\\addressmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\addressmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\models\\companymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\companymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\controllers\\companycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\companycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\models\\addressmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\addressmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\handlers\\addresshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\addresshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\controllers\\userdatasignupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\userdatasignupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\handlers\\producthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\producthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\models\\workingdaymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\workingdaymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,132 +54,119 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AddressController.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\AddressController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AddressController.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\AddressController.cs",
-              "RelativeToolTip": "Controllers\\AddressController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-28T01:07:01.867Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddressHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\AddressHandler.cs",
-              "RelativeDocumentMoniker": "Handlers\\AddressHandler.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\AddressHandler.cs",
-              "RelativeToolTip": "Handlers\\AddressHandler.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwCEAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-28T00:27:37.05Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AddressModel.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\AddressModel.cs",
-              "RelativeDocumentMoniker": "Models\\AddressModel.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\AddressModel.cs",
-              "RelativeToolTip": "Models\\AddressModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T23:22:10.323Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "CompanyController.cs",
               "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\CompanyController.cs",
               "RelativeDocumentMoniker": "Controllers\\CompanyController.cs",
               "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\CompanyController.cs",
               "RelativeToolTip": "Controllers\\CompanyController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T18:20:46.495Z",
+              "WhenOpened": "2024-09-28T23:54:51.781Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CompanyHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\CompanyHandler.cs",
-              "RelativeDocumentMoniker": "Handlers\\CompanyHandler.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\CompanyHandler.cs*",
-              "RelativeToolTip": "Handlers\\CompanyHandler.cs*",
-              "ViewState": "AgIAADUAAAAAAAAAAADwv00AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-26T22:08:00.237Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "CompanyModel.cs",
               "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\CompanyModel.cs",
               "RelativeDocumentMoniker": "Models\\CompanyModel.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\CompanyModel.cs*",
-              "RelativeToolTip": "Models\\CompanyModel.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\CompanyModel.cs",
+              "RelativeToolTip": "Models\\CompanyModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T14:53:23.934Z",
+              "WhenOpened": "2024-09-28T23:35:33.742Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UserDataSignUpController.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\UserDataSignUpController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserDataSignUpController.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\UserDataSignUpController.cs",
-              "RelativeToolTip": "Controllers\\UserDataSignUpController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "CompanyHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\CompanyHandler.cs",
+              "RelativeDocumentMoniker": "Handlers\\CompanyHandler.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\CompanyHandler.cs",
+              "RelativeToolTip": "Handlers\\CompanyHandler.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwCEAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T04:35:25.433Z",
+              "WhenOpened": "2024-09-28T23:14:51.537Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "Controllers\\ProductController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowDkAAAANAAAAAAAAAA==",
+              "Title": "WorkingDayModel.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\WorkingDayModel.cs",
+              "RelativeDocumentMoniker": "Models\\WorkingDayModel.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\WorkingDayModel.cs",
+              "RelativeToolTip": "Models\\WorkingDayModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T14:41:14.722Z",
+              "WhenOpened": "2024-09-28T23:08:36.311Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ProductHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\ProductHandler.cs",
-              "RelativeDocumentMoniker": "Handlers\\ProductHandler.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\ProductHandler.cs",
-              "RelativeToolTip": "Handlers\\ProductHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAABGAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "WorkingDayController.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\WorkingDayController.cs",
+              "RelativeDocumentMoniker": "Controllers\\WorkingDayController.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\WorkingDayController.cs",
+              "RelativeToolTip": "Controllers\\WorkingDayController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB4AAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T14:50:53.099Z",
+              "WhenOpened": "2024-09-28T23:08:03.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WorkingDayHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\WorkingDayHandler.cs",
+              "RelativeDocumentMoniker": "Handlers\\WorkingDayHandler.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\WorkingDayHandler.cs",
+              "RelativeToolTip": "Handlers\\WorkingDayHandler.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwCsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T23:06:09.633Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "ProductModel.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\ProductModel.cs",
-              "RelativeDocumentMoniker": "Models\\ProductModel.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\ProductModel.cs",
-              "RelativeToolTip": "Models\\ProductModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Title": "AddressController.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\AddressController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AddressController.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\AddressController.cs",
+              "RelativeToolTip": "Controllers\\AddressController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAcwA8AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T14:53:14.758Z",
+              "WhenOpened": "2024-09-28T20:38:08.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AddressHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\AddressHandler.cs",
+              "RelativeDocumentMoniker": "Handlers\\AddressHandler.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\AddressHandler.cs",
+              "RelativeToolTip": "Handlers\\AddressHandler.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAACYAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T20:56:01.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AddressModel.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\AddressModel.cs",
+              "RelativeDocumentMoniker": "Models\\AddressModel.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\AddressModel.cs",
+              "RelativeToolTip": "Models\\AddressModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T21:15:13.318Z",
               "EditorCaption": ""
             }
           ]

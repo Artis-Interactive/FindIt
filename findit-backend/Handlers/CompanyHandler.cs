@@ -69,5 +69,28 @@ namespace findit_backend.Handlers
       company.Address = _addressHandler.GetByCompany(companyId);
       return company;
     }
+    public List<CompanyModel>OobtainUserCompanies(string userID)
+    {
+
+      List<CompanyModel> companies = new List<CompanyModel>();
+            
+      string query = $"SELECT * FROM dbo.UsersCompany WHERE UserID = '{userID}'";
+      DataTable tableResult = CreateQueryTable(query);
+
+      string companyId;
+      foreach (DataRow column in tableResult.Rows)
+      {
+        companyId = Convert.ToString(column["CompanyID"]);
+        CompanyModel company = this.GetByCompany(companyId);
+
+        WorkingDayHandler _workingDayHandler = new WorkingDayHandler();
+        company.workingDays = _workingDayHandler.GetByCompany(companyId);
+
+        AddressHandler _addressHandler = new AddressHandler();
+        company.Address = _addressHandler.GetByCompany(companyId);
+        companies.Add(company);
+      }  
+      return companies;
+    }
   }
 }

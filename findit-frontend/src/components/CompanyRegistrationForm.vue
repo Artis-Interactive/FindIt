@@ -4,101 +4,45 @@
     <div class="background-box">
       <div class="form-container">
         <form @submit.prevent="handleSubmit">
-          <div class="row">
-            <div class="column-2">
-              <div>
-                <label for="companyName">Nombre de Empresa:</label>
-                <input type="text" id="companyName" v-model="formData.companyName" pattern="[A-Za-z0-9@.]+" required
-                  placeholder="Tu Empresa" />
-              </div>
-            </div>
-            <div class="column-2">
-              <div>
-                <label for="companyEmail">Email de Empresa:</label>
-                <input type="email" id="companyEmail" v-model="formData.companyEmail" pattern="[A-Za-z0-9@.]+" required
-                  placeholder="correo@tuempresa.com" />
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="column-2">
-              <div class="row">
-                <div class="column-2">
-                  <div class="form-group">
-                    <label for="name">Nombre dueño:</label>
-                    <input type="text" id="name" v-model="formData.ownerName" required maxlength="50" placeholder="Juan"
-                      pattern="[A-Za-zÀ-ÿ\s]+" title="Nombre sólo debe contener letras." />
-                  </div>
-                </div>
-                <div class="column-2">
-                  <div class="form-group">
-                    <label for="lastName">Apellidos dueño:</label>
-                    <input type="text" id="lastName" v-model="formData.ownerLastNames" required maxlength="100"
-                      placeholder="Ramírez Ortega" pattern="[A-Za-zÀ-ÿ\s]+"
-                      title="Los apellidos sólo deben contener letras." />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="column-2">
-              <div>
-                <label for="phone">Teléfono:</label>
-                <input type="tel" id="phone" v-model="formData.phoneNumber" required maxlength="8" placeholder="XXXXXXXX"
-                  pattern="\d{8}" title="El teléfono sólo debe tener números" />
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="column-2">
-              <div class="row">
-                <div class="column-2">
-                  <div>
-                    <label for="scheduleStart">Apertura:</label>
-                    <input type="time" id="scheduleStart" v-model="formData.scheduleStart" required />
-                  </div>
-                </div>
-
-                <div class="column-2">
-                  <div>
-                    <label for="scheduleEnd">Cierre:</label>
-                    <input type="time" id="scheduleEnd" v-model="formData.scheduleEnd" required />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="column-2">
-              <div>
-                <label for="legalID">Cédula:</label>
-                <input type="legalID" id="legalID" v-model="formData.idNumber" minlength="9" maxlength="15" required
-                  pattern="\d+" placeholder="123456789" title="La cédula sólo debe tener números." />
-              </div>
-            </div>
-          </div>
-
           <div>
-            <label for="offeredProducts">Que planeas vender:</label>
-            <textarea type="text" id="offeredProducts" v-model="formData.offeredProducts"
+            <label for="companyName">Nombre de Empresa:</label>
+            <input type="text" id="companyName" v-model="formData.companyName" pattern="[A-Za-z0-9@.]+" required
+              placeholder="Tu Empresa" />
+          </div>
+          <div>
+            <label for="companyEmail">Email de Empresa:</label>
+            <input type="email" id="companyEmail" v-model="formData.companyEmail" pattern="[A-Za-z0-9@.]+" required
+              placeholder="correo@tuempresa.com" />
+          </div>
+          <div>
+            <label for="phone">Teléfono:</label>
+            <input type="tel" id="phone" v-model="formData.phoneNumber" required maxlength="8" placeholder="XXXXXXXX"
+              pattern="\d{8}" title="El teléfono sólo debe tener números" />
+          </div>
+          <div>
+            <label for="legalID">Cédula:</label>
+            <input type="legalID" id="legalID" v-model="formData.idNumber" minlength="9" maxlength="15" required
+              pattern="\d+" placeholder="123456789" title="La cédula sólo debe tener números." />
+          </div>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="direction" value="manual" v-model="formData.addressType" required />
+              Fisica
+            </label>
+            <label>
+              <input type="radio" name="direction" value="map" v-model="formData.addressType" required />
+              Juridica
+            </label>
+          </div>
+          <div>
+            <label for="description">Que planeas vender:</label>
+            <textarea type="text" id="description" v-model="formData.description"
               placeholder="Utiliza este espacio para describir que tipos de productos planeas vender..." required pattern="[A-Za-zÀ-ÿ0-9\s\.\-,#]+"></textarea>
           </div>
 
-          <div class="radio-group">
-            <h3>Dirección:</h3>
-            <label>
-              <input type="radio" name="direction" value="manual" v-model="formData.addressType" required />
-              Manual
-            </label>
-
-            <label>
-              <input type="radio" name="direction" value="map" v-model="formData.addressType" required />
-              Marcar en mapa
-            </label>
-          </div>
 
           <!-- Aditional spaces if manual address is selected -->
-          <div v-if="formData.addressType === 'manual'">
+          <!--<div v-if="formData.addressType === 'manual'">
             <div class="row">
               <div class="column-3">
                 <div>
@@ -138,7 +82,7 @@
               <textarea type="text" id="addressAditionalDetails" v-model="formData.addressAdditionalDetails"
                 placeholder="De la Iglesia de San Pedro 200 metros al sur" required pattern="[A-Za-zÀ-ÿ0-9\s\.\-,#]+" ></textarea>
             </div>
-          </div>
+          </div>-->
 
           <!-- Aditional spaces if map address is selected -->
           <div v-if="formData.addressType === 'map'">
@@ -166,18 +110,12 @@ export default {
       formData: {
         companyName: "",
         companyEmail: "",
-        ownerName: "",
-        ownerLastNames: "",
-        scheduleStart: "",
-        scheduleEnd: "",
         phoneNumber: "",
-        idNumber: "",
-        addressType: "",
-        addressProvince: "",
-        addressCanton: "",
-        addressDistrict: "",
-        addressAdditionalDetails: "",
-        offeredProducts: "",
+        description: "",
+        legalIdType: "",
+        legalId: "",
+        logo: "",
+        heroImage: "",
       },
     };
   },
@@ -191,18 +129,10 @@ export default {
 				axios.post("https://localhost:7150/api/CreateBusinessAccount",  {
 						companyName: this.formData.companyName,
             companyEmail: this.formData.companyEmail,
-            ownerName: this.formData.ownerName,
-						ownerLastNames: this.formData.ownerLastNames,
 						phoneNumber: this.formData.phoneNumber,
-            scheduleStart: this.formData.scheduleStart,
-            scheduleEnd: this.formData.scheduleEnd,
-						idNumber: this.form.idNumber,
-						offeredProducts: this.form.offeredProducts,
-            addressType: this.formData.addressType,
-            addressProvince: this.formData.addressProvince,
-            addressCanton: this.formData.addressCanton,
-            addressDistrict: this.formData.addressDistrict,
-            addressAdditionalDetails: this.formData.addressAdditionalDetails
+						description: this.form.description,
+            legalIdType: this.formData.legalIdType,
+						legalId: this.form.legalId,
 					})
 				.then(function (response) {
 					alert ('Empresa registrada con éxito.');
@@ -244,8 +174,8 @@ export default {
   }
 
 	.form-container {
-    width: 750px;
-		max-width: 900px;
+    width: 600px;
+		max-width: 750px;
 		margin: 0 auto;
 		padding: 15px;
 		font-family: 'Montserrat', sans-serif;

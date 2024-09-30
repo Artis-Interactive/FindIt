@@ -14,7 +14,7 @@
                         <input type="file" id="file" accept="image/*" @change="onFileSelected">
                         <img src="../assets/product_image_placeholder.png" id="myimage" width="150">
                     </div>
-                    <div class="row">
+                    <div class="info-row">
                         <div class="input-box">
                             <label>Precio</label>
                             <input v-model="productData.price" type="number" placeholder="Digite un número" pattern="[a-z]+">
@@ -26,7 +26,7 @@
                     </div>
                     <div class="input-box">
                         <label >Categoría</label>
-                        <div class="row">
+                        <div class="info-row">
                             <div class="select-box">
                                 <select v-model="this.productData.category">
                                     <option v-for="(category, index) of categories" :key="index"> {{ category }} </option>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div v-if="this.perishable">
-                        <div class="row">
+                        <div class="info-row">
                             <div class="input-box">
                                 <label>Tiempo de vida</label>
                                 <input v-model="productData.lifespan" type="number" placeholder="Digite un número">
@@ -62,7 +62,7 @@
                                 <input v-model="productData.maxProductionQuantity" type="number" placeholder="Digite un número">
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="info-row">
                             <div class="input-box">
                                 <label>Fecha límite para ordenar</label>
                                 <input v-model="productData.orderMaxDate" type="date" placeholder="Digite un número" required>
@@ -302,7 +302,7 @@
         border-color: #4671EA;
     }
 
-    .form .row{
+    .form .info-row{
         display: flex;
         column-gap: 15px;
     }
@@ -400,7 +400,7 @@
     }
 
     @media screen and (max-width: 550px) {
-        .form .row {
+        .form .info-row {
             flex-wrap: wrap;
         }
 

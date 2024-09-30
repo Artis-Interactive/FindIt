@@ -7,6 +7,7 @@ import RegisterCompanyPrev from './components/RegisterCompanyPrev.vue'
 import LogIn from './components/LogIn.vue'
 import SignUp from './components/SignUp.vue'
 import EmailVerification from './components/EmailVerification.vue'
+import ProductCreation from './components/ProductCreation.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -20,6 +21,7 @@ const router = createRouter({
                 email: route.params.email
             })
         },
+        { path: '/product-creation/', name: 'ProductCreation', component: ProductCreation }
     ]
 })
 

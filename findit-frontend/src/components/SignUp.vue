@@ -1,12 +1,17 @@
 <template>
-	<h1 class="text-center">Find It!</h1>
+	<div class="header-container">
+		<h1 class="text-center">Find It!</h1>
+		<div class="image-container">
+			<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/b9ce2ece67c8fb0de62d5843afb86d04349a5358848c169eb76f6b945b456c7f?placeholderIfAbsent=true&apiKey=6ec5dbc4b236439ba7ab2d7565d1deca" class="logo-image" alt="Find It! logo" />
+		</div>
+	</div>
 	<div class="d-flex justify-content-center align-items-center flex-column">
 		<div class="background-box">
 			<div class="form-container">
 				<form @submit.prevent="handleSubmit">
 					<div class="complete-name">
 						<div class="form-group">
-							<label for="name">Nombre:</label>
+							<label for="name">Nombre:<span class="required-asterisk">*</span></label>
 							<input type="text"
 											id="name"
 											v-model="form.name"
@@ -18,9 +23,9 @@
 						</div>
 
 						<div class="form-group">
-							<label for="lastName">Apellidos:</label>
+							<label for="lastNames">Apellidos:<span class="required-asterisk">*</span></label>
 							<input type="text"
-											id="lastName"
+											id="lastNames"
 											v-model="form.LastNames"
 											required
 											maxlength="100"
@@ -31,7 +36,7 @@
 					</div>
 
 					<div>
-						<label for="email">Email:</label>
+						<label for="email">Email:<span class="required-asterisk">*</span></label>
 						<input type="email"
 										id="email"
 										v-model="form.email"
@@ -41,7 +46,7 @@
 					</div>
 
 					<div>
-						<label for="legalID">Cédula:</label>
+						<label for="legalID">Cédula:<span class="required-asterisk">*</span></label>
 						<input type="legalID"
 										id="legalID"
 										v-model="form.legalID"
@@ -54,9 +59,9 @@
 					</div>
 
 					<div>
-						<label for="phone">Teléfono:</label>
+						<label for="PhoneNumber">Teléfono:<span class="required-asterisk">*</span></label>
 						<input type="tel"
-										id="phone"
+										id="PhoneNumber"
 										v-model="form.PhoneNumber"
 										required
 										maxlength="8"
@@ -66,7 +71,7 @@
 					</div>
 
 					<div>
-						<label for="birthdate">Fecha de Nacimiento:</label>
+						<label for="birthdate">Fecha de Nacimiento:<span class="required-asterisk">*</span></label>
 						<input type="date"
 										id="birthdate"
 										v-model="form.birthdate"
@@ -76,7 +81,7 @@
 					</div>
 
 					<div class="radio-group">
-						<h3>Dirección:</h3>
+						<h3>Dirección:<span class="required-asterisk">*</span></h3>
 						<label>
 							<input type="radio"
 											name="direction"
@@ -97,9 +102,9 @@
 					<!-- Aditional spaces if manual is selected -->
 					<div v-if="selectedDirection === 'manual'">
 						<div>
-							<label for="provincia">Provincia:</label>
-							<select v-model="form.provincia"
-											id="provincia"
+							<label for="province">Provincia:</label>
+							<select v-model="form.province"
+											id="province"
 											required
 											class="form-control custom-select">
 								<option value="" disabled>Seleccione una provincia</option>
@@ -125,10 +130,10 @@
 						</div>
 
 						<div>
-							<label for="distrito">Distrito:</label>
+							<label for="district">Distrito:</label>
 							<input type="text"
-											id="distrito"
-											v-model="form.distrito"
+											id="district"
+											v-model="form.district"
 											placeholder="San Pedro"
 											required
 											pattern="[A-Za-zÀ-ÿ\s]+" 
@@ -136,10 +141,10 @@
 						</div>
 
 						<div>
-							<label for="signs">Otras señas:</label>
+							<label for="details">Otras señas:</label>
 							<input type="text"
-											id="signs"
-											v-model="form.signs"
+											id="details"
+											v-model="form.details"
 											placeholder="De la Iglesia de San Pedro 200 metros al sur"
 											required
 											pattern="[A-Za-zÀ-ÿ0-9\s\.\-,#]+" />
@@ -148,7 +153,7 @@
 					</div>
 
 					<div class="radio-group">
-						<h3>Método de pago:</h3>
+						<h3>Método de pago:<span class="required-asterisk">*</span></h3>
 						<label>
 							<input type="radio"
 											name="paymentMethod"
@@ -169,10 +174,10 @@
 					<!-- Aditional spaces if card is selected -->
 					<div v-if="selectedPaymentMethod === 'card'">
 						<div>
-							<label for="nameCard">Nombre:</label>
+							<label for="nameOnCard">Nombre:</label>
 							<input type="text"
-											id="nameCard"
-											v-model="form.nameCard"
+											id="nameOnCard"
+											v-model="form.nameOnCard"
 											placeholder="Juan Ramirez M"
 											maxlength="100"
 											required
@@ -184,11 +189,10 @@
 							<input type="text"
 											id="cardNumber"
 											v-model="form.cardNumber"
-											@input="formatCardNumber"
-											placeholder="1111 2222 3333 4444"
-											maxlength="19"
-											minlength="19"
-											pattern="\d{4} \d{4} \d{4} \d{4}"
+											placeholder="1111222233334444"
+											maxlength="16"
+											minlength="16"
+											pattern="\d{16}"
 											required />
 						</div>
 
@@ -204,10 +208,10 @@
 						</div>
 
 						<div>
-							<label for="expiraryDate">Fecha de Experación:</label>
+							<label for="expirationDate">Fecha de Expiración:</label>
 							<input type="date"
-											id="expiraryDate"
-											v-model="form.expiraryDate"
+											id="expirationDate"
+											v-model="form.expirationDate"
 											:max="maxDate"
 											:min="minDate"
 											required />
@@ -215,7 +219,7 @@
 					</div>
 
 					<div>
-						<label for="password">Contraseña:</label>
+						<label for="password">Contraseña:<span class="required-asterisk">*</span></label>
 						<input type="password"
 										id="password"
 										v-model="form.password"
@@ -228,7 +232,7 @@
 					</div>
 
 					<div>
-              <label for="confirmPassword">Confirmar Contraseña:</label>
+              <label for="confirmPassword">Confirmar contraseña:<span class="required-asterisk">*</span></label>
               <input type="password"
                      id="confirmPassword"
                      v-model="form.confirmPassword"
@@ -237,32 +241,50 @@
                      maxlength="20"
                      placeholder="Reingrese la contraseña para confirmar." />
             </div>
-
 					<div class="button-container">
 						<button type="submit">Registrarme</button>
 					</div>
+					<span class="required-text">* Campos requeridos</span>
+					
+					
 				</form>
 			</div>
+			<ModalComponent
+        :isVisible="isModalVisible"
+        :title="modalTitle"
+        @close="isModalVisible = false"
+      >
+        <template #body>
+          <p>{{ modalMessage }}</p>
+        </template>
+      </ModalComponent>
 		</div>
 	</div>
 
 </template>
 
 <script>
+	import ModalComponent from './ModalComponent.vue';
 	import bcrypt from 'bcryptjs';
 	import axios from 'axios';
 
 	export default {
-
+		name: 'SignUpComponent',
+		components: {
+			ModalComponent,
+		},
 		data() {
 			return {
+				modalTitle: '',
+				modalMessage: '',
+				isModalVisible: false,
 				form: {
 					name: "",
-					lastName: "",
+					lastNames: "",
 					birthdate: "",
 					legalID: "",
 					email: "",
-					phone: "",
+					PhoneNumber: "",
 					password: "",
 				},
 				submitted: false,
@@ -272,32 +294,42 @@
 			};
 		},
 		methods: {
-			formatCardNumber(event) {
-				let input = event.target.value.replace(/\D/g, '');
-				this.unformattedCardNumber = input;
-				if (input.length > 4) {
-						input = input.match(/.{1,4}/g).join(' ');
-				}
-				event.target.value = input;
-				this.form.cardNumber = input;
-			},
-			handleSubmit() {
+			async handleSubmit() {
 				if (!this.validatePassword()) {
 					return;
 				}
-				this.emailAndLegalIDExists(this.form.email, this.form.legalID)
-					.then(isValid => {
-						if (isValid) {
-							this.registerUser();
-						}
-					})
-					.catch(error => {
-						console.log(error);
-					});
+				try {
+					const emailAndLegalIDValid = await this.emailAndLegalIDExists(this.form.email, this.form.legalID)
+					if (!emailAndLegalIDValid) {
+						return;
+					}
+					await this.registerUser();
+
+					if (this.selectedDirection === 'manual') {
+						await this.registerAddress(this.form.legalID);
+					}
+
+					if (this.selectedPaymentMethod === 'card') {
+						await this.registerCardInfo(this.form.legalID);
+					}
+					const email = this.form.email;
+					this.modalTitle = "Usuario registrado";
+					this.modalMessage = "El usuario fue registrado exitosamente.";
+					this.isModalVisible = true;
+					window.location.href = `/email-verification/${email}`;
+
+			} catch(error) {
+					console.log("Error al registrar usuario: ", error);
+					this.modalTitle = "Error en el registro";
+					this.modalMessage = error.response?.data || "Ocurrió un error durante el registro.";
+					this.isModalVisible = true;
+				}
 			},
 			validatePassword() {
 				if (this.form.password !== this.form.confirmPassword) {
-					alert('Las contraseñas no coinciden.');
+					this.modalTitle = "Error de contraseña";
+					this.modalMessage = "Las contraseñas no coinciden.";
+					this.isModalVisible = true;
 					return false;
 				}
 				return true;
@@ -312,20 +344,28 @@
 				}
 				catch(error) {
 					if (error.config.url.includes('Email')) {
-						alert('El correo ya se encuentra registrado.');
+						this.modalTitle = "Error de registro";
+						this.modalMessage = "El correo ya se encuentra registrado.";
+						this.isModalVisible = true;
 					} else if (error.config.url.includes('LegalID')) {
-						alert('La cédula ya se encuentra registrada.');
+						this.modalTitle = "Error de registro";
+						this.modalMessage = "La cédula ya se encuentra registrada.";
+						this.isModalVisible = true;
 					} else {
-						console.log(error);
+						this.modalTitle = "Error de registro";
+						this.modalMessage = "Ocurrió un error durante el registro.";
+						this.isModalVisible = true;
 					}
+					this.isModalVisible = true;
 					return false;
 				}
 			},
-			registerUser() {
-				const email = this.form.email;
+			async registerUser() {
+				
 				const salt = bcrypt.genSaltSync(10);
 				const hash = bcrypt.hashSync(this.form.password, salt);
-				axios.post("https://localhost:7262/api/UserDataSignUp",  {
+				try {
+					await axios.post("https://localhost:7262/api/UserDataSignUp",  {
 						name: this.form.name,
 						LastNames: this.form.LastNames,
 						birthdate: this.form.birthdate,
@@ -333,15 +373,33 @@
 						email: this.form.email,
 						PhoneNumber: this.form.PhoneNumber,
 						password: hash,
-					})
-				.then(function (response) {
-					alert ('Usuario registrado con éxito.');
-					console.log(response);
-					window.location.href = `/email-verification/${email}`;
-				})
-				.catch(error => {
-					console.log(error);
-				});
+					});
+				} catch (error) {
+					throw new Error("Error al registrar usuario."+ (error.response?.data || error.message));
+				}
+			},
+			async registerAddress(legalID) {
+				try {
+					await axios.post(`https://localhost:7262/api/Address/AddAddress?legalId=${legalID}`, {
+						province: this.form.province,
+						canton: this.form.canton,
+						district: this.form.district,
+						details: this.form.details
+					});
+				} catch (error) {
+					throw new Error("Error al registrar dirección."+ (error.response?.data || error.message));
+				}
+			},
+			async registerCardInfo(legalID) {
+				try {
+					await axios.post(`https://localhost:7262/api/Card?legalId=${legalID}`, {
+						cardNumber: this.form.cardNumber,
+						nameOnCard: this.form.nameOnCard,
+						expirationDate: this.form.expirationDate
+					});
+				} catch (error) {
+					throw new Error("Error al registrar tarjeta."+ (error.response?.data || error.message));
+				}
 			}
 		},
 		computed: {
@@ -360,11 +418,34 @@
 <style scoped>
 	@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+	.header-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.image-container {
+		position: absolute;
+		top: 0px;
+		right: 200px;
+		display: flex;
+		justify-content: flex-end;
+		width: 246px;
+		height: 288px;
+		flex-shrink: 0;
+	}
+
 	.d-flex {
     display: flex;
   }
 
+	.required-asterisk {
+    color: red;
+    margin-left: 5px;
+	}	
+
 	.form-container {
+		display: flex;
 		max-width: 600px;
 		margin: 0 auto;
 		padding: 20px;
@@ -493,6 +574,8 @@
 	.button-container {
     display: flex;
     justify-content: center;
+		align-items: center;
+		position: relative;
 		margin-bottom: 0px;
   }
 
@@ -509,4 +592,23 @@
 		button:hover {
 			background-color: #634a83;
 		}
+	
+	.required-text {
+		margin-left: 10px;
+		margin-bottom: -50px;
+		padding: 0px;
+		padding-bottom: 0px;
+		color: red;
+		text-align: right;
+		font-weight: bold;
+	}
+
+	.required-text-inline {
+		position: absolute;
+		top: -20px;
+		margin-left: 10px;
+		color: red;
+		font-weight: bold;
+}
+
 </style>

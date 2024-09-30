@@ -1,24 +1,27 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import './index.css'
 import { createRouter, createWebHistory } from 'vue-router'
+
+import CompanyPage from './components/CompanyPage.vue'
+import RegisterCompanyPrev from './components/RegisterCompanyPrev.vue'
+import LogIn from './components/LogIn.vue'
 import SignUp from './components/SignUp.vue'
+import EmailVerification from './components/EmailVerification.vue'
 import BusinessAccountRegistrationForm from './components/BusinessAccountRegistrationForm.vue'
 
 const router = createRouter({
-	history: createWebHistory(),
-	routes: [
-		{
-			path: "/",
-			name: "Inicio",
-			component: SignUp
-
+    history: createWebHistory(),
+    routes: [
+        { path: "/", name: "Log In", component: LogIn },
+        { path: "/business", name: "Empresa", component: CompanyPage },
+        { path: "/business/register", name: "Ingresar a registro de empresa", component: RegisterCompanyPrev },
+        { path: "/business/register-form", name: "Crear Empresa", component: BusinessAccountRegistrationForm },
+        { path: "/signUp", name: "Sign Up", component: SignUp },
+        { path: '/email-verification/:email', name: 'EmailVerification', component: EmailVerification, 
+            props: route => ({
+                email: route.params.email
+            })
         },
-        {
-            path: "/business/register",
-            name: "Crear Empresa",
-            component: BusinessAccountRegistrationForm
-		}
 	],
 });
 

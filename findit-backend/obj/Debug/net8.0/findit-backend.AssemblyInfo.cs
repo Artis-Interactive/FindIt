@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("findit-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c72882c566fea20f17555fe973b229310884ad8")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce34c952afa5fec6c402506951cc0d84153c81db")]
+>>>>>>> d8ab3dae952e0cd337059689639f33e494531ab7
 [assembly: System.Reflection.AssemblyProductAttribute("findit-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("findit-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

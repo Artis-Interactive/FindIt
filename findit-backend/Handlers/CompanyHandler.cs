@@ -25,6 +25,7 @@ namespace findit_backend.Handlers
           Type = Convert.ToString(column["Type"]),
           Description = Convert.ToString(column["Description"]),
           PhoneNumber = Convert.ToInt32(column["PhoneNumber"]),
+          Email = Convert.ToString(column["Email"]),
           Logo = Convert.ToString(column["Logo"]),
           HeroImage = Convert.ToString(column["HeroImage"])
         };
@@ -56,6 +57,7 @@ namespace findit_backend.Handlers
         Type = Convert.ToString(column["Type"]),
         Description = Convert.ToString(column["Description"]),
         PhoneNumber = Convert.ToInt32(column["PhoneNumber"]),
+        Email = Convert.ToString(column["Email"]),
         Logo = Convert.ToString(column["Logo"]),
         HeroImage = Convert.ToString(column["HeroImage"])
       };

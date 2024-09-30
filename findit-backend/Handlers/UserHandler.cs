@@ -99,7 +99,7 @@ namespace findit_backend.Handlers
             else
             {
                 DataRow userRow = resultingTable.Rows[0];
-                return Convert.ToString(userRow["AccountState"]);
+                return Convert.ToString(userRow["UserType"]);
             }
                 
         } 

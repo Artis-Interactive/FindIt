@@ -24,7 +24,9 @@
           <tbody>
             <tr v-for="(product, index) of products" :key="index">
               <td>{{ product.name }}</td>
-              <td>{{ product.price }}</td>
+              <td>{{ product.companyName }}</td>
+              <td>{{ product.category.categoryName }}</td>
+              <td>{{ product.type }}</td>
               <td>{{ product.price }}</td>
             </tr>
           </tbody>

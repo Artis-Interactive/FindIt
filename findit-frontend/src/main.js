@@ -12,7 +12,8 @@ import GeneralProductList from './components/GeneralProductList.vue';
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {path: "/", name: "Empresa", component: CompanyPage},
+        {path: "/", name: "Lista de productos", component: GeneralProductList},
+        {path: "/company", name: "Empresa", component: CompanyPage},
         {path: "/regPrev", name: "Ingresar a registro de empresa", component: RegisterCompanyPrev},
         {path: "/logIn", name: "Log In", component: LogIn},
         {path: "/signUp", name: "Sign Up", component: SignUp},

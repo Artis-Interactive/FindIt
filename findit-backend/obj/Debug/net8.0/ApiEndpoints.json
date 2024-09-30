@@ -36,6 +36,42 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "findit_backend.Controllers.CategoryController",
+    "Method": "Get",
+    "RelativePath": "api/Category",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[findit_backend.Models.CategoryModel, findit-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "findit_backend.Controllers.CategoryController",
+    "Method": "GetCategoryById",
+    "RelativePath": "api/Category/CategoryID/{categoryId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "findit_backend.Controllers.CompanyController",
     "Method": "Get",
     "RelativePath": "api/Company",

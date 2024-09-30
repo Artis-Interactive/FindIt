@@ -2,13 +2,19 @@
   <div class="container">
     <div class="row justify-content-start">
       <a href="/business/register">
-        <button class="go_back_button">Regresar</button>
+        <button class="button">Regresar</button>
       </a>
     </div>
     <div class="row justify-content-center">
-      <h1 class="title">Empresas Registradas</h1>
+      <h1 class="title">Mis Empresas</h1>
     </div>
-    <table class="table">
+    <div v-if="companies.length === 0" class="no-companies">
+      <p class = "no-companies-message">Aún no ha registrado ninguna empresa</p>
+      <a href="/business/register">
+        <button class="button">Registrar</button>
+      </a>
+    </div>
+    <table v-else class="table">
       <thead>
         <tr>
           <th>Nombre</th>
@@ -44,7 +50,7 @@ import ModalComponent from "./ModalComponent.vue";
 import { jwtDecode } from 'jwt-decode';
 
 export default {
-  name: "GeneralCompanyList",
+  name: "PersonalCompanyList",
   components: {
     ModalComponent,
   },
@@ -58,27 +64,26 @@ export default {
   },
   methods: {
     verifyLogin() {
-      // get token and verify user being admin:
+      // get token and verify open session:
+      
       const token = localStorage.getItem('token');
         if (token) {
-          const decodedToken = jwtDecode(token);     
-          if (decodedToken.role === 'ADM') {
-            this.getCompanies();
-          }
-          else {
-            this.modalTitle = "Acceso Restringido";
-            this.modalMessage = "Para visualizar estos datos debe haber iniciado sesión como administrador";
-            this.isModalVisible = true;
-          }
+          const decodedToken = jwtDecode(token);
+          this.getUserCompanies(decodedToken.email);
         }
         else {
           this.modalTitle = "Acceso Restringido";
-          this.modalMessage = "Para visualizar estos datos debe haber iniciado sesión como administrador";
+          this.modalMessage = "Para visualizar estos datos debe iniciar sesión";
           this.isModalVisible = true;
         }
     },
-    getCompanies() {
-      axios.get("https://localhost:7262/api/Company").then((response) => {
+    getUserCompanies(email) {
+      axios.get(`https://localhost:7262/api/Company/UserCompanies/${email}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      }).then((response) => {
         this.companies = response.data;
       });
     },
@@ -104,7 +109,7 @@ export default {
   margin-bottom: 20px;
 }
 
-.go_back_button {
+.button {
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
@@ -119,6 +124,19 @@ export default {
   font-size: 2rem;
   text-align: center;
   margin-top: 10px; 
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Montserrat;
+}
+
+.no-companies {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-companies-message {
+  font-size: 20px;
   font-feature-settings: 'liga' off, 'clig' off;
   font-family: Montserrat;
 }

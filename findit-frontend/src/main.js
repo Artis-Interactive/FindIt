@@ -8,6 +8,7 @@ import LogIn from './components/LogIn.vue'
 import SignUp from './components/SignUp.vue'
 import GeneralCompanyList from './components/GeneralCompanyList.vue';
 import EmailVerification from './components/EmailVerification.vue'
+import PersonalCompanyList from './components/PersonalCompanyList.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -22,6 +23,7 @@ const router = createRouter({
             })
         },
         {path: "/allcompanies", name: "AllCompanies", component: GeneralCompanyList},
+        {path: "/mycompanies", name: "MyCompanies", component: PersonalCompanyList},
     ]
 })
 

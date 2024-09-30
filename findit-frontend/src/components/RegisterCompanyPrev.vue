@@ -5,7 +5,7 @@
       <h1 class="tab" style="font-weight: 530;">Comienza tu camino al éxito.<br></h1>
       <h1 style="font-weight: 530;">Registra tu empresa y lleva tus productos al siguiente nivel.</h1>
     </div>
-    <button class="register-button" @click="handleRegister">Regístrate</button>
+    <button class="register-button" @click="handleRegister">Regístrar Empresa</button>
   </div>
 </template>
 
@@ -15,6 +15,11 @@
     components: {
       AppHeader,
     },
+    methods: {
+      handleRegister() {
+					window.location.href = "/company/register-form";
+      }
+    }
   }
 </script>
 

@@ -184,10 +184,10 @@ export default {
   methods: {
     handleSubmit() {
       console.log("Datos: ", this.formData);
-      this.registerUser();
+      this.registerCompany();
     },
 
-    registerUser() {
+    registerCompany() {
 				axios.post("https://localhost:7150/api/CreateBusinessAccount",  {
 						companyName: this.formData.companyName,
             companyEmail: this.formData.companyEmail,

@@ -6,6 +6,7 @@ import CompanyPage from './components/CompanyPage.vue'
 import RegisterCompanyPrev from './components/RegisterCompanyPrev.vue'
 import LogIn from './components/LogIn.vue'
 import SignUp from './components/SignUp.vue'
+import EmailVerification from './components/EmailVerification.vue'
 
 const router = createRouter({
     history: createWebHistory(),

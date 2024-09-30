@@ -6,7 +6,7 @@
         <form @submit.prevent="handleSubmit">
           <div>
             <label for="companyName">Nombre de Empresa:</label>
-            <input type="text" id="companyName" v-model="formData.companyName" pattern="[A-Za-z0-9@.]+" required
+            <input type="text" id="companyName" v-model="formData.companyName" required
               placeholder="Tu Empresa" />
           </div>
           <div>
@@ -21,16 +21,16 @@
           </div>
           <div>
             <label for="legalID">Cédula:</label>
-            <input type="legalID" id="legalID" v-model="formData.idNumber" minlength="9" maxlength="15" required
+            <input type="legalID" id="legalID" v-model="formData.legalId" minlength="9" maxlength="15" required
               pattern="\d+" placeholder="123456789" title="La cédula sólo debe tener números." />
           </div>
           <div class="radio-group">
             <label>
-              <input type="radio" name="direction" value="manual" v-model="formData.addressType" required />
+              <input type="radio" name="type" value="physical" v-model="formData.legalIdType" required />
               Fisica
             </label>
             <label>
-              <input type="radio" name="direction" value="map" v-model="formData.addressType" required />
+              <input type="radio" name="type" value="legal" v-model="formData.legalIdType" required />
               Juridica
             </label>
           </div>

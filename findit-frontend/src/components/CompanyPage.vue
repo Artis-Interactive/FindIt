@@ -73,7 +73,7 @@
         companyAddress:"",
         isCompanyUser: true,
         isCompanySection: true,
-        companyId: "84BE4251-B257-4665-9E0F-95BEE6415BA9",
+        companyId: "763E3ADF-A045-4B46-B9FB-40619B2F0220",
         companyData: "",
         isCompanyDataReady: false,
         products: [],

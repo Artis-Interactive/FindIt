@@ -55,5 +55,33 @@ namespace findit_backend.Controllers
       }
       return Ok(products);
     }
+
+    // [HttpPost("CompanyID/{companyId}")]
+    // public string GetTest()
+    // {
+    //   System.Diagnostics.Debug.WriteLine("Test");
+    //   return "Hello world";
+    //   var products = _productHandler.ObtainProductsByCompanyId(companyId);
+    //   if (products == null)
+    //   {
+    //     return BadRequest();
+    //   }
+    //   return Ok(products);
+    // }
+
+    [HttpPost("UploadImage")]
+        public async Task<IActionResult> UploadImage(string productId, [FromForm] IFormFile image)
+        {
+          ImageHandler imgHandler = new ImageHandler();
+            string response = imgHandler.isImageValid(image);
+            if (response != null) {
+                System.Diagnostics.Debug.WriteLine("Test");
+                return BadRequest(response);
+            }
+
+            imgHandler.saveProductImage(productId, image);
+
+            return Ok(new { fileName = image.FileName, fileSize = image.Length });
+        }
   }
 }

@@ -145,20 +145,38 @@
         },
         methods: {
             handleProductData() {
-                axios.post("https://localhost:7019/api/Paises", {
-                nombre: this.datosFormulario.nombre,
-                continente: this.datosFormulario.continente,
-                idioma: this.datosFormulario.idioma,
-                })
-                .then(function (response) {
-                    console.log(response);
-                    window.location.href = "/";
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                // axios.post("https://localhost:7019/api/Paises", {
+                // nombre: this.datosFormulario.nombre,
+                // continente: this.datosFormulario.continente,
+                // idioma: this.datosFormulario.idioma,
+                // })
+                // .then(function (response) {
+                //     console.log(response);
+                //     window.location.href = "/";
+                // })
+                // .catch(function (error) {
+                //     console.log(error);
+                // });
 
                 console.log(this.productData)
+                if (this.productData.image) {
+                    const formData = new FormData();
+                    formData.append('image', this.productData.image);
+
+                    axios.post('https://localhost:7262/api/Product/UploadImage', "tessst", formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                    })
+                    .then(response => {
+                    console.log('Image uploaded successfully:', response.data);
+                    })
+                    .catch(error => {
+                    console.error('Error uploading image:', error);
+                    });
+                } else {
+                    alert('Please select an image first');
+                }
             },
             async getCategories() {
                 axios.get("https://localhost:7019/api/Paises").then(

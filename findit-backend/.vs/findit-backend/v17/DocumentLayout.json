@@ -14,21 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 8,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CompanyHandler.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\Handlers\\CompanyHandler.cs",
-              "RelativeDocumentMoniker": "Handlers\\CompanyHandler.cs",
-              "ToolTip": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\Handlers\\CompanyHandler.cs",
-              "RelativeToolTip": "Handlers\\CompanyHandler.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAADwvykAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T02:43:37.717Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -60,6 +47,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CompanyHandler.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\Handlers\\CompanyHandler.cs",
+              "RelativeDocumentMoniker": "Handlers\\CompanyHandler.cs",
+              "ToolTip": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\Handlers\\CompanyHandler.cs",
+              "RelativeToolTip": "Handlers\\CompanyHandler.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwC0AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-30T02:43:37.717Z",
+              "EditorCaption": ""
             }
           ]
         }

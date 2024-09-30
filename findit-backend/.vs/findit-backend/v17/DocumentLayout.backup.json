@@ -3,21 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\",
   "Documents": [
     {
-<<<<<<< HEAD
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\sebas\\onedrive\\escritorio\\findit\\findit-backend\\controllers\\businessaddresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\businessaddresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\sebas\\onedrive\\escritorio\\findit\\findit-backend\\models\\businessaccountmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\businessaccountmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\sebas\\onedrive\\escritorio\\findit\\findit-backend\\handlers\\businessaccounthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\businessaccounthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-=======
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\sebas\\onedrive\\escritorio\\findit\\findit-backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
->>>>>>> d8ab3dae952e0cd337059689639f33e494531ab7
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\sebas\\onedrive\\escritorio\\findit\\findit-backend\\handlers\\companyhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\companyhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,51 +13,22 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-<<<<<<< HEAD
           "DockedWidth": 200,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "BusinessAddressController.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\Controllers\\BusinessAddressController.cs",
-              "RelativeDocumentMoniker": "Controllers\\BusinessAddressController.cs",
-              "ToolTip": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\Controllers\\BusinessAddressController.cs",
-              "RelativeToolTip": "Controllers\\BusinessAddressController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvx0AAAAfAAAAAAAAAA==",
+              "Title": "CompanyHandler.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\Handlers\\CompanyHandler.cs",
+              "RelativeDocumentMoniker": "Handlers\\CompanyHandler.cs",
+              "ToolTip": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\Handlers\\CompanyHandler.cs",
+              "RelativeToolTip": "Handlers\\CompanyHandler.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAADwvykAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-26T20:21:19.676Z",
+              "WhenOpened": "2024-09-30T02:43:37.717Z",
               "EditorCaption": ""
             },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BusinessAccountHandler.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\Handlers\\BusinessAccountHandler.cs",
-              "RelativeDocumentMoniker": "Handlers\\BusinessAccountHandler.cs",
-              "ToolTip": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\Handlers\\BusinessAccountHandler.cs",
-              "RelativeToolTip": "Handlers\\BusinessAccountHandler.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBwAAABlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-26T20:09:04.361Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BusinessAccountModel.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\Models\\BusinessAccountModel.cs",
-              "RelativeDocumentMoniker": "Models\\BusinessAccountModel.cs",
-              "ToolTip": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\Models\\BusinessAccountModel.cs",
-              "RelativeToolTip": "Models\\BusinessAccountModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-26T19:44:27.354Z",
-=======
-          "DockedWidth": 51,
-          "SelectedChildIndex": 8,
-          "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -102,20 +60,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\sebas\\OneDrive\\Escritorio\\FindIt\\findit-backend\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-30T01:21:42.23Z",
->>>>>>> d8ab3dae952e0cd337059689639f33e494531ab7
-              "EditorCaption": ""
             }
           ]
         }

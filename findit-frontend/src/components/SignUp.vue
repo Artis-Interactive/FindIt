@@ -310,11 +310,12 @@
 					if (this.selectedPaymentMethod === 'card') {
 						await this.registerCardInfo(this.form.legalID);
 					}
-				
+					const email = this.form.email;
 					this.modalTitle = "Usuario registrado";
 					this.modalMessage = "El usuario fue registrado exitosamente.";
 					this.isModalVisible = true;
-					this.$router.push("/home");
+					window.location.href = `/email-verification/${email}`;
+					//this.$router.push("/home");
 
 			} catch(error) {
 					console.log("Error al registrar usuario: ", error);
@@ -334,7 +335,7 @@
 			},
 			async emailAndLegalIDExists(email, legalID) {
 				try{
-					await axios.get(`https://localhost:7262/api/UserDataSignUp/Email/${encodeURIComponent(email)}`);
+					await axios.get(`https://localhost:7262/api/UserDataSignUp/GetUserByEmail/${encodeURIComponent(email)}`);
 					
 					await axios.get(`https://localhost:7262/api/UserDataSignUp/LegalID/${legalID}`);
 					
@@ -359,6 +360,7 @@
 				}
 			},
 			async registerUser() {
+				
 				const salt = bcrypt.genSaltSync(10);
 				const hash = bcrypt.hashSync(this.form.password, salt);
 				try {

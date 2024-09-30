@@ -42,5 +42,22 @@ namespace findit_backend.Handlers
             return addresses;
         }
 
+    public AddressModel GetByCompany(string companyId)
+    {
+      AddressModel address = new AddressModel();
+      string query = $"SELECT Province, Canton, District, Details FROM dbo.Address" +
+                     $" WHERE CompanyID = '{companyId}'";
+      DataTable tableResult = CreateQueryTable(query);
+      DataRow row = tableResult.Rows[0];
+
+      address = new AddressModel
+      {
+        Province = Convert.ToString(row["Province"]),
+        Canton = Convert.ToString(row["Canton"]),
+        District = Convert.ToString(row["District"]),
+        Details = Convert.ToString(row["Details"]),
+      }; 
+      return address;
     }
+  }
 }

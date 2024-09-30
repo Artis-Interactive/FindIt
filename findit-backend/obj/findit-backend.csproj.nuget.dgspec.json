@@ -1,20 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\findit-backend.csproj": {}
+    "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\findit-backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\findit-backend.csproj": {
+    "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\findit-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\findit-backend.csproj",
+        "projectUniqueName": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\findit-backend.csproj",
         "projectName": "findit-backend",
-        "projectPath": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\findit-backend.csproj",
-        "packagesPath": "C:\\Users\\menar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\obj\\",
+        "projectPath": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\findit-backend.csproj",
+        "packagesPath": "C:\\Users\\VALERIARODRIGUEZRAMI\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\menar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\VALERIARODRIGUEZRAMI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -50,9 +51,13 @@
               "target": "Package",
               "version": "[8.0.8, )"
             },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.2.2, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[6.8.0, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",

@@ -1,70 +1,78 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\",
+  "WorkspaceRootPath": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\handlers\\userhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\handlers\\userhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\userhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\models\\companymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\companymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\handlers\\producthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\producthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\handlers\\companyhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\companyhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\controllers\\companycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\companycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\handlers\\workingdayhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\workingdayhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\handlers\\basehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\basehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\handlers\\addresshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\addresshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\controllers\\workingdaycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\workingdaycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\controllers\\userdatasignupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\userdatasignupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\models\\addressmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\addressmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\menar\\onedrive\\documents\\repositorios\\findit\\findit-backend\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\findit-backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:findit-backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\SQLQuery1.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\8.0.400\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\handlers\\useridhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\useridhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\handlers\\cardhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\cardhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\controllers\\cardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\cardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\handlers\\addresshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\addresshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\models\\cardmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\cardmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\models\\addressmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\addressmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\controllers\\userdatasignupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\userdatasignupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\handlers\\basehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\basehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\valeriarodriguezrami\\desktop\\repositorios\\findit\\findit-backend\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\SQLQuery1.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\SQLQuery1.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,8 +82,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 51,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": -1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -98,11 +110,25 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 349,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SQLQuery1.sql ",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\SQLQuery1.sql",
+              "RelativeDocumentMoniker": "..\\..\\..\\SQLQuery1.sql",
+              "ToolTip": "SQLQuery1.sql ",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-09-28T18:12:07.19Z",
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -110,197 +136,210 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UserModel.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Models\\UserModel.cs",
-              "RelativeDocumentMoniker": "Models\\UserModel.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Models\\UserModel.cs",
-              "RelativeToolTip": "Models\\UserModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T23:45:16.785Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "WorkingDayHandler.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Handlers\\WorkingDayHandler.cs",
-              "RelativeDocumentMoniker": "Handlers\\WorkingDayHandler.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Handlers\\WorkingDayHandler.cs",
-              "RelativeToolTip": "Handlers\\WorkingDayHandler.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T23:44:12.804Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "UserHandler.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Handlers\\UserHandler.cs",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Handlers\\UserHandler.cs",
               "RelativeDocumentMoniker": "Handlers\\UserHandler.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Handlers\\UserHandler.cs",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Handlers\\UserHandler.cs",
               "RelativeToolTip": "Handlers\\UserHandler.cs",
-              "ViewState": "AQIAAFEAAAAAAAAAAAAuwF8AAAANAAAA",
+              "ViewState": "AgIAAGwAAAAAAAAAAIAwwIAAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T23:44:11.736Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProductHandler.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Handlers\\ProductHandler.cs",
-              "RelativeDocumentMoniker": "Handlers\\ProductHandler.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Handlers\\ProductHandler.cs",
-              "RelativeToolTip": "Handlers\\ProductHandler.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T23:44:10.668Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CompanyHandler.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Handlers\\CompanyHandler.cs",
-              "RelativeDocumentMoniker": "Handlers\\CompanyHandler.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Handlers\\CompanyHandler.cs",
-              "RelativeToolTip": "Handlers\\CompanyHandler.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAAUwBoAAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T17:41:24.566Z",
+              "WhenOpened": "2024-09-29T01:35:03.658Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CompanyModel.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Models\\CompanyModel.cs",
-              "RelativeDocumentMoniker": "Models\\CompanyModel.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Models\\CompanyModel.cs",
-              "RelativeToolTip": "Models\\CompanyModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAlAAAA",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-29T16:36:01.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "findit-backend.http",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\findit-backend.http",
+              "RelativeDocumentMoniker": "findit-backend.http",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\findit-backend.http",
+              "RelativeToolTip": "findit-backend.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2024-09-24T19:35:46.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserIdHandler.cs",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Handlers\\UserIdHandler.cs",
+              "RelativeDocumentMoniker": "Handlers\\UserIdHandler.cs",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Handlers\\UserIdHandler.cs",
+              "RelativeToolTip": "Handlers\\UserIdHandler.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAADgvxwAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T17:43:58.258Z",
+              "WhenOpened": "2024-09-29T18:49:51.98Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "CompanyController.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Controllers\\CompanyController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CompanyController.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Controllers\\CompanyController.cs",
-              "RelativeToolTip": "Controllers\\CompanyController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "Microsoft.PackageDependencyResolution.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\8.0.400\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\8.0.400\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "ViewState": "AgIAAAYBAAAAAAAAAAD4vwkBAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2024-09-30T04:06:55.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T23:42:56.578Z",
+              "WhenOpened": "2024-09-29T18:50:27.5Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "BaseHandler.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Handlers\\BaseHandler.cs",
-              "RelativeDocumentMoniker": "Handlers\\BaseHandler.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Handlers\\BaseHandler.cs",
-              "RelativeToolTip": "Handlers\\BaseHandler.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "CardHandler.cs",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Handlers\\CardHandler.cs",
+              "RelativeDocumentMoniker": "Handlers\\CardHandler.cs",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Handlers\\CardHandler.cs",
+              "RelativeToolTip": "Handlers\\CardHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T23:41:59.705Z",
+              "WhenOpened": "2024-09-29T18:40:31.714Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "AddressHandler.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Handlers\\AddressHandler.cs",
-              "RelativeDocumentMoniker": "Handlers\\AddressHandler.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Handlers\\AddressHandler.cs",
-              "RelativeToolTip": "Handlers\\AddressHandler.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAA0wAAAAAAAAAAA",
+              "Title": "CardController.cs",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Controllers\\CardController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CardController.cs",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Controllers\\CardController.cs",
+              "RelativeToolTip": "Controllers\\CardController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T17:33:34.582Z",
+              "WhenOpened": "2024-09-29T18:57:10.499Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "WorkingDayController.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Controllers\\WorkingDayController.cs",
-              "RelativeDocumentMoniker": "Controllers\\WorkingDayController.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Controllers\\WorkingDayController.cs",
-              "RelativeToolTip": "Controllers\\WorkingDayController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAA0wA8AAAAhAAAA",
+              "Title": "AddressHandler.cs",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Handlers\\AddressHandler.cs",
+              "RelativeDocumentMoniker": "Handlers\\AddressHandler.cs",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Handlers\\AddressHandler.cs",
+              "RelativeToolTip": "Handlers\\AddressHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwAkAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T23:40:41.364Z",
+              "WhenOpened": "2024-09-29T02:02:19.265Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "UserDataSignUpController.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Controllers\\UserDataSignUpController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserDataSignUpController.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Controllers\\UserDataSignUpController.cs",
-              "RelativeToolTip": "Controllers\\UserDataSignUpController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "CardModel.cs",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Models\\CardModel.cs",
+              "RelativeDocumentMoniker": "Models\\CardModel.cs",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Models\\CardModel.cs",
+              "RelativeToolTip": "Models\\CardModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T23:43:10.934Z",
+              "WhenOpened": "2024-09-29T18:59:53.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AddressModel.cs",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Models\\AddressModel.cs",
+              "RelativeDocumentMoniker": "Models\\AddressModel.cs",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Models\\AddressModel.cs",
+              "RelativeToolTip": "Models\\AddressModel.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAWwAkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:24:57.98Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
               "Title": "AddressController.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Controllers\\AddressController.cs",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Controllers\\AddressController.cs",
               "RelativeDocumentMoniker": "Controllers\\AddressController.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Controllers\\AddressController.cs",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Controllers\\AddressController.cs",
               "RelativeToolTip": "Controllers\\AddressController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAANAAAA",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwAsAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T23:42:31.211Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AQIAAEIAAAAAAAAAAAAuwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T23:39:59.148Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-29T23:34:23.335Z",
+              "WhenOpened": "2024-09-28T19:01:55.641Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "AddressModel.cs",
-              "DocumentMoniker": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Models\\AddressModel.cs",
-              "RelativeDocumentMoniker": "Models\\AddressModel.cs",
-              "ToolTip": "C:\\Users\\menar\\OneDrive\\Documents\\Repositorios\\FindIt\\findit-backend\\Models\\AddressModel.cs",
-              "RelativeToolTip": "Models\\AddressModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "UserDataSignUpController.cs",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Controllers\\UserDataSignUpController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserDataSignUpController.cs",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Controllers\\UserDataSignUpController.cs",
+              "RelativeToolTip": "Controllers\\UserDataSignUpController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T17:33:17.102Z",
+              "WhenOpened": "2024-09-29T01:55:29.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BaseHandler.cs",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Handlers\\BaseHandler.cs",
+              "RelativeDocumentMoniker": "Handlers\\BaseHandler.cs",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Handlers\\BaseHandler.cs",
+              "RelativeToolTip": "Handlers\\BaseHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:34:23.731Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T19:24:51.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "UserModel.cs",
+              "DocumentMoniker": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Models\\UserModel.cs",
+              "RelativeDocumentMoniker": "Models\\UserModel.cs",
+              "ToolTip": "C:\\Users\\VALERIARODRIGUEZRAMI\\Desktop\\Repositorios\\FindIt\\findit-backend\\Models\\UserModel.cs",
+              "RelativeToolTip": "Models\\UserModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T06:20:50.808Z",
               "EditorCaption": ""
             },
             {

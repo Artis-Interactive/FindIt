@@ -20,7 +20,7 @@
       </form>
       <nav class="auth-nav">
         <a href="#" class="auth-link">Registrarme</a>
-        <a href="/home" class="auth-link">Continuar sin cuenta</a>
+        <a href="/business/register" class="auth-link">Continuar sin cuenta</a>
       </nav>
       <!-- modal component for alerts -->
       <ModalComponent
@@ -86,7 +86,7 @@ export default {
             // Store log in token:
             localStorage.setItem('token', data.token);
             // Go to home menu:
-            this.$router.push("/regPrev");
+            this.$router.push("/business/register");
           }
         })
         .catch((error) => {

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row justify-content-start">
-      <a href="/regPrev">
+      <a href="/business/register">
         <button class="go_back_button">Regresar</button>
       </a>
     </div>

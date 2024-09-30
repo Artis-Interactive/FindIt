@@ -11,7 +11,7 @@
 				<form @submit.prevent="handleSubmit">
 					<div class="complete-name">
 						<div class="form-group">
-							<label for="name">Nombre:</label>
+							<label for="name">Nombre:<span class="required-asterisk">*</span></label>
 							<input type="text"
 											id="name"
 											v-model="form.name"
@@ -23,7 +23,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="lastNames">Apellidos:</label>
+							<label for="lastNames">Apellidos:<span class="required-asterisk">*</span></label>
 							<input type="text"
 											id="lastNames"
 											v-model="form.LastNames"
@@ -36,7 +36,7 @@
 					</div>
 
 					<div>
-						<label for="email">Email:</label>
+						<label for="email">Email:<span class="required-asterisk">*</span></label>
 						<input type="email"
 										id="email"
 										v-model="form.email"
@@ -46,7 +46,7 @@
 					</div>
 
 					<div>
-						<label for="legalID">Cédula:</label>
+						<label for="legalID">Cédula:<span class="required-asterisk">*</span></label>
 						<input type="legalID"
 										id="legalID"
 										v-model="form.legalID"
@@ -59,7 +59,7 @@
 					</div>
 
 					<div>
-						<label for="PhoneNumber">Teléfono:</label>
+						<label for="PhoneNumber">Teléfono:<span class="required-asterisk">*</span></label>
 						<input type="tel"
 										id="PhoneNumber"
 										v-model="form.PhoneNumber"
@@ -71,7 +71,7 @@
 					</div>
 
 					<div>
-						<label for="birthdate">Fecha de Nacimiento:</label>
+						<label for="birthdate">Fecha de Nacimiento:<span class="required-asterisk">*</span></label>
 						<input type="date"
 										id="birthdate"
 										v-model="form.birthdate"
@@ -81,7 +81,7 @@
 					</div>
 
 					<div class="radio-group">
-						<h3>Dirección:</h3>
+						<h3>Dirección:<span class="required-asterisk">*</span></h3>
 						<label>
 							<input type="radio"
 											name="direction"
@@ -153,7 +153,7 @@
 					</div>
 
 					<div class="radio-group">
-						<h3>Método de pago:</h3>
+						<h3>Método de pago:<span class="required-asterisk">*</span></h3>
 						<label>
 							<input type="radio"
 											name="paymentMethod"
@@ -219,7 +219,7 @@
 					</div>
 
 					<div>
-						<label for="password">Contraseña:</label>
+						<label for="password">Contraseña:<span class="required-asterisk">*</span></label>
 						<input type="password"
 										id="password"
 										v-model="form.password"
@@ -232,7 +232,7 @@
 					</div>
 
 					<div>
-              <label for="confirmPassword">Confirmar Contraseña:</label>
+              <label for="confirmPassword">Confirmar contraseña:<span class="required-asterisk">*</span></label>
               <input type="password"
                      id="confirmPassword"
                      v-model="form.confirmPassword"
@@ -241,10 +241,12 @@
                      maxlength="20"
                      placeholder="Reingrese la contraseña para confirmar." />
             </div>
-
 					<div class="button-container">
 						<button type="submit">Registrarme</button>
 					</div>
+					<span class="required-text">* Campos requeridos</span>
+					
+					
 				</form>
 			</div>
 			<ModalComponent
@@ -315,7 +317,6 @@
 					this.modalMessage = "El usuario fue registrado exitosamente.";
 					this.isModalVisible = true;
 					window.location.href = `/email-verification/${email}`;
-					//this.$router.push("/home");
 
 			} catch(error) {
 					console.log("Error al registrar usuario: ", error);
@@ -438,7 +439,13 @@
     display: flex;
   }
 
+	.required-asterisk {
+    color: red;
+    margin-left: 5px;
+	}	
+
 	.form-container {
+		display: flex;
 		max-width: 600px;
 		margin: 0 auto;
 		padding: 20px;
@@ -567,6 +574,8 @@
 	.button-container {
     display: flex;
     justify-content: center;
+		align-items: center;
+		position: relative;
 		margin-bottom: 0px;
   }
 
@@ -583,4 +592,23 @@
 		button:hover {
 			background-color: #634a83;
 		}
+	
+	.required-text {
+		margin-left: 10px;
+		margin-bottom: -50px;
+		padding: 0px;
+		padding-bottom: 0px;
+		color: red;
+		text-align: right;
+		font-weight: bold;
+	}
+
+	.required-text-inline {
+		position: absolute;
+		top: -20px;
+		margin-left: 10px;
+		color: red;
+		font-weight: bold;
+}
+
 </style>

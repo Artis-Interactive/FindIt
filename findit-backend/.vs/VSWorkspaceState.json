@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Controllers",
+    "\\Handlers",
+    "\\Models"
   ],
-  "SelectedNode": "\\Controllers",
+  "SelectedNode": "\\findit-backend.sln",
   "PreviewInSolutionExplorer": false
 }

@@ -103,7 +103,7 @@ public class UserHandler : BaseHandler
         else
         {
             DataRow userRow = resultingTable.Rows[0];
-            return Convert.ToString(userRow["AccountState"]);
+            return Convert.ToString(userRow["UserType"]);
         }
 
     }

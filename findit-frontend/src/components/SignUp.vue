@@ -304,7 +304,7 @@
 			},
 			async emailAndLegalIDExists(email, legalID) {
 				try{
-					await axios.get(`https://localhost:7262/api/UserDataSignUp/Email/${encodeURIComponent(email)}`);
+					await axios.get(`https://localhost:7262/api/UserDataSignUp/GetUserByEmail/${encodeURIComponent(email)}`);
 					
 					await axios.get(`https://localhost:7262/api/UserDataSignUp/LegalID/${legalID}`);
 					
@@ -322,6 +322,7 @@
 				}
 			},
 			registerUser() {
+				const email = this.form.email;
 				const salt = bcrypt.genSaltSync(10);
 				const hash = bcrypt.hashSync(this.form.password, salt);
 				axios.post("https://localhost:7262/api/UserDataSignUp",  {
@@ -336,7 +337,7 @@
 				.then(function (response) {
 					alert ('Usuario registrado con éxito.');
 					console.log(response);
-					window.location.href = "/";
+					window.location.href = `/email-verification/${email}`;
 				})
 				.catch(error => {
 					console.log(error);

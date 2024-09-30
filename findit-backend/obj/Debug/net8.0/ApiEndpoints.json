@@ -184,7 +184,7 @@
   {
     "ContainingType": "findit_backend.Controllers.UserDataSignUpController",
     "Method": "EmailExists",
-    "RelativePath": "api/UserDataSignUp/Email/{email}",
+    "RelativePath": "api/UserDataSignUp/GetUserByEmail/{email}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -209,6 +209,22 @@
         "Name": "legalID",
         "Type": "System.String",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "findit_backend.Controllers.UserDataSignUpController",
+    "Method": "VerifyEmail",
+    "RelativePath": "api/UserDataSignUp/Verify",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

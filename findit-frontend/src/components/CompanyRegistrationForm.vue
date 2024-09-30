@@ -126,7 +126,7 @@ export default {
     },
 
     registerCompany() {
-				axios.post("https://localhost:7150/api/CreateBusinessAccount",  {
+				axios.post("https://localhost:7150/api/RegisterCompany",  {
 						companyName: this.formData.companyName,
             companyEmail: this.formData.companyEmail,
 						phoneNumber: this.formData.phoneNumber,

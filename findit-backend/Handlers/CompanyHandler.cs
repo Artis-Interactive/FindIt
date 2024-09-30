@@ -39,7 +39,34 @@ namespace findit_backend.Handlers
       return companies;
     }
 
-    public CompanyModel GetByCompany(string companyId)
+    public bool CreateCompany(CompanyModel company)
+    {
+        var query = @"INSERT INTO [dbo].[Companies] (
+                                        [Name], 
+                                        [Type], 
+                                        [LegalID], 
+                                        [Email], 
+                                        [Description], 
+                                        [PhoneNumber], 
+                                        [Logo],
+                                        [HeroImage])
+                    VALUES (@Name, @Type, @LegalID, @Email, @Description, @PhoneNumber, @Logo, @HeroImage)";
+
+        var queryCommand = new SqlCommand(query, _connection);
+
+        queryCommand.Parameters.AddWithValue("@Name", company.Name);
+        queryCommand.Parameters.AddWithValue("@Type", company.Type);
+        queryCommand.Parameters.AddWithValue("@LegalID", company.LegalID);
+        queryCommand.Parameters.AddWithValue("@Email", company.Email);
+        queryCommand.Parameters.AddWithValue("@Description", company.Description);
+        queryCommand.Parameters.AddWithValue("@PhoneNumber", company.PhoneNumber);
+        queryCommand.Parameters.AddWithValue("@Logo", "");
+        queryCommand.Parameters.AddWithValue("@HeroImage", "");
+
+        return ExecuteNonQuery(queryCommand);
+    }
+
+        public CompanyModel GetByCompany(string companyId)
     {
       string query = $"SELECT * FROM dbo.Companies WHERE CompanyID = '{companyId}'";
       DataTable tableResult = CreateQueryTable(query);

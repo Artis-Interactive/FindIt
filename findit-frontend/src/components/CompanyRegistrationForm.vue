@@ -127,12 +127,12 @@ export default {
 
     registerCompany() {
 				axios.post("https://localhost:7150/api/RegisterCompany",  {
-						companyName: this.formData.companyName,
-            companyEmail: this.formData.companyEmail,
-						phoneNumber: this.formData.phoneNumber,
-						description: this.form.description,
-            legalIdType: this.formData.legalIdType,
-						legalId: this.form.legalId,
+						Name: this.formData.companyName,
+            Email: this.formData.companyEmail,
+						PhoneNumber: this.formData.phoneNumber,
+						Description: this.form.description,
+            Type: this.formData.legalIdType,
+						LegalID: this.form.legalId,
 					})
 				.then(function (response) {
 					alert ('Empresa registrada con éxito.');

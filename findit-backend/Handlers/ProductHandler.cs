@@ -38,10 +38,19 @@ namespace findit_backend.Handlers
 
         CategoryHandler _categoryHandler = new CategoryHandler();
         product.category = _categoryHandler.GetByCategory(categoryId);
+
+        product.productionBatch = new ProductionBatchModel();
+        product.nonPerishableProduct = new NonPerishableProductModel();
         if(isPerishable(productId)) {
           product.Type = "Perecedero";
+          ProductionBatchHandler _productionBatchHandler = new ProductionBatchHandler();
+          product.productionBatch = _productionBatchHandler.GetByProduct(productId);
+          product.nonPerishableProduct.Amount = 0;
         } else{
           product.Type = "No perecedero";
+          NonPerishableProductHandler _nonPerishableProductHandler = new NonPerishableProductHandler();
+          product.nonPerishableProduct = _nonPerishableProductHandler.GetByProduct(productId);
+          product.productionBatch.Amount = 0;
         }
         products.Add(product);
       }

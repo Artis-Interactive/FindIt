@@ -12,5 +12,7 @@
     public string CompanyName { get; set; }
     public string Type { get; set; }
     public CategoryModel category { get; set; }
+    public NonPerishableProductModel nonPerishableProduct { get; set; }
+    public ProductionBatchModel productionBatch { get; set; }
   }
 }

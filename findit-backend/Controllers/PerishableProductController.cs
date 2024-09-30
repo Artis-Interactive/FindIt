@@ -25,10 +25,10 @@ namespace findit_backend.Controllers
             return perishableProduct;
         }
 
-        [HttpGet("PerishableProductID/{perishableProductId}")]
-        public ActionResult GetperishableProductById(string perishableProductId)
+        [HttpGet("ProductID/{ProductId}")]
+        public ActionResult GetPerishableProductById(string ProductId)
         {
-            var perishableProduct = _perishableProductHandler.GetByPerishable(perishableProductId);
+            var perishableProduct = _perishableProductHandler.GetByProduct(ProductId);
             if (perishableProduct == null)
             {
                 return BadRequest();

@@ -11,28 +11,16 @@
       "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\handlers\\productionbatchhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\productionbatchhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\handlers\\addresshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\addresshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\controllers\\productionbatchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\productionbatchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\handlers\\categoryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\categoryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\models\\categorymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\categorymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\controllers\\categorycontrollercs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\categorycontrollercs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\personal\\desktop\\findit\\findit-backend\\models\\productionbatchmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\productionbatchmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 51,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,41 +66,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AddressHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\AddressHandler.cs",
-              "RelativeDocumentMoniker": "Handlers\\AddressHandler.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\AddressHandler.cs",
-              "RelativeToolTip": "Handlers\\AddressHandler.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwCIAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T02:01:55.715Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "Controllers\\ProductController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA1wCIAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T01:56:36.678Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ProductHandler.cs",
               "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\ProductHandler.cs",
               "RelativeDocumentMoniker": "Handlers\\ProductHandler.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\ProductHandler.cs*",
-              "RelativeToolTip": "Handlers\\ProductHandler.cs*",
-              "ViewState": "AgIAAHcAAAAAAAAAAAAIwIwAAAAUAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\ProductHandler.cs",
+              "RelativeToolTip": "Handlers\\ProductHandler.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwCkAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T01:55:43.873Z",
+              "WhenOpened": "2024-09-30T08:04:00.2Z",
               "EditorCaption": ""
             },
             {
@@ -123,61 +85,48 @@
               "RelativeDocumentMoniker": "Models\\ProductModel.cs",
               "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\ProductModel.cs",
               "RelativeToolTip": "Models\\ProductModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T01:48:41.293Z",
+              "WhenOpened": "2024-09-30T08:02:05.977Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ProductionBatchController.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\ProductionBatchController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductionBatchController.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\ProductionBatchController.cs",
+              "RelativeToolTip": "Controllers\\ProductionBatchController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T01:44:36.164Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CategoryModel.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\CategoryModel.cs",
-              "RelativeDocumentMoniker": "Models\\CategoryModel.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\CategoryModel.cs",
-              "RelativeToolTip": "Models\\CategoryModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T01:43:03.049Z",
+              "WhenOpened": "2024-09-30T07:59:20.707Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "CategoryHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\CategoryHandler.cs",
-              "RelativeDocumentMoniker": "Handlers\\CategoryHandler.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\CategoryHandler.cs",
-              "RelativeToolTip": "Handlers\\CategoryHandler.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB0AAABBAAAAAAAAAA==",
+              "Title": "ProductionBatchModel.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\ProductionBatchModel.cs",
+              "RelativeDocumentMoniker": "Models\\ProductionBatchModel.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Models\\ProductionBatchModel.cs",
+              "RelativeToolTip": "Models\\ProductionBatchModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T01:42:24.02Z",
+              "WhenOpened": "2024-09-30T07:51:50.788Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CategoryControllercs.cs",
-              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\CategoryControllercs.cs",
-              "RelativeDocumentMoniker": "Controllers\\CategoryControllercs.cs",
-              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Controllers\\CategoryControllercs.cs",
-              "RelativeToolTip": "Controllers\\CategoryControllercs.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAfAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "ProductionBatchHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\ProductionBatchHandler.cs",
+              "RelativeDocumentMoniker": "Handlers\\ProductionBatchHandler.cs",
+              "ToolTip": "C:\\Users\\Personal\\Desktop\\FindIt\\findit-backend\\Handlers\\ProductionBatchHandler.cs",
+              "RelativeToolTip": "Handlers\\ProductionBatchHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T01:41:18.722Z",
+              "WhenOpened": "2024-09-30T07:47:18.136Z",
               "EditorCaption": ""
             }
           ]

@@ -108,6 +108,78 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "findit_backend.Controllers.NonPerishableProductController",
+    "Method": "Get",
+    "RelativePath": "api/NonPerishableProduct",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[findit_backend.Models.NonPerishableProductModel, findit-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "findit_backend.Controllers.NonPerishableProductController",
+    "Method": "GetPerishableProductById",
+    "RelativePath": "api/NonPerishableProduct/ProductID/{ProductId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ProductId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "findit_backend.Controllers.PerishableProductController",
+    "Method": "Get",
+    "RelativePath": "api/PerishableProduct",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[findit_backend.Models.PerishableProductModel, findit-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "findit_backend.Controllers.PerishableProductController",
+    "Method": "GetPerishableProductById",
+    "RelativePath": "api/PerishableProduct/ProductID/{ProductId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ProductId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "findit_backend.Controllers.ProductController",
     "Method": "Get",
     "RelativePath": "api/Product",
@@ -163,6 +235,42 @@
     "ContainingType": "findit_backend.Controllers.ProductController",
     "Method": "GetProductsByProductId",
     "RelativePath": "api/Product/ProductID/{productId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "findit_backend.Controllers.ProductionBatchController",
+    "Method": "Get",
+    "RelativePath": "api/ProductionBatch",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[findit_backend.Models.ProductionBatchModel, findit-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "findit_backend.Controllers.ProductionBatchController",
+    "Method": "GetBatchByProduct",
+    "RelativePath": "api/ProductionBatch/ProductID/{productId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

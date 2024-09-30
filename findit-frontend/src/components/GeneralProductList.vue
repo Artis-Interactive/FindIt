@@ -28,6 +28,9 @@
               <td>{{ product.category.categoryName }}</td>
               <td>{{ product.type }}</td>
               <td>{{ product.price }}</td>
+              <td>{{ }}</td>
+              <td>{{ product.nonPerishableProduct.amount }}</td>
+              <td>{{ product.productionBatch.amount}}</td>
             </tr>
           </tbody>
         </table>

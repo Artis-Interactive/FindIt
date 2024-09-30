@@ -1,273 +1,411 @@
 <template>
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-  <div>
-      <div class="form-body">
-          <div class="info-container">
-              <header>Creación de un producto</header>
-              <form @submit.prevent="handleProductData" class="form">
-                  <div class="input-box">
-                      <label>Nombre del producto</label>
-                      <input v-model="productData.name" type="text" placeholder="Ingrese un nombre">
-                  </div>
-                  <div class="file-input">
-                      <label for="file" class="file-label"><i class="uil uil-image-plus"></i>Escoja una imagen</label>
-                      <input type="file" id="file" accept="image/*" @change="onFileSelected">
-                      <img src="../assets/product_image_placeholder.png" id="myimage" width="150">
-                  </div>
-                  <div class="row">
-                      <div class="input-box">
-                          <label>Precio</label>
-                          <input v-model="productData.price" type="number" placeholder="Digite un número" pattern="[a-z]+">
-                      </div>
-                      <div class="input-box">
-                          <label>Stock disponible</label>
-                          <input v-model="productData.stockAmount" type="number" placeholder="Digite el stock disponible" pattern="[a-z]+">
-                      </div>
-                  </div>
-                  <div class="input-box">
-                      <label >Categoría</label>
-                      <div class="row">
-                          <div class="select-box">
-                              <select>
-                                  <option>Category 1</option>
-                                  <option>Category 2</option>
-                                  <option>Category 3</option>
-                                  <option>Category 4</option>
-                              </select>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="description-box">
-                      <label>Descripción</label>
-                      <textarea v-model="productData.description" placeholder="Ingrese una descripción" name="" id="" cols="30" rows="10"></textarea>
-                  </div>
-                  <div class="perishable-box">
-                      <h3>¿Es perecedero?</h3>
-                      <div class="perishable-option">
-                          <div class="perishable">
-                              <input type="radio" name="perishable" id="check-yes">
-                              <label for="check-yes">Sí</label>
-                          </div>
-                          <div class="perishable">
-                              <input type="radio" name="perishable" id="check-no">
-                              <label for="check-no">No</label>
-                          </div>
-                      </div>
-                  </div>
-                  <button>Crear</button>
-              </form>
-          </div>
-      </div>
-  </div>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <div>
+        <div class="form-body">
+            <div class="info-container">
+                <header>Creación de un producto</header>
+                <form @submit.prevent="handleProductData" class="form">
+                    <div class="input-box">
+                        <label>Nombre del producto</label>
+                        <input v-model="productData.name" type="text" placeholder="Ingrese un nombre">
+                    </div>
+                    <div class="file-input">
+                        <label for="file" class="file-label"><i class="uil uil-image-plus"></i>Escoja una imagen</label>
+                        <input type="file" id="file" accept="image/*" @change="onFileSelected">
+                        <img src="../assets/product_image_placeholder.png" id="myimage" width="150">
+                    </div>
+                    <div class="row">
+                        <div class="input-box">
+                            <label>Precio</label>
+                            <input v-model="productData.price" type="number" placeholder="Digite un número" pattern="[a-z]+">
+                        </div>
+                        <div class="input-box">
+                            <label>Stock disponible</label>
+                            <input v-model="productData.stockAmount" type="number" placeholder="Digite el stock disponible" pattern="[a-z]+">
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <label >Categoría</label>
+                        <div class="row">
+                            <div class="select-box">
+                                <select v-model="this.productData.category">
+                                    <option v-for="(category, index) of categories" :key="index"> {{ category }} </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description-box">
+                        <label>Descripción</label>
+                        <textarea v-model="productData.description" placeholder="Ingrese una descripción" name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="perishable-box">
+                        <h3>¿Es perecedero?</h3>
+                        <div class="perishable-option">
+                            <div class="perishable">
+                                <input type="radio" name="perishable" id="check-yes" @change="perishableTrue">
+                                <label for="check-yes">Sí</label>
+                            </div>
+                            <div class="perishable">
+                                <input type="radio" name="perishable" id="check-no" @change="perishableFalse">
+                                <label for="check-no">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="this.perishable">
+                        <div class="row">
+                            <div class="input-box">
+                                <label>Tiempo de vida</label>
+                                <input v-model="productData.lifespan" type="number" placeholder="Digite un número">
+                            </div>
+                            <div class="input-box">
+                                <label>Máxima producción al día</label>
+                                <input v-model="productData.maxProductionQuantity" type="number" placeholder="Digite un número">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-box">
+                                <label>Fecha límite para ordenar</label>
+                                <input v-model="productData.orderMaxDate" type="date" placeholder="Digite un número" required>
+                            </div>
+                            <div class="input-box">
+                                <label>Hora límite para ordenar</label>
+                                <input v-model="productData.orderMaxTime" type="time" placeholder="Digite un número">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="days-container">
+                        <div class="days-box">
+                            <input v-model="this.productData.productionDays" type="checkbox" id="monday" name="days" value="Lunes">
+                            <label for="monday">Lunes</label>
+                        </div>
+                        <div class="days-box">
+                            <input v-model="this.productData.productionDays" type="checkbox" id="tuesday" name="days" value="Martes">
+                            <label for="tuesday">Martes</label>
+                        </div>
+                        <div class="days-box">
+                            <input v-model="this.productData.productionDays" type="checkbox" id="wednesday" name="days" value="Miercoles">
+                            <label for="wednesday">Miércoles</label>
+                        </div>
+                        <div class="days-box">
+                            <input v-model="this.productData.productionDays" type="checkbox" id="thursday" name="days" value="Jueves">
+                            <label for="thursday">Jueves</label>
+                        </div>
+                        <div class="days-box">
+                            <input v-model="this.productData.productionDays" type="checkbox" id="friday" name="days" value="Viernes">
+                            <label for="friday">Viernes</label>
+                        </div>
+                        <div class="days-box">
+                            <input v-model="this.productData.productionDays" type="checkbox" id="saturday" name="days" value="Sábado">
+                            <label for="saturday">Sábado</label>
+                        </div>
+                        <div class="days-box">
+                            <input v-model="this.productData.productionDays" type="checkbox" id="sunday" name="days" value="Domingo">
+                            <label for="sunday">Domingo</label>
+                        </div>
+                    </div>
+                    <div>{{ productData.productionDays }}</div>
+                    <div class="submit-btn-container">
+                        <button type="submit">Crear producto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
+    import axios from 'axios';
+    export default {
+        name: 'ProductCreation',
+        components: {
+        }, 
+        data() {
+            return {
+                productData: { 
+                    name: "", 
+                    category:"",
+                    price:"",
+                    stockAmount:"",
+                    description:"",
+                    image:"",
+                    lifespan:"",
+                    maxProductionQuantity:"",
+                    productionDays: [],
+                    orderMaxDate:"",
+                    orderMaxTime:""
+                },
+                categories: [
+                    'Calzado',
+                    'Zapatos',
+                    'Anillos',
+                    'Computadoras'
+                ],
+                perishable: false
+            }
+        },
+        methods: {
+            handleProductData() {
+                axios.post("https://localhost:7019/api/Paises", {
+                nombre: this.datosFormulario.nombre,
+                continente: this.datosFormulario.continente,
+                idioma: this.datosFormulario.idioma,
+                })
+                .then(function (response) {
+                    console.log(response);
+                    window.location.href = "/";
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
 
-  export default {
-      name: 'ProductCreation',
-      components: {
-      }, 
-      data() {
-          return {
-              productData: { 
-                  name: "", 
-                  category:"",
-                  price:"",
-                  stockAmount:"",
-                  description:"",
-                  image:"",
-                  perishable: "", 
-                  lifespan:"",
-                  maxProductionQuantity:"",
-                  productionDays:"",
-                  orderMaxDate:"",
-                  orderMaxTime:""
-              }
-          }
-      },
-      methods: {
-          handleProductData() {
-          
-          },
-          onFileSelected(event){
-              this.productData.image = event.target.files[0];
-              if (this.productData.image == null){
-                  return;
-              }
-              var reader = new FileReader();
+                console.log(this.productData)
+            },
+            async getCategories() {
+                axios.get("https://localhost:7019/api/Paises").then(
+                    (response) => {
+                    this.productData = response.data;
+                });
+            },
+            onFileSelected(event){
+                this.productData.image = event.target.files[0];
+                if (this.productData.image == null){
+                    return;
+                }
+                var reader = new FileReader();
 
-              var imgtag = document.getElementById("myimage");
-              imgtag.title = this.productData.image.name;
+                var imgtag = document.getElementById("myimage");
+                imgtag.title = this.productData.image.name;
 
-              reader.onload = function(event) {
-              imgtag.src = event.target.result;
-              };
-              reader.readAsDataURL(this.productData.image);
-          }
-      }
-  }
+                reader.onload = function(event) {
+                imgtag.src = event.target.result;
+                };
+                reader.readAsDataURL(this.productData.image);
+
+                console.log(this.productData)
+            },
+            perishableFalse(){
+                this.perishable = false
+                console.log(this.perishable)
+            },
+            perishableTrue(){
+                this.perishable = true
+                console.log(this.perishable)
+            }
+        }
+    }
 </script>
 
 <style scoped>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&display=swap');
 
-  *{
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'poppins', sans-serif;
-  }
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'poppins', sans-serif;
+    }
 
-  .form-body{
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background-color: rgb(130, 106, 251);
-  }
+    .form-body{
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background-color: #e3ddec;
+    }
 
-  .info-container{
-      position: relative;
-      max-width: 700px;
-      width: 100%;
-      background-color:white;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  }
+    .info-container{
+        position: relative;
+        max-width: 700px;
+        width: 100%;
+        background-color:white;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
 
-  .info-container header{
-      font-size: 1.5rem;
-      color: #333;
-      font: 500;
-      text-align: center;
-  }
+    .info-container header{
+        font-size: 1.5rem;
+        color: #333;
+        font: 500;
+        text-align: center;
+        font-weight: 500;
+    }
 
-  .info-container .form{
-      margin-top: 30px;
-  }
+    .info-container .form{
+        margin-top: 30px;
+    }
 
-  .form .input-box{
-      width: 100%;
-      margin-top: 20px;
-  }
+    .form .input-box{
+        width: 100%;
+        margin-top: 20px;
+    }
 
-  .form .file-input{
-      width: 100%;
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content:space-evenly;
-  }
+    .form .file-input{
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content:space-evenly;
+    }
 
-  input[type="file"]{
-      display: none;
-  }
+    input[type="file"]{
+        display: none;
+    }
 
-  .file-label{
-      color: white;
-      background-color: #8263A8;
-      height: 60px;
-      border: none;
-      outline: none;
-      padding: 15px 15px;
-      cursor: pointer;
-      font-size: 1.1em;
-      font-weight: 600;
-      transition: 0.1s;
-      
-  }
+    .file-label{
+        color: #8263A8;
+        border: 2px #8263A8 solid;
 
-  .file-label:hover{
-      background-color: #6b4f8d;
-  }
+        background-color: white;
+        height: 60px;
+        outline: none;
+        padding: 15px 15px;
+        cursor: pointer;
+        font-size: 1.1em;
+        font-weight: 600;
+        transition: 0.1s;
+        border-radius: 10px;
+    }
 
-  .input-box label{
-      color: #333;
-  }
+    .file-label:hover{
+        background-color: #8263A8;
+        color: white;
+    }
 
-  .form :where(.input-box input, .select-box){
-      position: relative;
-      height: 50px;
-      width: 100%;
-      outline: none;
-      font-size: 1rem;
-      color: #707070;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      padding: 0 15px;
-  }
+    .input-box label{
+        color: #333;
+    }
 
-  .form .row{
-      display: flex;
-      column-gap: 15px;
-  }
+    .form :where(.input-box input, .select-box){
+        position: relative;
+        height: 50px;
+        width: 100%;
+        outline: none;
+        font-size: 1rem;
+        color: #707070;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 0 15px;
+        transition: 0.1s;
+    }
 
-  .form .description-box {
-      margin-top: 20px;
-  }
+    .form .input-box input:focus{
+        border-color: #4671EA;
+    }
 
-  .form .description-box textarea{
-      width: 100%;
-      height: 180px;
-      padding: 10px;
-      outline: none;
-      resize: none;
-      font-size: 16px;
-      border-radius: 5px;
-      border-color: #bfbfbf;
-      color: #707070;
-  }
+    .form .select-box select:hover{
+        cursor: pointer;
+    }
 
-  textarea :is(:focus, :valid){
-      border-width: 2px;
-      padding: 14px;
-      border-color: #4671EA;
-  }
+    .form .select-box:has(select:focus){
+        border-color: #4671EA;
+    }
 
-  .form .perishable-box{
-      margin-top: 20px;
-  }
+    .form .row{
+        display: flex;
+        column-gap: 15px;
+    }
 
-  .perishable-box h3{
-     color: #333;
-     font-size: 1rem;
-     font-weight: 400;
-     margin-bottom: 8px; 
-  }
+    .form .description-box {
+        margin-top: 20px;
+    }
 
-  .form :where(.perishable-option, .perishable) {
-      display: flex;
-      align-items: center;
-      column-gap: 50px;
-      flex-wrap: wrap;
-  }
+    .form .description-box textarea{
+        width: 100%;
+        height: 180px;
+        padding: 10px;
+        outline: none;
+        resize: none;
+        font-size: 16px;
+        border-radius: 5px;
+        border-color: #bfbfbf;
+        color: #707070;
+        border-style: solid;
+    }
 
-  .form .perishable{
-      column-gap: 5px;
-  }
+    .form .description-box textarea:focus{
+        border-color: #4671EA;
+    }
 
-  .form :where(.perishable input, .perishable label){
-      cursor: pointer;
-  }
+    .form .perishable-box{
+        margin-top: 20px;
+    }
 
-  .select-box select{
-      height: 100%;
-      width: 100%;
-      outline: none;
-      border: none;
-      color: #707070;
-      font-size: 1rem;
-  }
+    .perishable-box h3{
+       color: #333;
+       font-size: 1rem;
+       font-weight: 400;
+       margin-bottom: 8px; 
+    }
 
-  @media screen and (max-width: 500px) {
-      .form .row {
-          flex-wrap: wrap;
-      }
+    .form :where(.perishable-option, .perishable) {
+        display: flex;
+        align-items: center;
+        column-gap: 50px;
+        flex-wrap: wrap;
+    }
 
-      .form :where(.perishable-option, .perishable) {
-          row-gap: 15px;
-      }
-  }
+    .form .perishable{
+        column-gap: 5px;
+    }
+
+    .form :where(.perishable input, .perishable label){
+        cursor: pointer;
+    }
+
+    .select-box select{
+        height: 100%;
+        width: 100%;
+        outline: none;
+        border: none;
+        color: #707070;
+        font-size: 1rem;
+    }
+
+    .form .submit-btn-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form button{
+        color: white;
+        background-color: #8263A8;
+        height: 60px;
+        border: none;
+        outline: none;
+        padding: 15px 15px;
+        cursor: pointer;
+        font-size: 1.1em;
+        font-weight: 600;
+        transition: 0.1s;
+        margin-top: 20px;
+    }
+
+    .form button:hover{
+        background-color: #6b4f8d;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    }
+
+    @media screen and (max-width: 550px) {
+        .form .row {
+            flex-wrap: wrap;
+        }
+
+        .form :where(.perishable-option, .perishable) {
+            row-gap: 15px;
+        }
+    }
 </style>

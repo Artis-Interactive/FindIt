@@ -23,9 +23,9 @@
 						</div>
 
 						<div class="form-group">
-							<label for="lastName">Apellidos:</label>
+							<label for="lastNames">Apellidos:</label>
 							<input type="text"
-											id="lastName"
+											id="lastNames"
 											v-model="form.LastNames"
 											required
 											maxlength="100"
@@ -59,9 +59,9 @@
 					</div>
 
 					<div>
-						<label for="phone">Teléfono:</label>
+						<label for="PhoneNumber">Teléfono:</label>
 						<input type="tel"
-										id="phone"
+										id="PhoneNumber"
 										v-model="form.PhoneNumber"
 										required
 										maxlength="8"
@@ -208,10 +208,10 @@
 						</div>
 
 						<div>
-							<label for="expiraryDate">Fecha de Expiración:</label>
+							<label for="expirationDate">Fecha de Expiración:</label>
 							<input type="date"
-											id="expiraryDate"
-											v-model="form.expiraryDate"
+											id="expirationDate"
+											v-model="form.expirationDate"
 											:max="maxDate"
 											:min="minDate"
 											required />
@@ -278,11 +278,11 @@
 				isModalVisible: false,
 				form: {
 					name: "",
-					lastName: "",
+					lastNames: "",
 					birthdate: "",
 					legalID: "",
 					email: "",
-					phone: "",
+					PhoneNumber: "",
 					password: "",
 				},
 				submitted: false,
@@ -292,19 +292,36 @@
 			};
 		},
 		methods: {
-			handleSubmit() {
+			async handleSubmit() {
 				if (!this.validatePassword()) {
 					return;
 				}
-				this.emailAndLegalIDExists(this.form.email, this.form.legalID)
-					.then(isValid => {
-						if (isValid) {
-							this.registerUser();
-						}
-					})
-					.catch(error => {
-						console.log(error);
-					});
+				try {
+					const emailAndLegalIDValid = await this.emailAndLegalIDExists(this.form.email, this.form.legalID)
+					if (!emailAndLegalIDValid) {
+						return;
+					}
+					await this.registerUser();
+
+					if (this.selectedDirection === 'manual') {
+						await this.registerAddress(this.form.legalID);
+					}
+
+					if (this.selectedPaymentMethod === 'card') {
+						await this.registerCardInfo(this.form.legalID);
+					}
+				
+					this.modalTitle = "Usuario registrado";
+					this.modalMessage = "El usuario fue registrado exitosamente.";
+					this.isModalVisible = true;
+					this.$router.push("/home");
+
+			} catch(error) {
+					console.log("Error al registrar usuario: ", error);
+					this.modalTitle = "Error en el registro";
+					this.modalMessage = error.response?.data || "Ocurrió un error durante el registro.";
+					this.isModalVisible = true;
+				}
 			},
 			validatePassword() {
 				if (this.form.password !== this.form.confirmPassword) {
@@ -333,15 +350,19 @@
 						this.modalMessage = "La cédula ya se encuentra registrada.";
 						this.isModalVisible = true;
 					} else {
-						console.log(error);
+						this.modalTitle = "Error de registro";
+						this.modalMessage = "Ocurrió un error durante el registro.";
+						this.isModalVisible = true;
 					}
+					this.isModalVisible = true;
 					return false;
 				}
 			},
-			registerUser() {
+			async registerUser() {
 				const salt = bcrypt.genSaltSync(10);
 				const hash = bcrypt.hashSync(this.form.password, salt);
-				axios.post("https://localhost:7262/api/UserDataSignUp",  {
+				try {
+					await axios.post("https://localhost:7262/api/UserDataSignUp",  {
 						name: this.form.name,
 						LastNames: this.form.LastNames,
 						birthdate: this.form.birthdate,
@@ -349,41 +370,33 @@
 						email: this.form.email,
 						PhoneNumber: this.form.PhoneNumber,
 						password: hash,
-					})
-				.then((response) => {
-					console.log(response);
-					return this.registerAddress(this.form.legalID);
-				})
-				.then((response) => {
-					console.log(response);
-					return this.registerCardInfo(this.form.legalID);
-				})
-				.then((response) => {
-					this.modalTitle = "Usuario registrado";
-					this.modalMessage = "El usuario fue registrado exitosamente..";
-					this.isModalVisible = true;
-					console.log(response);
-					this.$router.push("/home");
-
-				})
-				.catch(error => {
-					console.log("Error al registrar usuario: ", error);
-				});
+					});
+				} catch (error) {
+					throw new Error("Error al registrar usuario."+ (error.response?.data || error.message));
+				}
 			},
-			registerAddress(legalID) {
-				return axios.post(`https://localhost:7262/api/Address/AddAddress?legalId=${legalID}`, {
-					province: this.form.province,
-					canton: this.form.canton,
-					district: this.form.district,
-					details: this.form.details
-				});
+			async registerAddress(legalID) {
+				try {
+					await axios.post(`https://localhost:7262/api/Address/AddAddress?legalId=${legalID}`, {
+						province: this.form.province,
+						canton: this.form.canton,
+						district: this.form.district,
+						details: this.form.details
+					});
+				} catch (error) {
+					throw new Error("Error al registrar dirección."+ (error.response?.data || error.message));
+				}
 			},
-			registerCardInfo(legalID) {
-				return axios.post(`https://localhost:7262/api/Card?legalId=${legalID}`, {
-					cardNumber: this.form.cardNumber,
-					nameOnCard: this.form.nameOnCard,
-					expiraryDate: this.form.expiraryDate
-				});
+			async registerCardInfo(legalID) {
+				try {
+					await axios.post(`https://localhost:7262/api/Card?legalId=${legalID}`, {
+						cardNumber: this.form.cardNumber,
+						nameOnCard: this.form.nameOnCard,
+						expirationDate: this.form.expirationDate
+					});
+				} catch (error) {
+					throw new Error("Error al registrar tarjeta."+ (error.response?.data || error.message));
+				}
 			}
 		},
 		computed: {

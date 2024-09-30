@@ -18,7 +18,6 @@ namespace findit_backend.Controllers
         {
             _cardHandler = new CardHandler();
             _userIdHandler = new UserIdHandler();
-            
         }
 
         [HttpPost]
@@ -62,10 +61,10 @@ namespace findit_backend.Controllers
 
                 return Ok("Card created and linked to user");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error creating card");
+                    $"Error creating card: {ex.Message}");
             }
         }
     }

@@ -13,12 +13,14 @@ namespace findit_backend.Controllers
     public class AddressController : ControllerBase
     {
         private readonly AddressHandler _addressHandler;
+        private readonly UserHandler _userHandler;
         private readonly UserIdHandler _userIdHandler;
         private readonly CompanyHandler _companyHandler;
 
         public AddressController()
         {
             _addressHandler = new AddressHandler();
+            _userHandler = new UserHandler();
             _userIdHandler = new UserIdHandler();
             _companyHandler = new CompanyHandler();
         }
@@ -28,6 +30,19 @@ namespace findit_backend.Controllers
         {
             var address = _addressHandler.GetAddresses();
             return address;
+        }
+
+        [HttpGet("UserAddresses/{email}")]
+        public ActionResult GetUserAddresses(string email)
+        {
+            UserModel userModel = this._userHandler.GetUserByEmail(email)!;
+            string userId = this._userIdHandler.GetUserId(userModel.LegalId).ToString();
+            var address = _addressHandler.GetUserAddresses(userId);
+            if (address == null)
+            {
+                return BadRequest();
+            }
+            return Ok(address);
         }
 
         [HttpGet("CompanyID/{companyId}")]

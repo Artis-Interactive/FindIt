@@ -17,6 +17,7 @@ import MyProfile from './components/MyProfile.vue'
 import CompanyProductList from './components/CompanyProductList.vue'
 import CompanyUserList from './components/CompanyUserList.vue'
 import HomePage from './components/HomePage.vue'
+import ProfileAddresses from './components/ProfileAddresses'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -47,7 +48,7 @@ const router = createRouter({
         {path: "/companyproducts", name: "CompanyProducts", component: CompanyProductList},
         {path: "/profile/settings", name: "ProfileSettings"},
         {path: "/profile/payment-methods", name: "ProfilePaymentMethods"},
-        {path: "/profile/addresses", name: "ProfileAddresses"}
+        {path: "/profile/addresses", name: "ProfileAddresses", component: ProfileAddresses}
     ]
 })
 

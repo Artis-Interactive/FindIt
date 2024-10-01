@@ -13,6 +13,7 @@ import CompanyRegistrationForm from './components/CompanyRegistrationForm.vue'
 import PersonalCompanyList from './components/PersonalCompanyList.vue'
 import GeneralProductList from './components/GeneralProductList.vue'
 import MyProfile from './components/MyProfile.vue'
+import CompanyProductList from './components/CompanyProductList.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -32,6 +33,7 @@ const router = createRouter({
         {path: "/mycompanies", name: "MyCompanies", component: PersonalCompanyList},
         {path: "/allproducts", name: "AllProducts", component: GeneralProductList},
         {path: "/profile", name: "Profile", component: MyProfile},
+        {path: "/companyproducts", name: "CompanyProducts", component: CompanyProductList},
     ]
 })
 

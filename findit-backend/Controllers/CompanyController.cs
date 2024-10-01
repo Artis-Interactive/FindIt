@@ -39,6 +39,17 @@ public class CompanyController : ControllerBase
         return Ok(company);
     }
 
+    [HttpGet("Email/{email}")]
+    public ActionResult GetCompanyByEmail(string email)
+    {
+        var company = _companyHandler.GetByEmail(email);
+        if (company == null)
+        {
+            return BadRequest();
+        }
+        return Ok(company);
+    }
+
     [HttpGet("UserCompanies/{email}")]
     [Authorize]
     public async Task<ActionResult> GetUserCompanies(string email)

@@ -105,7 +105,7 @@
                         </div>
                     </div>
                     <div class="submit-btn-container">
-                        <button type="submit">Crear producto</button>
+                        <button type="submit" @click="goBack">Crear producto</button>
                     </div>
                 </form>
             </div>
@@ -144,7 +144,8 @@
                 ],
                 companyID: "763E3ADF-A045-4B46-B9FB-40619B2F0220", //this.$route.params.companyID
                 perishable: false,
-                productID: ""
+                productID: "",
+                sentData: false
             }
         },
         methods: {
@@ -183,6 +184,7 @@
                         })
                         .then(response => {
                         console.log('Image uploaded successfully:', response.data);
+                        this.sentData = true;
                         })
                         .catch(error => {
                         console.error('Error uploading image:', error);
@@ -232,6 +234,7 @@
                         })
                         .then(response => {
                         console.log('Image uploaded successfully:', response.data);
+                        this.sentData = true;
                         })
                         .catch(error => {
                         console.error('Error uploading image:', error);
@@ -276,6 +279,10 @@
             },
             isCategoryValid(category) {
                 return category.categoryName === this.productData.category;
+            },
+            goBack() {
+                if (!this.sentData) return
+                this.$router.push('/company');
             }
         },
         created() {

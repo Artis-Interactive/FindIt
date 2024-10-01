@@ -87,7 +87,7 @@ export default {
             // Store log in token:
             localStorage.setItem('token', data.token);
             // Go to home menu:
-            this.$router.push("/company/register");
+            this.$router.push("/home");
           }
         })
         .catch((error) => {

@@ -18,6 +18,13 @@ namespace findit_backend.Controllers
             _userHandler = new UserHandler();
         }
 
+        [HttpGet]
+        public List<UserModel> Get()
+        {
+            var users = _userHandler.ObtainUsers();
+            return users;
+        }
+
         [HttpGet("GetUserByEmail/{email}")]
         public ActionResult EmailExists(string email)
         {

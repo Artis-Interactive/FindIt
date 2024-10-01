@@ -2,33 +2,29 @@
   <div class="container">
     <div class="row justify-content-start">
       <a href="/company/register">
-        <button class="button">Regresar</button>
+        <button class="go_back_button">Regresar</button>
       </a>
     </div>
     <div class="row justify-content-center">
-      <h1 class="title">Mis Empresas</h1>
+      <h1 class="title">Usuarios Registrados</h1>
     </div>
-    <div v-if="companies.length === 0" class="no-companies">
-      <p class = "no-companies-message">Aún no ha registrado ninguna empresa</p>
-      <a href="/company/register">
-        <button class="button">Registrar</button>
-      </a>
-    </div>
-    <table v-else class="table">
+    <table class="table">
       <thead>
         <tr>
           <th>Nombre</th>
-          <th>Identificación</th>
-          <th>Número de teléfono</th>
+          <th>Apellidos</th>
+          <th>Cédula</th>
           <th>Correo</th>
+          <th>Estado</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(company, index) in companies" :key="index">
-          <td>{{ company.name }}</td>
-          <td>{{ company.legalID }}</td>
-          <td>{{ company.phoneNumber }}</td>
-          <td>{{ company.email }}</td>
+        <tr v-for="(user, index) in users" :key="index">
+          <td>{{ user.name }}</td>
+          <td>{{ user.lastNames }}</td>
+          <td>{{ user.legalId }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ getAccountStateLabel(user.accountState) }}</td>
         </tr>
       </tbody>
     </table>
@@ -50,13 +46,13 @@ import ModalComponent from "./ModalComponent.vue";
 import { jwtDecode } from 'jwt-decode';
 
 export default {
-  name: "PersonalCompanyList",
+  name: "GeneralUsersist",
   components: {
     ModalComponent,
   },
   data() {
     return {
-      companies: [],
+      users: [],
       modalTitle: '',
       modalMessage: '',
       isModalVisible: false,
@@ -64,28 +60,37 @@ export default {
   },
   methods: {
     verifyLogin() {
-      // get token and verify open session:
-      
+      // get token and verify user being admin:
       const token = localStorage.getItem('token');
         if (token) {
-          const decodedToken = jwtDecode(token);
-          this.getUserCompanies(decodedToken.email);
+          const decodedToken = jwtDecode(token);     
+          if (decodedToken.role === 'ADM') {
+            this.getUsers();
+          }
+          else {
+            this.modalTitle = "Acceso Restringido";
+            this.modalMessage = "Para visualizar estos datos debe haber iniciado sesión como administrador";
+            this.isModalVisible = true;
+          }
         }
         else {
           this.modalTitle = "Acceso Restringido";
-          this.modalMessage = "Para visualizar estos datos debe iniciar sesión";
+          this.modalMessage = "Para visualizar estos datos debe haber iniciado sesión como administrador";
           this.isModalVisible = true;
         }
     },
-    getUserCompanies(email) {
-      axios.get(`https://localhost:7262/api/Company/UserCompanies/${email}`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      }).then((response) => {
-        this.companies = response.data;
+    getUsers() {
+      axios.get("https://localhost:7262/api/UserDataSignUp").then((response) => {
+        this.users = response.data;
       });
+    },
+    getAccountStateLabel(state) {
+      const stateLabels = {
+        'ACT': 'Verificado',
+        'NotVER': 'No verificado',
+        'BAN': 'Bloqueado',
+      };
+      return stateLabels[state] || 'Estado desconocido';
     },
   },
   created() {
@@ -109,7 +114,7 @@ export default {
   margin-bottom: 20px;
 }
 
-.button {
+.go_back_button {
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
@@ -124,19 +129,6 @@ export default {
   font-size: 2rem;
   text-align: center;
   margin-top: 10px; 
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: Montserrat;
-}
-
-.no-companies {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.no-companies-message {
-  font-size: 20px;
   font-feature-settings: 'liga' off, 'clig' off;
   font-family: Montserrat;
 }
@@ -164,3 +156,4 @@ export default {
 }
 
 </style>
+

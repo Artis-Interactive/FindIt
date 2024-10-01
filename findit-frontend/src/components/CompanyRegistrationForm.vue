@@ -116,6 +116,7 @@
 
 <script>
 import axios from "axios";
+import { jwtDecode } from 'jwt-decode';
 
 export default {
   data() {
@@ -141,6 +142,17 @@ export default {
     };
   },
   methods: {
+    verifyLogin() {
+      // get token and verify open session:
+      
+      const token = localStorage.getItem('token');
+        if (!token) {
+          this.modalTitle = "Acceso Restringido";
+          this.modalMessage = "Para visualizar estos datos debe iniciar sesión";
+          this.isModalVisible = true;
+        }
+    },
+
     handleSubmit() {
       console.log("Datos: ", this.formData);
       this.registerCompany();
@@ -177,6 +189,10 @@ export default {
           });
         }
 
+        const token = localStorage.getItem('token');
+        const decodedToken = jwtDecode(token);
+        await axios.post(`https://localhost:7262/api/Company/AddCompanyToUser?userToken=${decodedToken.email}&companyLegalId=${this.formData.legalId}`);
+
         alert ('Empresa registrada con éxito.');
         window.location.href = "/";
 
@@ -184,20 +200,10 @@ export default {
         console.log(error);
       }
     },
-
-    async registerAddress(legalId) {
-      try {
-        await axios.post(`https://localhost:7262/api/Address/AddCompanyAddress?legalId=${legalId}`, {
-          province: this.addressForm.province,
-          canton: this.addressForm.canton,
-          district: this.addressForm.district,
-          details: this.addressForm.details
-        });
-      } catch (error) {
-        throw new Error("Error al registrar dirección."+ (error.response?.data || error.message));
-      }
-    },
-  }
+  },
+  created() {
+    this.verifyLogin();
+  },
 }
 </script>
 

@@ -55,6 +55,7 @@
   import AppHeader from './AppHeader.vue'
   import ProductCarousel from './ProductCarousel.vue'
   import ModalComponent from "./ModalComponent.vue";
+  import { jwtDecode } from 'jwt-decode';
 
   export default {
     name: 'CompanyPage',
@@ -71,8 +72,7 @@
         companyStartTime:"",
         companyEndTime:"",
         companyAddress:"",
-        isCompanyUser: true,
-        isCompanySection: true,
+        isCompanyUser: false,
         companyId: "763E3ADF-A045-4B46-B9FB-40619B2F0220",
         companyData: "",
         isCompanyDataReady: false,
@@ -84,6 +84,23 @@
     },
 
     methods: {
+      verifyLogin() {
+      // get token and verify open session:
+        const token = localStorage.getItem('token');
+          if (token) {
+            const decodedToken = jwtDecode(token);
+            if(decodedToken.role === "EMP"){
+              this.isCompanyUser = true;
+            }
+            this.obtainData(decodedToken.email);
+          }
+          else {
+            this.modalTitle = "Acceso Restringido";
+            this.modalMessage = "Para visualizar estos datos debe iniciar sesión";
+            this.isModalVisible = true;
+          }
+      },
+
       clickOnCreate() {
         console.log('Create product');
       },
@@ -92,14 +109,14 @@
         this.isModalVisible = true;
       },
 
-      async obtainData() {
+      async obtainData(email) {
         try {
-          const responseCompany = await axios.get(`https://localhost:7262/api/Company/CompanyID/${this.companyId}`);
+          const responseCompany = await axios.get(`https://localhost:7262/api/Company/Email/${email}`);
           this.companyData = responseCompany.data;
           console.log("Datos empresa: ", this.companyData);
           this.isCompanyDataReady = true;
 
-          const responseProducts = await axios.get(`https://localhost:7262/api/Product/CompanyID/${this.companyId}`);
+          const responseProducts = await axios.get(`https://localhost:7262/api/Product/Email/${email}`);
           this.products = responseProducts.data;
           console.log("Datos productos: ", this.products);
         } catch (error) {
@@ -167,7 +184,7 @@
     },
 
     created() {
-      this.obtainData();
+      this.verifyLogin();
     },
   };
 </script>
@@ -201,6 +218,7 @@
   .info-container{
     display: flex;
     height: 200px;
+    gap: 30px;
   }
 
   .profile-container {
@@ -365,5 +383,4 @@
     position: relative;
     bottom: 40px;
   }
-
 </style>

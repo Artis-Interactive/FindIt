@@ -12,11 +12,13 @@ public class CompanyController : ControllerBase
 {
     private readonly CompanyHandler _companyHandler;
     private readonly UserHandler _userHandler;
+    private readonly UserIdHandler _userIdHandler;
 
     public CompanyController()
     {
         _companyHandler = new CompanyHandler();
         _userHandler = new UserHandler();
+        _userIdHandler = new UserIdHandler();
     }
 
     [HttpGet]
@@ -62,6 +64,29 @@ public class CompanyController : ControllerBase
             }
             var result = this._companyHandler.CreateCompany(company);
 
+
+            return new JsonResult(result);
+        }
+        catch (Exception)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                "Error creating company");
+        }
+    }
+
+    [HttpPost("AddCompanyToUser")]
+    public async Task<ActionResult<bool>> AddCompanyToUser(string userToken, string companyLegalId, bool isOwner = true)
+    {
+        try
+        {
+            if (companyLegalId == null || userToken == null)
+            {
+                return BadRequest();
+            }
+
+            string userId = this._userHandler.GetUserID(userToken).Result;
+            string companyId = this._companyHandler.GetCompanyIdByLegalId(companyLegalId);
+            var result = this._companyHandler.AddCompanyToUser(userId, companyId, isOwner);
 
             return new JsonResult(result);
         }

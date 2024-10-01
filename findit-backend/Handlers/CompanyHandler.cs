@@ -135,5 +135,22 @@ namespace findit_backend.Handlers
             }
             return companies;
         }
+
+        public bool AddCompanyToUser(string userId, string companyId, bool isOwner)
+        {
+            var query = @"INSERT INTO [dbo].[UsersCompany] (
+                                        [UserID], 
+                                        [CompanyID], 
+                                        [IsOwner])
+                    VALUES (@UserID, @CompanyID, @IsOwner)";
+
+            var queryCommand = new SqlCommand(query, _connection);
+
+            queryCommand.Parameters.AddWithValue("@UserID", userId);
+            queryCommand.Parameters.AddWithValue("@CompanyID", companyId);
+            queryCommand.Parameters.AddWithValue("@IsOwner", isOwner);
+
+            return ExecuteNonQuery(queryCommand);
+        }
     }
 }

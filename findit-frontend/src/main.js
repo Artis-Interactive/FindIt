@@ -18,7 +18,7 @@ import CompanyUserList from './components/CompanyUserList.vue'
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        { path: "/valecita", name: "CompanyUserList", component: CompanyUserList },
+        { path: "/UsersCompany", name: "CompanyUserList", component: CompanyUserList },
         { path: "/Users", name: "UsersList", component: GeneralUserList },
         { path: "/", name: "Log In", component: LogIn },
         { path: "/company", name: "Empresa", component: CompanyPage },

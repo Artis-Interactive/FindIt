@@ -21,7 +21,11 @@ const router = createRouter({
                 email: route.params.email
             })
         },
-        { path: '/product-creation/', name: 'ProductCreation', component: ProductCreation }
+        { path: '/product-creation/:companyID', name: 'ProductCreation', component: ProductCreation, 
+            props: route => ({
+                companyID: route.params.companyID
+            })
+        }
     ]
 })
 

@@ -7,6 +7,26 @@
       "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\darix\\onedrive\\documentos\\github\\findit\\findit-backend\\models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\darix\\onedrive\\documentos\\github\\findit\\findit-backend\\handlers\\producthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\producthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\darix\\onedrive\\documentos\\github\\findit\\findit-backend\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\darix\\onedrive\\documentos\\github\\findit\\findit-backend\\models\\categorymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:models\\categorymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\darix\\onedrive\\documentos\\github\\findit\\findit-backend\\handlers\\categoryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\categoryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|c:\\users\\darix\\onedrive\\documentos\\github\\findit\\findit-backend\\handlers\\imagehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CB07A778-CE20-42D3-96EC-BD027FC7689A}|findit-backend.csproj|solutionrelative:handlers\\imagehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -48,8 +68,86 @@
         },
         {
           "DockedWidth": 349,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "Controllers\\CategoryController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T04:19:03.549Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CategoryModel.cs",
+              "DocumentMoniker": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Models\\CategoryModel.cs",
+              "RelativeDocumentMoniker": "Models\\CategoryModel.cs",
+              "ToolTip": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Models\\CategoryModel.cs",
+              "RelativeToolTip": "Models\\CategoryModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T04:18:37.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CategoryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Handlers\\CategoryHandler.cs",
+              "RelativeDocumentMoniker": "Handlers\\CategoryHandler.cs",
+              "ToolTip": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Handlers\\CategoryHandler.cs",
+              "RelativeToolTip": "Handlers\\CategoryHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T04:18:03.011Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ImageHandler.cs",
+              "DocumentMoniker": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Handlers\\ImageHandler.cs",
+              "RelativeDocumentMoniker": "Handlers\\ImageHandler.cs",
+              "ToolTip": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Handlers\\ImageHandler.cs",
+              "RelativeToolTip": "Handlers\\ImageHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T04:03:57.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductHandler.cs",
+              "DocumentMoniker": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Handlers\\ProductHandler.cs",
+              "RelativeDocumentMoniker": "Handlers\\ProductHandler.cs",
+              "ToolTip": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Handlers\\ProductHandler.cs",
+              "RelativeToolTip": "Handlers\\ProductHandler.cs",
+              "ViewState": "AQIAAKkAAAAAAAAAAAAwwIQAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T02:41:56.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductModel.cs",
+              "DocumentMoniker": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Models\\ProductModel.cs",
+              "RelativeDocumentMoniker": "Models\\ProductModel.cs",
+              "ToolTip": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Models\\ProductModel.cs",
+              "RelativeToolTip": "Models\\ProductModel.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAA/wBEAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-30T22:40:29.304Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -58,22 +156,9 @@
               "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
               "ToolTip": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Controllers\\ProductController.cs*",
               "RelativeToolTip": "Controllers\\ProductController.cs*",
-              "ViewState": "AQIAAEgAAAAAAAAAAAAowE0AAAA7AAAA",
+              "ViewState": "AQIAADUAAAAAAAAAAAAQwEEAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-30T21:46:45.707Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ImageHandler.cs",
-              "DocumentMoniker": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Handlers\\ImageHandler.cs",
-              "RelativeDocumentMoniker": "Handlers\\ImageHandler.cs",
-              "ToolTip": "C:\\Users\\darix\\OneDrive\\Documentos\\GitHub\\FindIt\\findit-backend\\Handlers\\ImageHandler.cs",
-              "RelativeToolTip": "Handlers\\ImageHandler.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAQwBwAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T22:18:00.468Z",
               "EditorCaption": ""
             }
           ]

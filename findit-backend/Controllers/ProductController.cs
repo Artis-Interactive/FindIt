@@ -56,32 +56,45 @@ namespace findit_backend.Controllers
       return Ok(products);
     }
 
-    // [HttpPost("CompanyID/{companyId}")]
-    // public string GetTest()
-    // {
-    //   System.Diagnostics.Debug.WriteLine("Test");
-    //   return "Hello world";
-    //   var products = _productHandler.ObtainProductsByCompanyId(companyId);
-    //   if (products == null)
-    //   {
-    //     return BadRequest();
-    //   }
-    //   return Ok(products);
-    // }
-
-    [HttpPost("UploadImage")]
-        public async Task<IActionResult> UploadImage(string productId, [FromForm] IFormFile image)
+        [HttpGet("ProductID")]
+        public ActionResult GetProductID(string companyId, string categoryId, string name, string description, string img, decimal price)
         {
-          ImageHandler imgHandler = new ImageHandler();
-            string response = imgHandler.isImageValid(image);
+            var productId = _productHandler.ObtainProductID(companyId, categoryId, name, description, img, price);
+            if (productId == null)
+            {
+                return BadRequest();
+            }
+            return Ok(productId);
+        }
+
+        [HttpPost("CreateNonPerishableProduct")]
+        public async Task<ActionResult> CreateNonPerishableProduct(NonPerishableProductModel product)
+        {
+            try
+            {
+                if (product == null)
+                {
+                    return BadRequest("Invalid product");
+                }
+
+                var result = _productHandler.CreateNonPerishableProduct(product);
+                return new JsonResult(result);
+            }
+            catch (Exception) 
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "ERROR: Couldnt create product");
+            }
+        }
+
+        [HttpPost("UpdateImage")]
+        public async Task<IActionResult> UploadImage([FromForm] string productId, [FromForm] IFormFile image)
+        {
+          string response = _productHandler.UpdateProductImage(productId, image);
             if (response != null) {
-                System.Diagnostics.Debug.WriteLine("Test");
                 return BadRequest(response);
             }
 
-            imgHandler.saveProductImage(productId, image);
-
-            return Ok(new { fileName = image.FileName, fileSize = image.Length });
+            return Ok(new { fileName = productId + image.FileName, fileSize = image.Length });
         }
   }
 }

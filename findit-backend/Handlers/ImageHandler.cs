@@ -30,8 +30,7 @@ namespace findit_backend.Handlers
 
         public void saveProductImage(string productId, [FromForm] IFormFile image)
         {
-            string uniqueProductImageName = productId + image.FileName;
-            var savePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets", "ProductImages", uniqueProductImageName);
+            var savePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets", "ProductImages", productId, image.FileName);
 
             Directory.CreateDirectory(Path.GetDirectoryName(savePath));
 

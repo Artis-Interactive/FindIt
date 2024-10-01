@@ -7,7 +7,7 @@
                 <form @submit.prevent="handleProductData" class="form">
                     <div class="input-box">
                         <label>Nombre del producto</label>
-                        <input v-model="productData.name" type="text" placeholder="Ingrese un nombre">
+                        <input v-model="productData.name" type="text" placeholder="Ingrese un nombre" required>
                     </div>
                     <div class="file-input">
                         <label for="file" class="file-label"><i class="uil uil-image-plus"></i>Escoja una imagen</label>
@@ -17,18 +17,18 @@
                     <div class="info-row">
                         <div class="input-box">
                             <label>Precio</label>
-                            <input v-model="productData.price" type="number" placeholder="Digite un número" pattern="[a-z]+">
+                            <input v-model="productData.price" type="number" placeholder="Digite un número" min="1">
                         </div>
                         <div class="input-box">
                             <label>Stock disponible</label>
-                            <input v-model="productData.stockAmount" type="number" placeholder="Digite el stock disponible" pattern="[a-z]+">
+                            <input v-model="productData.stockAmount" type="number" placeholder="Digite el stock disponible" min="0">
                         </div>
                     </div>
                     <div class="input-box">
                         <label >Categoría</label>
                         <div class="info-row">
                             <div class="select-box">
-                                <select v-model="this.productData.category">
+                                <select v-model="this.productData.category" required>
                                     <option v-for="(category, index) of categories" :key="index"> {{ category }} </option>
                                 </select>
                             </div>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="description-box">
                         <label>Descripción</label>
-                        <textarea v-model="productData.description" placeholder="Ingrese una descripción" name="" id="" cols="30" rows="10"></textarea>
+                        <textarea v-model="productData.description" placeholder="Ingrese una descripción" name="" id="" cols="30" rows="10" maxlength="1000" required></textarea>
                     </div>
                     <div class="perishable-box">
                         <h3>¿Es perecedero?</h3>
@@ -55,11 +55,11 @@
                         <div class="info-row">
                             <div class="input-box">
                                 <label>Tiempo de vida</label>
-                                <input v-model="productData.lifespan" type="number" placeholder="Digite un número">
+                                <input v-model="productData.lifespan" type="number" placeholder="Digite un número" required>
                             </div>
                             <div class="input-box">
                                 <label>Máxima producción al día</label>
-                                <input v-model="productData.maxProductionQuantity" type="number" placeholder="Digite un número">
+                                <input v-model="productData.maxProductionQuantity" type="number" placeholder="Digite un número" required>
                             </div>
                         </div>
                         <div class="info-row">
@@ -69,7 +69,7 @@
                             </div>
                             <div class="input-box">
                                 <label>Hora límite para ordenar</label>
-                                <input v-model="productData.orderMaxTime" type="time" placeholder="Digite un número">
+                                <input v-model="productData.orderMaxTime" type="time" placeholder="Digite un número" required>
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,8 @@
                     'Anillos',
                     'Computadoras'
                 ],
-                perishable: false
+                perishable: false,
+                productID: ""
             }
         },
         methods: {
@@ -158,12 +159,51 @@
                 //     console.log(error);
                 // });
 
+                let categoryID = this.categories.find(this.isCategoryValid).categoryID;
+                let jsonMsg = 
+                {
+                    "product": {
+                        "productID": "invalidProductID",
+                        "categoryID": categoryID,
+                        "companyID": this.$route.params.companyID,
+                        "name": this.productData.name,
+                        "description": this.productData.description,
+                        "image": this.productData.image,
+                        "price": this.productData.price
+                    },
+                    "stock": this.productData.stockAmount
+                }
+
                 console.log(this.productData)
                 if (this.productData.image) {
+
+                    axios.post('https://localhost:7262/api/Product/CreateNonPerishableProduct', jsonMsg)
+                    .then(response => {
+                    console.log('Image uploaded successfully:', response.data);
+                    })
+                    .catch(error => {
+                    console.error('Error uploading image:', error);
+                    });
+
+                    axios.get("https://localhost:7262/api/Product/ProductID", {
+                        params: {
+                            companyId: this.$route.params.companyID,
+                            categoryId: categoryID,
+                            name: this.productData.name,
+                            description: this.productData.description,
+                            img: this.productData.image,
+                            price: this.productData.price
+                        }
+                    }).then(
+                    (response) => {
+                        this.productID = response.data;
+                    });
+
                     const formData = new FormData();
                     formData.append('image', this.productData.image);
+                    formData.append('productId', 'AJJAHGSVEJJUE');
 
-                    axios.post('https://localhost:7262/api/Product/UploadImage', "tessst", formData, {
+                    axios.post('https://localhost:7262/api/Product/UploadImage', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -179,9 +219,10 @@
                 }
             },
             async getCategories() {
-                axios.get("https://localhost:7019/api/Paises").then(
+                axios.get("https://localhost:7262/api/Category").then(
                     (response) => {
-                    this.productData = response.data;
+                        console.log(response.data);
+                        this.categories = response.data;
                 });
             },
             onFileSelected(event){
@@ -208,6 +249,9 @@
             perishableTrue(){
                 this.perishable = true
                 console.log(this.perishable)
+            },
+            isCategoryValid(category) {
+                return category === this.productData.category;
             }
         }
     }

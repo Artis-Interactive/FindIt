@@ -1,9 +1,10 @@
 <template>
+  <AppHeader />
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <div class="general-container">
     <div class="user-container">
-      <img src="../assets/image.png" alt="Imagen de usuario">
-      <h2>Jose Perez</h2>
+      <img src="../assets/company_profile.png" alt="Imagen de usuario">
+      <h2> {{ this.name }}</h2>
     </div>
     <div class="btns">
       <button class="personal-data btn"><i class="uil uil-user"></i>Información personal</button>
@@ -14,9 +15,42 @@
 </template>
 
 <script>
+  import { jwtDecode } from 'jwt-decode';
+  import axios from 'axios';
+  import AppHeader from './AppHeader.vue'
   export default {
-    
-  }
+    name: "MyProfile",
+    components: {
+      AppHeader
+    },
+    data() {
+      return {
+        name: "Placeholder"
+      };
+    },
+    methods: {
+      getName() {
+        const token = localStorage.getItem('token');
+          if (token) {
+            const decodedToken = jwtDecode(token); 
+            console.log(decodedToken.email);
+            axios.get(`https://localhost:7262/api/User/User/${encodeURIComponent(decodedToken.email)}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      }).then(
+              (response) => {
+              console.log(response.data)
+              this.name = response.data.name + " " + response.data.lastNames
+            });
+          }
+      }
+    },
+    created() {
+      this.getName();
+    }
+};
 </script>
 
 <style scoped>
@@ -38,7 +72,8 @@
 
   .user-container img {
     width: 200px;
-    border-radius: 100%;
+    height: 200px;
+    border-radius: 50%;
     margin-right: 20px;
   }
 
@@ -82,6 +117,6 @@
   }
 
   .btns button:hover{
-    scale: 1.05;
+    background-color: #5f487c;
   }
 </style>

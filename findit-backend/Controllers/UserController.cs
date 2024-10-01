@@ -74,5 +74,15 @@ namespace findit_backend.Controllers
             }
         }
 
+        [HttpGet("User/{email}")]
+        public ActionResult GetUserByEmail(string email)
+        {
+            var user = _userHandler.GetUserByEmail(email);
+            if (user == null)
+            {
+                return BadRequest();
+            }
+            return Ok(user);
+        }
     }
 }

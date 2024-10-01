@@ -63,7 +63,7 @@
   import { jwtDecode } from 'jwt-decode';
   
   export default {
-    name: "GeneralProductList",
+    name: "CompanyProductList",
     components: {
       ModalComponent,
     },

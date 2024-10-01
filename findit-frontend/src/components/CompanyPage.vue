@@ -144,7 +144,6 @@
           ampm = 'PM';
         }
         hours = hours % 12;
-        console.log("hola");
         return `${hours}:${minutes} ${ampm}`;
       },
 

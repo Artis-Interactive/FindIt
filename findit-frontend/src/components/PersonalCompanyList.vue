@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row justify-content-start">
-      <a href="/business/register">
+      <a href="/company/register">
         <button class="button">Regresar</button>
       </a>
     </div>
@@ -10,7 +10,7 @@
     </div>
     <div v-if="companies.length === 0" class="no-companies">
       <p class = "no-companies-message">Aún no ha registrado ninguna empresa</p>
-      <a href="/business/register">
+      <a href="/company/register">
         <button class="button">Registrar</button>
       </a>
     </div>

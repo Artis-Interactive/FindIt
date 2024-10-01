@@ -9,6 +9,7 @@ import SignUp from './components/SignUp.vue'
 import GeneralCompanyList from './components/GeneralCompanyList.vue';
 import GeneralUserList from './components/GeneralUserList.vue'
 import EmailVerification from './components/EmailVerification.vue'
+import CompanyRegistrationForm from './components/CompanyRegistrationForm.vue'
 import PersonalCompanyList from './components/PersonalCompanyList.vue'
 
 const router = createRouter({
@@ -16,8 +17,9 @@ const router = createRouter({
     routes: [
         { path: "/Users", name: "UsersList", component: GeneralUserList },
         { path: "/", name: "Log In", component: LogIn },
-        { path: "/business", name: "Empresa", component: CompanyPage },
-        { path: "/business/register", name: "Ingresar a registro de empresa", component: RegisterCompanyPrev },
+        { path: "/company", name: "Empresa", component: CompanyPage },
+        { path: "/company/register", name: "Ingresar a registro de empresa", component: RegisterCompanyPrev },
+        { path: "/company/register-form", name: "Crear Empresa", component: CompanyRegistrationForm },
         { path: "/signUp", name: "Sign Up", component: SignUp },
         { path: '/email-verification/:email', name: 'EmailVerification', component: EmailVerification, 
             props: route => ({

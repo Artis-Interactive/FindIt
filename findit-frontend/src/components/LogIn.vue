@@ -20,7 +20,7 @@
       </form>
       <nav class="auth-nav">
         <a href="/signUp" class="auth-link">Registrarme</a>
-        <a href="/company/register" class="auth-link">Continuar sin cuenta</a>
+        <a href="/home" class="auth-link">Continuar sin cuenta</a>
       </nav>
       <ModalComponent
         :isVisible="isModalVisible"

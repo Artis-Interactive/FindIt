@@ -362,7 +362,7 @@
 			},
 			async registerUser() {
 				
-				const salt = bcrypt.genSaltSync(10);
+				const salt = '$2b$10$eImiTXuWVyfVz1uFyyf065'
 				const hash = bcrypt.hashSync(this.form.password, salt);
 				try {
 					await axios.post("https://localhost:7262/api/UserDataSignUp",  {

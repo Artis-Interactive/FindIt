@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <a href="https://www.amazon.com" class="logo-link">Find It!</a>
+    <a href="/home" class="logo-link">Find It!</a>
       <form class="search-form" @submit.prevent>
         <label for="search-input" class="visually-hidden">Buscar</label>
         <input type="text" id="search-input" class="search-input" placeholder="Buscar" aria-label="Buscar">
@@ -10,9 +10,9 @@
       </form>
       <nav class="main-nav">
         <ul class="nav-list">
-          <li><a href="#" class="nav-link">Inicio</a></li>
-          <li><a href="#" class="nav-link">Empresa</a></li>
-          <li><a href="#" class="nav-link">Mi perfil</a></li>
+          <li><a href="/home" class="nav-link">Inicio</a></li>
+          <li><a href="/company" class="nav-link">Empresa</a></li>
+          <li><a href="/profile" class="nav-link">Mi perfil</a></li>
         </ul>
       </nav>
     <button class="cart-button">Carrito ({{ cartItemCount }})</button>

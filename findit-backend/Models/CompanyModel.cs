@@ -8,7 +8,6 @@ public class CompanyModel
     public string Email { get; set; }
     public string Description { get; set; }
     public int PhoneNumber { get; set; }
-    public string Email { get; set; }
     public string Logo { get; set; }
     public string HeroImage { get; set; }
     public List<WorkingDayModel> workingDays { get; set; }

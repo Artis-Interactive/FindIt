@@ -23,7 +23,8 @@ public class UserHandler : BaseHandler
                 Email = Convert.ToString(column["Email"]),
                 BirthDate = Convert.ToString(column["BirthDate"]),
                 PhoneNumber = Convert.ToString(column["PhoneNumber"]),
-                Password = Convert.ToString(column["PasswordHash"]),
+                AccountState = Convert.ToString(column["AccountState"]),
+                
             });
         }
         return users;
@@ -103,9 +104,8 @@ public class UserHandler : BaseHandler
         else
         {
             DataRow userRow = resultingTable.Rows[0];
-            return Convert.ToString(userRow["AccountState"]);
+            return Convert.ToString(userRow["UserType"]);
         }
-
     }
 
     public UserModel? GetUserByEmail(string email)
@@ -134,4 +134,14 @@ public class UserHandler : BaseHandler
         }
         return false;
     }
+    public async Task<string> GetUserID(string email)
+    {
+        // Creates query and stores resulting table:
+        string query = $"SELECT * FROM dbo.Users WHERE Email = '{email}'";
+        DataTable resultingTable = this.CreateQueryTable(query);
+        DataRow userRow = resultingTable.Rows[0];
+        return Convert.ToString(userRow["UserID"]);
+    }
+
+
 }

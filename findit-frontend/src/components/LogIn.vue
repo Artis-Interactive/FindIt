@@ -19,10 +19,9 @@
         <button type="submit" class="submit-button">Iniciar Sesión</button>
       </form>
       <nav class="auth-nav">
-        <a href="#" class="auth-link">Registrarme</a>
-        <a href="/home" class="auth-link">Continuar sin cuenta</a>
+        <a href="/signUp" class="auth-link">Registrarme</a>
+        <a href="/company/register" class="auth-link">Continuar sin cuenta</a>
       </nav>
-      <!-- modal component for alerts -->
       <ModalComponent
         :isVisible="isModalVisible"
         :title="modalTitle"
@@ -39,6 +38,7 @@
 <script>
 import axios from "axios";
 import ModalComponent from './ModalComponent.vue';
+import bcrypt from 'bcryptjs';
 
 export default {
   name: 'LoginComponent',
@@ -56,7 +56,8 @@ export default {
     async handleSubmit() {
       // Get input data:
       const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+      const salt = '$2b$10$eImiTXuWVyfVz1uFyyf065'
+			const password = bcrypt.hashSync(document.getElementById("password").value, salt);
       // Send to backend:
       axios.post("https://localhost:7262/api/User", { email, password })
         .then((response) => {
@@ -86,7 +87,7 @@ export default {
             // Store log in token:
             localStorage.setItem('token', data.token);
             // Go to home menu:
-            this.$router.push("/home");
+            this.$router.push("/company/register");
           }
         })
         .catch((error) => {
@@ -141,7 +142,7 @@ export default {
   font-size: 96px;
   font-style: normal;
   font-weight: 600;
-  line-height: 130%; /* 124.8px */
+  line-height: 130%;
   margin: 40px 0 0 0;
 }
 
@@ -247,7 +248,7 @@ export default {
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
-  line-height: 130%; /* 23.4px */
+  line-height: 130%;
   text-decoration-line: underline;
 }
 

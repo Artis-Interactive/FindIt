@@ -45,10 +45,10 @@ namespace findit_backend.Controllers
       return Ok(products);
     }
 
-    [HttpGet("CompanyID/{companyId}")]
-    public ActionResult GetProductsByCompanyId(string companyId)
+    [HttpGet("Email/{email}")]
+    public ActionResult GetProductsByCompanyId(string email)
     {
-      var products = _productHandler.ObtainProductsByCompanyId(companyId);
+      var products = _productHandler.ObtainProductsByEmail(email);
       if (products == null)
       {
         return BadRequest();

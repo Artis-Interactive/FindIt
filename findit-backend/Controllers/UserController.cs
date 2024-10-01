@@ -37,9 +37,9 @@ namespace findit_backend.Controllers
             };
             // create token:
             var token = new JwtSecurityToken(issuer: _config["Jwt:Issuer"],
-                audience: _config["Jwt:Issuer"],
+                audience: _config["Jwt:Audience"],
                 claims: claims,
-                expires: null,
+                expires: DateTime.UtcNow.AddHours(1),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
@@ -74,5 +74,15 @@ namespace findit_backend.Controllers
             }
         }
 
+        [HttpGet("User/{email}")]
+        public ActionResult GetUserByEmail(string email)
+        {
+            var user = _userHandler.GetUserByEmail(email);
+            if (user == null)
+            {
+                return BadRequest();
+            }
+            return Ok(user);
+        }
     }
 }

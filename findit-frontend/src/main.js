@@ -28,7 +28,7 @@ const router = createRouter({
         { path: "/company/register", name: "Ingresar a registro de empresa", component: RegisterCompanyPrev },
         { path: "/company/register-form", name: "Crear Empresa", component: CompanyRegistrationForm },
         { path: "/signUp", name: "Sign Up", component: SignUp },
-        { path: '/email-verification/:email', name: 'EmailVerification', component: EmailVerification, 
+        { path: "/email-verification/:email", name: "EmailVerification", component: EmailVerification, 
             props: route => ({
                 email: route.params.email
             })

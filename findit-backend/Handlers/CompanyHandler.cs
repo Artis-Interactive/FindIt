@@ -96,7 +96,48 @@ namespace findit_backend.Handlers
             company.Address = _addressHandler.GetByCompany(companyId);
             return company;
         }
-        
+
+        public CompanyModel GetByEmail(string email)
+        {
+
+            string query = $"SELECT UserID FROM dbo.Users WHERE Email = '{email}'";
+            DataTable tableResult = CreateQueryTable(query);
+            DataRow userRow = tableResult.Rows[0];
+            string userId = Convert.ToString(userRow["UserID"]);
+
+            query = $"SELECT CompanyID FROM dbo.UsersCompany WHERE UserID = '{userId}'";
+            tableResult = CreateQueryTable(query);
+            DataRow userCompanyRow = tableResult.Rows[0];
+            string companyId = Convert.ToString(userCompanyRow["CompanyID"]);
+
+            query = $"SELECT * FROM dbo.Companies WHERE CompanyID = '{companyId}'";
+            tableResult = CreateQueryTable(query);
+
+            if (tableResult.Rows.Count == 0)
+            {
+                return null;
+            }
+            DataRow column = tableResult.Rows[0];
+            CompanyModel company = new CompanyModel
+            {
+                Name = Convert.ToString(column["Name"]),
+                LegalID = Convert.ToString(column["LegalID"]),
+                Type = Convert.ToString(column["Type"]),
+                Description = Convert.ToString(column["Description"]),
+                PhoneNumber = Convert.ToInt32(column["PhoneNumber"]),
+                Email = Convert.ToString(column["Email"]),
+                Logo = Convert.ToString(column["Logo"]),
+                HeroImage = Convert.ToString(column["HeroImage"])
+            };
+
+            WorkingDayHandler _workingDayHandler = new WorkingDayHandler();
+            company.workingDays = _workingDayHandler.GetByCompany(companyId);
+
+            AddressHandler _addressHandler = new AddressHandler();
+            company.Address = _addressHandler.GetByCompany(companyId);
+            return company;
+        }
+
         public string GetCompanyIdByLegalId(string legalId)
         {
             string query = $"SELECT * FROM dbo.Companies WHERE LegalID = '{legalId}'";

@@ -11,7 +11,12 @@
       <nav class="main-nav">
         <ul class="nav-list">
           <li><a href="/home" class="nav-link">Inicio</a></li>
-          <li><a href="/company" class="nav-link">Empresa</a></li>
+          <span v-if="isInCompany">
+            <li><a href="/company" class="nav-link">Empresa</a></li>
+          </span >
+          <span v-else>
+            <li><a href="/company/register" class="nav-link">Empresa</a></li>
+          </span>
           <li><a href="/profile" class="nav-link">Mi perfil</a></li>
         </ul>
       </nav>
@@ -20,11 +25,28 @@
 </template>
   
 <script>
+  import { jwtDecode } from 'jwt-decode';
   export default {
     data() {
       return {
+        isInCompany: false,
         cartItemCount: 0
       }
+    },
+    methods: {
+      verifyLogin() {
+      // get token and verify user is in a company
+      const token = localStorage.getItem('token');
+        if (token) {
+          const decodedToken = jwtDecode(token);     
+          if (decodedToken.role === 'EMP') {
+            this.isInCompany = true
+          }
+        }
+      },
+    },
+    created() {
+      this.verifyLogin();
     },
   }
 </script>

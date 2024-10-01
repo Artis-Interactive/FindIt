@@ -20,7 +20,7 @@
       </form>
       <nav class="auth-nav">
         <a href="/signUp" class="auth-link">Registrarme</a>
-        <a href="/business/register" class="auth-link">Continuar sin cuenta</a>
+        <a href="/company/register" class="auth-link">Continuar sin cuenta</a>
       </nav>
       <ModalComponent
         :isVisible="isModalVisible"
@@ -58,6 +58,7 @@ export default {
       const email = document.getElementById("email").value;
       const salt = '$2b$10$eImiTXuWVyfVz1uFyyf065'
 			const password = bcrypt.hashSync(document.getElementById("password").value, salt);
+      console.log(password);
       // Send to backend:
       axios.post("https://localhost:7262/api/User", { email, password })
         .then((response) => {
@@ -87,7 +88,7 @@ export default {
             // Store log in token:
             localStorage.setItem('token', data.token);
             // Go to home menu:
-            this.$router.push("/business/register");
+            this.$router.push("/company/register");
           }
         })
         .catch((error) => {

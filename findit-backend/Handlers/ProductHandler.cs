@@ -199,8 +199,8 @@ namespace findit_backend.Handlers
 
             var queryCommand = new SqlCommand(query, _connection);
 
-            queryCommand.Parameters.AddWithValue("@CategoryID", companyId);
-            queryCommand.Parameters.AddWithValue("@CompanyID", categoryId);
+            queryCommand.Parameters.AddWithValue("@CompanyID", Guid.Parse(companyId));
+            queryCommand.Parameters.AddWithValue("@CategoryID", Guid.Parse(categoryId));
             queryCommand.Parameters.AddWithValue("@Name", name);
             queryCommand.Parameters.AddWithValue("@Description", description);
             queryCommand.Parameters.AddWithValue("@Image", img);
@@ -218,14 +218,11 @@ namespace findit_backend.Handlers
                 return response;
             }
 
-            string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets", "ProductImages", productId, image.FileName);
+            string imagePath = Path.Combine("Assets", "ProductImages", productId, image.FileName);
 
-            var query = @"UPDATE [dbo].[Products] SET [Image] = @NewImage WHERE ProductID = @ProductID";
+            var query = $"UPDATE dbo.Products SET Image = '{imagePath}' WHERE ProductID = '{productId}'";
 
             var queryCommand = new SqlCommand(query, _connection);
-
-            queryCommand.Parameters.AddWithValue("@ProductID", productId);
-            queryCommand.Parameters.AddWithValue("@NewImage", imagePath);
 
             if (ExecuteNonQuery(queryCommand))
             {
@@ -235,33 +232,63 @@ namespace findit_backend.Handlers
             return "Error";
         }
 
-        public bool CreateNonPerishableProduct(NonPerishableProductModel product)
+        public string CreateNonPerishableProduct(FullNonPerishableProductModel product)
         {
-            bool query1Value = CreateProduct(product.Product.CompanyID, product.Product.CompanyID, product.Product.Name, product.Product.Description, product.Product.Image, product.Product.Price);
-            string productId = ObtainProductID(product.Product.CompanyID, product.Product.CompanyID, product.Product.Name, product.Product.Description, product.Product.Image, product.Product.Price);
-
+            System.Diagnostics.Debug.WriteLine("Test 1: " );
+            bool query1Value = CreateProduct(product.Product.CompanyID, product.Product.CategoryID, product.Product.Name, product.Product.Description, product.Product.Image, product.Product.Price);
+            System.Diagnostics.Debug.WriteLine("Test 2");
+            string productId = ObtainProductID(product.Product.CompanyID, product.Product.CategoryID, product.Product.Name, product.Product.Description, product.Product.Image, product.Product.Price);
+            System.Diagnostics.Debug.WriteLine("Test 3");
             var query2 = @"INSERT INTO [dbo].[NonPerishableProducts] ([ProductID], [Amount])
                         VALUES (@ProductID, @Stock)";
 
             var queryCommand = new SqlCommand(query2, _connection);
 
-            queryCommand.Parameters.AddWithValue("@ProductID", productId);
+            queryCommand.Parameters.AddWithValue("@ProductID", Guid.Parse(productId));
             queryCommand.Parameters.AddWithValue("@Stock", product.Stock);
 
+            System.Diagnostics.Debug.WriteLine("Test 4");
             bool query2Value = ExecuteNonQuery(queryCommand);
+            System.Diagnostics.Debug.WriteLine("Test 5");
 
-            return query1Value && query2Value;
+            return productId;
+        }
+
+        public string CreatePerishableProduct(FullPerishableProductModel product)
+        {
+            System.Diagnostics.Debug.WriteLine("Test 1: ");
+            bool query1Value = CreateProduct(product.Product.CompanyID, product.Product.CategoryID, product.Product.Name, product.Product.Description, product.Product.Image, product.Product.Price);
+            System.Diagnostics.Debug.WriteLine("Test 2");
+            string productId = ObtainProductID(product.Product.CompanyID, product.Product.CategoryID, product.Product.Name, product.Product.Description, product.Product.Image, product.Product.Price);
+            System.Diagnostics.Debug.WriteLine("Test 3");
+
+            product.productionBatch.ProductID = productId;
+            ProductionBatchHandler _productionBatchHandler = new ProductionBatchHandler();
+            _productionBatchHandler.AddProductionBatch(product.productionBatch);
+            System.Diagnostics.Debug.WriteLine("Test 4");
+            foreach (string Day in product.ProductionDays)
+            {
+                var query = $"INSERT INTO dbo.PerishableProducts (ProductID, Lifespan, ProductionDay) VALUES ('{productId}', '{product.Lifespan}', '{Day}')";
+                var newQueryCommand = new SqlCommand(query, _connection);
+                ExecuteNonQuery(newQueryCommand);
+                System.Diagnostics.Debug.WriteLine("Test 5");
+            }
+
+            return productId;
+        }
+
+        private bool isPerishable(string productId)
+        {
+            string query = $"SELECT * FROM dbo.PerishableProducts WHERE ProductID = '{productId}'";
+            DataTable tableResult = CreateQueryTable(query);
+            if (tableResult.Rows.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
-    private bool isPerishable(string productId)
-    {
-      string query = $"SELECT * FROM dbo.PerishableProducts WHERE ProductID = '{productId}'";
-      DataTable tableResult = CreateQueryTable(query);
-      if (tableResult.Rows.Count == 0) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-  }
 }

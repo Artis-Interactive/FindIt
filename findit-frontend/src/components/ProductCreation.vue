@@ -1,13 +1,14 @@
 <template>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <div>
+        <AppHeader></AppHeader>
         <div class="form-body">
             <div class="info-container">
                 <header>Creación de un producto</header>
                 <form @submit.prevent="handleProductData" class="form">
                     <div class="input-box">
                         <label>Nombre del producto</label>
-                        <input v-model="productData.name" type="text" placeholder="Ingrese un nombre" required>
+                        <input v-model="productData.name" type="text" placeholder="Ingrese un nombre" maxlength="100" required>
                     </div>
                     <div class="file-input">
                         <label for="file" class="file-label"><i class="uil uil-image-plus"></i>Escoja una imagen</label>
@@ -19,7 +20,7 @@
                             <label>Precio</label>
                             <input v-model="productData.price" type="number" placeholder="Digite un número" min="1">
                         </div>
-                        <div class="input-box">
+                        <div v-if="!this.perishable" class="input-box">
                             <label>Stock disponible</label>
                             <input v-model="productData.stockAmount" type="number" placeholder="Digite el stock disponible" min="0">
                         </div>
@@ -29,7 +30,7 @@
                         <div class="info-row">
                             <div class="select-box">
                                 <select v-model="this.productData.category" required>
-                                    <option v-for="(category, index) of categories" :key="index"> {{ category }} </option>
+                                    <option v-for="(category, index) of categories" :key="index"> {{ category.categoryName }} </option>
                                 </select>
                             </div>
                         </div>
@@ -54,17 +55,17 @@
                     <div v-if="this.perishable">
                         <div class="info-row">
                             <div class="input-box">
-                                <label>Tiempo de vida</label>
-                                <input v-model="productData.lifespan" type="number" placeholder="Digite un número" required>
+                                <label>Tiempo de vida en días</label>
+                                <input v-model="productData.lifespan" type="number" placeholder="Digite un número" min="1" required>
                             </div>
                             <div class="input-box">
-                                <label>Máxima producción al día</label>
-                                <input v-model="productData.maxProductionQuantity" type="number" placeholder="Digite un número" required>
+                                <label>Máxima producción por día</label>
+                                <input v-model="productData.maxProductionQuantity" type="number" placeholder="Digite un número" min="1" required>
                             </div>
                         </div>
                         <div class="info-row">
                             <div class="input-box">
-                                <label>Fecha límite para ordenar</label>
+                                <label>Fecha de creación</label>
                                 <input v-model="productData.orderMaxDate" type="date" placeholder="Digite un número" required>
                             </div>
                             <div class="input-box">
@@ -73,7 +74,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="days-container">
+                    <div v-if="this.perishable" class="days-container">
                         <div class="days-box">
                             <input v-model="this.productData.productionDays" type="checkbox" id="monday" name="days" value="Lunes">
                             <label for="monday">Lunes</label>
@@ -95,7 +96,7 @@
                             <label for="friday">Viernes</label>
                         </div>
                         <div class="days-box">
-                            <input v-model="this.productData.productionDays" type="checkbox" id="saturday" name="days" value="Sábado">
+                            <input v-model="this.productData.productionDays" type="checkbox" id="saturday" name="days" value="Sabado">
                             <label for="saturday">Sábado</label>
                         </div>
                         <div class="days-box">
@@ -103,7 +104,6 @@
                             <label for="sunday">Domingo</label>
                         </div>
                     </div>
-                    <div>{{ productData.productionDays }}</div>
                     <div class="submit-btn-container">
                         <button type="submit">Crear producto</button>
                     </div>
@@ -115,9 +115,11 @@
 
 <script>
     import axios from 'axios';
+    import AppHeader from './AppHeader.vue';
     export default {
         name: 'ProductCreation',
         components: {
+            AppHeader
         }, 
         data() {
             return {
@@ -140,82 +142,107 @@
                     'Anillos',
                     'Computadoras'
                 ],
+                companyID: "763E3ADF-A045-4B46-B9FB-40619B2F0220", //this.$route.params.companyID
                 perishable: false,
                 productID: ""
             }
         },
         methods: {
             handleProductData() {
-                // axios.post("https://localhost:7019/api/Paises", {
-                // nombre: this.datosFormulario.nombre,
-                // continente: this.datosFormulario.continente,
-                // idioma: this.datosFormulario.idioma,
-                // })
-                // .then(function (response) {
-                //     console.log(response);
-                //     window.location.href = "/";
-                // })
-                // .catch(function (error) {
-                //     console.log(error);
-                // });
-
                 let categoryID = this.categories.find(this.isCategoryValid).categoryID;
-                let jsonMsg = 
-                {
-                    "product": {
-                        "productID": "invalidProductID",
-                        "categoryID": categoryID,
-                        "companyID": this.$route.params.companyID,
-                        "name": this.productData.name,
-                        "description": this.productData.description,
-                        "image": this.productData.image,
-                        "price": this.productData.price
-                    },
-                    "stock": this.productData.stockAmount
-                }
 
-                console.log(this.productData)
-                if (this.productData.image) {
-
-                    axios.post('https://localhost:7262/api/Product/CreateNonPerishableProduct', jsonMsg)
-                    .then(response => {
-                    console.log('Image uploaded successfully:', response.data);
-                    })
-                    .catch(error => {
-                    console.error('Error uploading image:', error);
-                    });
-
-                    axios.get("https://localhost:7262/api/Product/ProductID", {
-                        params: {
-                            companyId: this.$route.params.companyID,
-                            categoryId: categoryID,
-                            name: this.productData.name,
-                            description: this.productData.description,
-                            img: this.productData.image,
-                            price: this.productData.price
-                        }
-                    }).then(
-                    (response) => {
-                        this.productID = response.data;
-                    });
-
-                    const formData = new FormData();
-                    formData.append('image', this.productData.image);
-                    formData.append('productId', 'AJJAHGSVEJJUE');
-
-                    axios.post('https://localhost:7262/api/Product/UploadImage', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
+                if (!this.perishable){
+                    let jsonMsg = 
+                    {
+                        "product": {
+                            "productID": "invalidProductID",
+                            "categoryID": categoryID,
+                            "companyID": this.companyID,
+                            "name": this.productData.name,
+                            "description": this.productData.description,
+                            "image": this.productData.image.name,
+                            "price": this.productData.price
+                        },
+                        "stock": this.productData.stockAmount
                     }
-                    })
-                    .then(response => {
-                    console.log('Image uploaded successfully:', response.data);
-                    })
-                    .catch(error => {
-                    console.error('Error uploading image:', error);
-                    });
+
+                    if (this.productData.image) {
+
+                        axios.post('https://localhost:7262/api/Product/CreateNonPerishableProduct', jsonMsg)
+                        .then(response => {
+                        console.log('Product created successfully:', response.data);
+                        this.productID = response.data;
+                        const formData = new FormData();
+                        formData.append('image', this.productData.image);
+                        formData.append('productId', this.productID);
+
+                        axios.post('https://localhost:7262/api/Product/UpdateImage', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                        })
+                        .then(response => {
+                        console.log('Image uploaded successfully:', response.data);
+                        })
+                        .catch(error => {
+                        console.error('Error uploading image:', error);
+                        });
+                        })
+                        .catch(error => {
+                        console.error('Error uploading image:', error);
+                        });
+                    } else {
+                        alert('Please select an image first');
+                    }
                 } else {
-                    alert('Please select an image first');
+                    let jsonMsg = {
+                        "product": {
+                            "productID": "invalidProductID",
+                            "categoryID": categoryID,
+                            "companyID": this.companyID,
+                            "name": this.productData.name,
+                            "description": this.productData.description,
+                            "image": this.productData.image.name,
+                            "price": this.productData.price
+                        },
+                        "productionBatch": {
+                            "productID": "invalidProductID",
+                            "amount": this.productData.maxProductionQuantity,
+                            "orderDeadline": this.productData.orderMaxTime,
+                            "productionDate": this.productData.orderMaxDate
+                        },
+                        "lifespan": this.productData.lifespan,
+                        "productionDays": this.productData.productionDays
+                    }
+
+                    if (this.productData.image) {
+
+                        axios.post('https://localhost:7262/api/Product/CreatePerishableProduct', jsonMsg)
+                        .then(response => {
+                        console.log('Product created successfully:', response.data);
+                        this.productID = response.data;
+                        const formData = new FormData();
+                        formData.append('image', this.productData.image);
+                        formData.append('productId', this.productID);
+
+                        axios.post('https://localhost:7262/api/Product/UpdateImage', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                        })
+                        .then(response => {
+                        console.log('Image uploaded successfully:', response.data);
+                        })
+                        .catch(error => {
+                        console.error('Error uploading image:', error);
+                        });
+                        })
+                        .catch(error => {
+                        console.error('Error uploading image:', error);
+                        });
+                        } else {
+                        alert('Por favor seleccione una imagen');
+                        }
                 }
             },
             async getCategories() {
@@ -239,20 +266,20 @@
                 imgtag.src = event.target.result;
                 };
                 reader.readAsDataURL(this.productData.image);
-
-                console.log(this.productData)
             },
             perishableFalse(){
                 this.perishable = false
-                console.log(this.perishable)
             },
             perishableTrue(){
                 this.perishable = true
                 console.log(this.perishable)
             },
             isCategoryValid(category) {
-                return category === this.productData.category;
+                return category.categoryName === this.productData.category;
             }
+        },
+        created() {
+            this.getCategories();
         }
     }
 </script>
@@ -273,7 +300,7 @@
         align-items: center;
         justify-content: center;
         padding: 20px;
-        background-color: #e3ddec;
+        background-color: #ffffff;
     }
 
     .info-container{
@@ -459,6 +486,11 @@
     input[type=number] {
     -moz-appearance: textfield;
     appearance: textfield;
+    }
+
+    .days-container{
+        display: flex;
+        justify-content: space-between;
     }
 
     @media screen and (max-width: 550px) {

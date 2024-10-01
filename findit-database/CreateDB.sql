@@ -107,7 +107,7 @@ create table NonPerishableProducts(
 create table PerishableProducts(
 	ProductID		uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Products(ProductID) ON DELETE CASCADE,
 	Lifespan 			int 				NOT NULL,
-	ProductionDay varchar(9) NOT NULL CHECK (ProductionDay IN ('Lunes', 'Martes', 'Mi�rcoles', 'Jueves', 'Viernes', 'S�bado', 'Domingo'))
+	ProductionDay varchar(9) NOT NULL CHECK (ProductionDay IN ('Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'))
 )
 
 -- Create ProductionBatch table:

@@ -68,7 +68,7 @@ namespace findit_backend.Controllers
         }
 
         [HttpPost("CreateNonPerishableProduct")]
-        public async Task<ActionResult> CreateNonPerishableProduct(NonPerishableProductModel product)
+        public async Task<ActionResult> CreateNonPerishableProduct(FullNonPerishableProductModel product)
         {
             try
             {
@@ -86,8 +86,28 @@ namespace findit_backend.Controllers
             }
         }
 
+        [HttpPost("CreatePerishableProduct")]
+        public async Task<ActionResult> CreatePerishableProduct(FullPerishableProductModel product)
+        {
+            try
+            {
+                if (product == null)
+                {
+                    return BadRequest("Invalid product");
+                }
+
+                var result = _productHandler.CreatePerishableProduct(product);
+                return new JsonResult(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "ERROR: Couldnt create product");
+            }
+        }
+
+
         [HttpPost("UpdateImage")]
-        public async Task<IActionResult> UploadImage([FromForm] string productId, [FromForm] IFormFile image)
+        public async Task<IActionResult> UpdateImage([FromForm] string productId, [FromForm] IFormFile image)
         {
           string response = _productHandler.UpdateProductImage(productId, image);
             if (response != null) {

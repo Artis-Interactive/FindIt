@@ -32,11 +32,12 @@ const router = createRouter({
                 email: route.params.email
             })
         },
-        { path: '/product-creation/:companyID', name: 'ProductCreation', component: ProductCreation, 
-            props: route => ({
-                companyID: route.params.companyID
-            })
-        },
+        { path: '/product-creation/', name: 'ProductCreation', component: ProductCreation},
+        // { path: '/product-creation/:companyID', name: 'ProductCreation', component: ProductCreation, 
+        //     props: route => ({
+        //         companyID: route.params.companyID
+        //     })
+        // },
         {path: "/allcompanies", name: "AllCompanies", component: GeneralCompanyList},
         {path: "/mycompanies", name: "MyCompanies", component: PersonalCompanyList},
         {path: "/allproducts", name: "AllProducts", component: GeneralProductList},

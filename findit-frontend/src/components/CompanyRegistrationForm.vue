@@ -40,54 +40,67 @@
               placeholder="Utiliza este espacio para describir que tipos de productos planeas vender..." required pattern="[A-Za-zÀ-ÿ0-9\s\.\-,#]+"></textarea>
           </div>
 
-
-          <!-- Aditional spaces if manual address is selected -->
-          <!--<div v-if="formData.addressType === 'manual'">
-            <div class="row">
-              <div class="column-3">
-                <div>
-                  <label for="addressProvince">Provincia:</label>
-                  <select v-model="formData.addressProvince" id="addressProvince" required class="form-control custom-select">
-                    <option value="" disabled>Seleccione una provincia</option>
-                    <option>Alajuela</option>
-                    <option>Cartago</option>
-                    <option>Guanacaste</option>
-                    <option>Heredia</option>
-                    <option>Limón</option>
-                    <option>San José</option>
-                    <option>Puntarenas</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="column-3">
-                <div>
-                  <label for="addressCanton">Cantón:</label>
-                  <input type="text" id="addressCanton" v-model="formData.addressCanton" placeholder="Montes de Oca" required
-                    pattern="[A-Za-zÀ-ÿ\s]+" title="El cantón sólo debe tener letras" />
-                </div>
-              </div>
-
-              <div class="column-3">
-                <div>
-                  <label for="addressDistrict">Cantón:</label>
-                  <input type="text" id="addressDistrict" v-model="formData.addressDistrict" placeholder="San Pedro" required
-                    pattern="[A-Za-zÀ-ÿ\s]+" title="El distrito sólo debe tener letras" />
-                </div>
-              </div>
-
+          <div>
+            <h3>Dirección:</h3>
+            <div class="radio-group">
+              <label>
+                <input type="radio" name="addressType" value="manual" v-model="formData.addressType" required />
+                Manual
+              </label>
+              <label>
+                <input type="radio" name="addressType" value="map" v-model="formData.addressType" required />
+                Mapa
+              </label>
             </div>
-            <div>
-              <label for="addressAdditionalDetails">Otras señas:</label>
-              <textarea type="text" id="addressAditionalDetails" v-model="formData.addressAdditionalDetails"
-                placeholder="De la Iglesia de San Pedro 200 metros al sur" required pattern="[A-Za-zÀ-ÿ0-9\s\.\-,#]+" ></textarea>
+  
+            <!-- Aditional spaces if manual address is selected -->
+            <div v-if="formData.addressType === 'manual'">
+              <div class="row">
+                <div class="column-3">
+                  <div>
+                    <label for="addressProvince">Provincia:</label>
+                    <select v-model="addressForm.province" id="addressProvince" required class="form-control custom-select">
+                      <option value="" disabled>Seleccione una provincia</option>
+                      <option>Alajuela</option>
+                      <option>Cartago</option>
+                      <option>Guanacaste</option>
+                      <option>Heredia</option>
+                      <option>Limón</option>
+                      <option>San José</option>
+                      <option>Puntarenas</option>
+                    </select>
+                  </div>
+                </div>
+  
+                <div class="column-3">
+                  <div>
+                    <label for="addressCanton">Cantón:</label>
+                    <input type="text" id="addressCanton" v-model="addressForm.canton" placeholder="Montes de Oca" required
+                      pattern="[A-Za-zÀ-ÿ\s]+" title="El cantón sólo debe tener letras" />
+                  </div>
+                </div>
+  
+                <div class="column-3">
+                  <div>
+                    <label for="addressDistrict">Distrito:</label>
+                    <input type="text" id="addressDistrict" v-model="addressForm.district" placeholder="San Pedro" required
+                      pattern="[A-Za-zÀ-ÿ\s]+" title="El distrito sólo debe tener letras" />
+                  </div>
+                </div>
+  
+              </div>
+              <div>
+                <label for="addressAdditionalDetails">Otras señas:</label>
+                <textarea type="text" id="addressAditionalDetails" v-model="addressForm.details"
+                  placeholder="De la Iglesia de San Pedro 200 metros al sur" required pattern="[A-Za-zÀ-ÿ0-9\s\.\-,#]+" ></textarea>
+              </div>
             </div>
-          </div>-->
-
-          <!-- Aditional spaces if map address is selected -->
-          <div v-if="formData.addressType === 'map'">
-            <div>
-              <!-- Map Selection Component -->
+  
+            <!-- Aditional spaces if map address is selected -->
+            <div v-if="formData.addressType === 'map'">
+              <div>
+                <!-- Map Selection Component -->
+              </div>
             </div>
           </div>
 
@@ -116,7 +129,15 @@ export default {
         legalId: "",
         logo: "",
         heroImage: "",
+        addressType: ""
       },
+
+      addressForm: {
+        province: "",
+        canton: "",
+        district: "",
+        details: ""
+      }
     };
   },
   methods: {
@@ -125,24 +146,57 @@ export default {
       this.registerCompany();
     },
 
-    registerCompany() {
-				axios.post("https://localhost:7150/api/RegisterCompany",  {
-						Name: this.formData.companyName,
-            Email: this.formData.companyEmail,
-						PhoneNumber: this.formData.phoneNumber,
-						Description: this.form.description,
-            Type: this.formData.legalIdType,
-						LegalID: this.form.legalId,
-					})
-				.then(function (response) {
-					alert ('Empresa registrada con éxito.');
-					console.log(response);
-					window.location.href = "/";
-				})
-				.catch(error => {
-					console.log(error);
-				});
-			}
+    async registerCompany() {
+      try {
+        await axios.post("https://localhost:7262/api/Company/CreateCompany",  {
+          name: this.formData.companyName,
+          email: this.formData.companyEmail,
+          phoneNumber: this.formData.phoneNumber,
+          description: this.formData.description,
+          type: this.formData.legalIdType,
+          legalID: this.formData.legalId,
+          logo: "",
+          heroImage: "",
+          workingDays: [],
+          address: {
+            province: this.addressForm.province,
+            canton: this.addressForm.canton,
+            district: this.addressForm.district,
+            details: this.addressForm.details,
+            coords: "",
+          },
+        });
+
+        if (this.formData.addressType === 'manual') {
+          await axios.post(`https://localhost:7262/api/Address/AddCompanyAddress?legalId=${this.formData.legalId}`, {
+            province: this.addressForm.province,
+            canton: this.addressForm.canton,
+            district: this.addressForm.district,
+            details: this.addressForm.details,
+            coords: ""
+          });
+        }
+
+        alert ('Empresa registrada con éxito.');
+        window.location.href = "/";
+
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async registerAddress(legalId) {
+      try {
+        await axios.post(`https://localhost:7262/api/Address/AddCompanyAddress?legalId=${legalId}`, {
+          province: this.addressForm.province,
+          canton: this.addressForm.canton,
+          district: this.addressForm.district,
+          details: this.addressForm.details
+        });
+      } catch (error) {
+        throw new Error("Error al registrar dirección."+ (error.response?.data || error.message));
+      }
+    },
   }
 }
 </script>

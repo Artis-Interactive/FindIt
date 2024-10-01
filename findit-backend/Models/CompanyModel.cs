@@ -2,6 +2,7 @@
 
 public class CompanyModel
 {
+    //public string CompanyId { get; set; }
     public string Name { get; set; }
     public string LegalID { get; set; }
     public string Type { get; set; }
@@ -10,6 +11,6 @@ public class CompanyModel
     public int PhoneNumber { get; set; }
     public string Logo { get; set; }
     public string HeroImage { get; set; }
-    public List<WorkingDayModel> workingDays { get; set; }
-    public AddressModel Address { get; set; }
+    public List<WorkingDayModel>? workingDays { get; set; }
+    public AddressModel? Address { get; set; }
 }

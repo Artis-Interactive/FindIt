@@ -10,65 +10,65 @@ using Microsoft.AspNetCore.Authorization;
 [ApiController]
 public class CompanyController : ControllerBase
 {
-  private readonly CompanyHandler _companyHandler;
-  private readonly UserHandler _userHandler;
+    private readonly CompanyHandler _companyHandler;
+    private readonly UserHandler _userHandler;
 
-  public CompanyController()
-  {
-    _companyHandler = new CompanyHandler();
-    _userHandler = new UserHandler();
-  }
-
-  [HttpGet]
-  public List<CompanyModel> Get()
-  {
-    var companies = _companyHandler.ObtainCompanies();
-    return companies;
-  }
-
-  [HttpGet("CompanyID/{companyId}")]
-  public ActionResult GetCompanyById(string companyId)
-  {
-    var company = _companyHandler.GetByCompany(companyId);
-    if (company == null)
+    public CompanyController()
     {
-      return BadRequest();
+        _companyHandler = new CompanyHandler();
+        _userHandler = new UserHandler();
     }
-    return Ok(company);
-  }
 
-  [HttpGet("UserCompanies/{email}")]
-  [Authorize]
-  public async Task<ActionResult> GetUserCompanies(string email)
-  {
-    string userID = await _userHandler.GetUserID(email);
-
-    var companies = _companyHandler.OobtainUserCompanies(userID);
-    if (companies == null)
+    [HttpGet]
+    public List<CompanyModel> Get()
     {
-      return BadRequest();
+        var companies = _companyHandler.ObtainCompanies();
+        return companies;
     }
-    return Ok(companies);
-  }
 
-  [HttpPost]
-  public async Task<ActionResult<bool>> CreateCompany(CompanyModel company)
-  {
-      try
-      {
-          if (company == null)
-          {
-              return BadRequest();
-          }
-          CompanyHandler companyHandler = new();
-          var result = companyHandler.CreateCompany(company);
+    [HttpGet("CompanyID/{companyId}")]
+    public ActionResult GetCompanyById(string companyId)
+    {
+        var company = _companyHandler.GetByCompany(companyId);
+        if (company == null)
+        {
+            return BadRequest();
+        }
+        return Ok(company);
+    }
 
-          return new JsonResult(result);
-      }
-      catch (Exception)
-      {
-          return StatusCode(StatusCodes.Status500InternalServerError,
-              "Error creating company");
-      }
-  }
+    [HttpGet("UserCompanies/{email}")]
+    [Authorize]
+    public async Task<ActionResult> GetUserCompanies(string email)
+    {
+        string userID = await _userHandler.GetUserID(email);
+
+        var companies = _companyHandler.OobtainUserCompanies(userID);
+        if (companies == null)
+        {
+            return BadRequest();
+        }
+        return Ok(companies);
+    }
+
+    [HttpPost("CreateCompany")]
+    public async Task<ActionResult<bool>> CreateCompany(CompanyModel company)
+    {
+        try
+        {
+            if (company == null)
+            {
+                return BadRequest();
+            }
+            var result = this._companyHandler.CreateCompany(company);
+
+
+            return new JsonResult(result);
+        }
+        catch (Exception)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                "Error creating company");
+        }
+    }
 }

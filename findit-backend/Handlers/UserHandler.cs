@@ -23,7 +23,8 @@ public class UserHandler : BaseHandler
                 Email = Convert.ToString(column["Email"]),
                 BirthDate = Convert.ToString(column["BirthDate"]),
                 PhoneNumber = Convert.ToString(column["PhoneNumber"]),
-                Password = Convert.ToString(column["PasswordHash"]),
+                AccountState = Convert.ToString(column["AccountState"]),
+                
             });
         }
         return users;

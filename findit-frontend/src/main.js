@@ -7,11 +7,13 @@ import RegisterCompanyPrev from './components/RegisterCompanyPrev.vue'
 import LogIn from './components/LogIn.vue'
 import SignUp from './components/SignUp.vue'
 import GeneralCompanyList from './components/GeneralCompanyList.vue';
+import GeneralUserList from './components/GeneralUserList.vue'
 import EmailVerification from './components/EmailVerification.vue'
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+        { path: "/Users", name: "UsersList", component: GeneralUserList },
         { path: "/", name: "Log In", component: LogIn },
         { path: "/business", name: "Empresa", component: CompanyPage },
         { path: "/business/register", name: "Ingresar a registro de empresa", component: RegisterCompanyPrev },

@@ -6,7 +6,7 @@
       </a>
     </div>
     <div class="row justify-content-center">
-      <h1 class="title">Empresas Registradas</h1>
+      <h1 class="title">Productos Registrados</h1>
     </div>
     <table class="table">
       <thead>
@@ -63,13 +63,13 @@ import ModalComponent from "./ModalComponent.vue";
 import { jwtDecode } from 'jwt-decode';
 
 export default {
-  name: "GeneralCompanyList",
+  name: "GeneralProductList",
   components: {
     ModalComponent,
   },
   data() {
     return {
-      companies: [],
+      products: [],
       modalTitle: '',
       modalMessage: '',
       isModalVisible: false,
@@ -82,7 +82,7 @@ export default {
         if (token) {
           const decodedToken = jwtDecode(token);     
           if (decodedToken.role === 'ADM') {
-            this.getCompanies();
+            this.getProducts();
           }
           else {
             this.modalTitle = "Acceso Restringido";

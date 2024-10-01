@@ -23,6 +23,22 @@ namespace findit_backend.Handlers
             return ExecuteNonQuery(queryCommand);  
         }
 
+        public bool CreateCompanyAddress(AddressModel address, string companyId)
+        {
+            var query = @"INSERT INTO dbo.Address (CompanyID, Province, Canton, District, Details)
+                  VALUES (@CompanyID, @Province, @Canton, @District, @Details)";
+
+            var queryCommand = new SqlCommand(query, _connection);
+
+            queryCommand.Parameters.AddWithValue("@CompanyID", companyId);
+            queryCommand.Parameters.AddWithValue("@Province", address.Province);
+            queryCommand.Parameters.AddWithValue("@Canton", address.Canton);
+            queryCommand.Parameters.AddWithValue("@District", address.District);
+            queryCommand.Parameters.AddWithValue("@Details", address.Details);
+
+            return ExecuteNonQuery(queryCommand);
+        }
+
         public List<AddressModel> GetAddresses() 
         { 
             List<AddressModel> addresses = new List<AddressModel>();

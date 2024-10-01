@@ -75,18 +75,18 @@ public class CompanyController : ControllerBase
     }
 
     [HttpPost("AddCompanyToUser")]
-    public async Task<ActionResult<bool>> AddCompanyToUser(string userLegalId, string companyLegalId, bool isOwner = false)
+    public async Task<ActionResult<bool>> AddCompanyToUser(string userToken, string companyLegalId, bool isOwner = true)
     {
         try
         {
-            if (companyLegalId == null || userLegalId == null)
+            if (companyLegalId == null || userToken == null)
             {
                 return BadRequest();
             }
 
-            string userId = this._userIdHandler.GetUserId(userLegalId).ToString();
+            string userId = this._userHandler.GetUserID(userToken).Result;
             string companyId = this._companyHandler.GetCompanyIdByLegalId(companyLegalId);
-            var result = this._companyHandler.AddCompanyToUser(userId, companyId, true);
+            var result = this._companyHandler.AddCompanyToUser(userId, companyId, isOwner);
 
             return new JsonResult(result);
         }

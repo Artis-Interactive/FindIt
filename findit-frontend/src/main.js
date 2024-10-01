@@ -34,6 +34,9 @@ const router = createRouter({
         {path: "/allproducts", name: "AllProducts", component: GeneralProductList},
         {path: "/profile", name: "Profile", component: MyProfile},
         {path: "/companyproducts", name: "CompanyProducts", component: CompanyProductList},
+        {path: "/profile/settings", name: "ProfileSettings"},
+        {path: "/profile/payment-methods", name: "ProfilePaymentMethods"},
+        {path: "/profile/addresses", name: "ProfileAddresses"}
     ]
 })
 

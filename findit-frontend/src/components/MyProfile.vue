@@ -7,9 +7,9 @@
       <h2> {{ this.name }}</h2>
     </div>
     <div class="btns">
-      <button class="personal-data btn"><i class="uil uil-user"></i>Información personal</button>
-      <button class="payment-methods btn"><i class="uil uil-credit-card"></i>Métodos de pago</button>
-      <button class="locations btn"><i class="uil uil-location-point"></i>Direcciones</button>
+      <button @click="this.$router.push('/profile/settings')" class="personal-data btn"><i class="uil uil-user"></i>Información personal</button>
+      <button @click="this.$router.push('/profile/payment-methods')" class="payment-methods btn"><i class="uil uil-credit-card"></i>Métodos de pago</button>
+      <button @click="this.$router.push('/profile/addresses')" class="locations btn"><i class="uil uil-location-point"></i>Direcciones</button>
     </div>
   </div>
 </template>

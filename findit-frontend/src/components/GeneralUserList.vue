@@ -65,7 +65,7 @@ export default {
         if (token) {
           const decodedToken = jwtDecode(token);     
           if (decodedToken.role === 'ADM') {
-            this.getCompanies();
+            this.getUsers();
           }
           else {
             this.modalTitle = "Acceso Restringido";

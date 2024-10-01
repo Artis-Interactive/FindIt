@@ -20,6 +20,7 @@ namespace findit_backend.Handlers
                 companyId = Convert.ToString(column["CompanyID"]);
                 CompanyModel company = new CompanyModel
                 {
+                    CompanyId = Convert.ToString(column["CompanyID"]),
                     Name = Convert.ToString(column["Name"]),
                     LegalID = Convert.ToString(column["LegalID"]),
                     Type = Convert.ToString(column["Type"]),

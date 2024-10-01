@@ -17,9 +17,10 @@ namespace findit_backend.Handlers
                 productionBatches.Add(
                 new ProductionBatchModel
                 {
+                    ProductID = Convert.ToString(row["ProductID"]),
                     Amount = Convert.ToInt32(row["Amount"]),
                     OrderDeadline = Convert.ToString(row["OrderDeadline"]),
-                    ProductionDate= Convert.ToString(row["ProductionDate"]),
+                    ProductionDate = Convert.ToString(row["ProductionDate"]),
                 });
             }
             return productionBatches;
@@ -40,6 +41,21 @@ namespace findit_backend.Handlers
                 ProductionDate = Convert.ToString(row["ProductionDate"]),
             };
             return productionBatch;
+        }
+
+        public void AddProductionBatch(ProductionBatchModel productionBatch) 
+        {
+            var query = @"INSERT INTO dbo.ProductionBatch (ProductID, Amount, OrderDeadline, ProductionDate)
+                        VALUES (@ProductID, @Amount, @OrderDeadline, @ProductionDate)";
+
+            var queryCommand = new SqlCommand(query, _connection);
+
+            queryCommand.Parameters.AddWithValue("@ProductID", Guid.Parse(productionBatch.ProductID));
+            queryCommand.Parameters.AddWithValue("@Amount", productionBatch.Amount);
+            queryCommand.Parameters.AddWithValue("@OrderDeadline", productionBatch.OrderDeadline);
+            queryCommand.Parameters.AddWithValue("@ProductionDate", productionBatch.ProductionDate);
+
+            bool query2Value = ExecuteNonQuery(queryCommand);
         }
     }
 }

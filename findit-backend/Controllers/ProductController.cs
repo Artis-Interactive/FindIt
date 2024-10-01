@@ -55,5 +55,66 @@ namespace findit_backend.Controllers
       }
       return Ok(products);
     }
+
+        [HttpGet("ProductID")]
+        public ActionResult GetProductID(string companyId, string categoryId, string name, string description, string img, decimal price)
+        {
+            var productId = _productHandler.ObtainProductID(companyId, categoryId, name, description, img, price);
+            if (productId == null)
+            {
+                return BadRequest();
+            }
+            return Ok(productId);
+        }
+
+        [HttpPost("CreateNonPerishableProduct")]
+        public async Task<ActionResult> CreateNonPerishableProduct(FullNonPerishableProductModel product)
+        {
+            try
+            {
+                if (product == null)
+                {
+                    return BadRequest("Invalid product");
+                }
+
+                var result = _productHandler.CreateNonPerishableProduct(product);
+                return new JsonResult(result);
+            }
+            catch (Exception) 
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "ERROR: Couldnt create product");
+            }
+        }
+
+        [HttpPost("CreatePerishableProduct")]
+        public async Task<ActionResult> CreatePerishableProduct(FullPerishableProductModel product)
+        {
+            try
+            {
+                if (product == null)
+                {
+                    return BadRequest("Invalid product");
+                }
+
+                var result = _productHandler.CreatePerishableProduct(product);
+                return new JsonResult(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "ERROR: Couldnt create product");
+            }
+        }
+
+
+        [HttpPost("UpdateImage")]
+        public async Task<IActionResult> UpdateImage([FromForm] string productId, [FromForm] IFormFile image)
+        {
+          string response = _productHandler.UpdateProductImage(productId, image);
+            if (response != null) {
+                return BadRequest(response);
+            }
+
+            return Ok(new { fileName = productId + image.FileName, fileSize = image.Length });
+        }
   }
 }

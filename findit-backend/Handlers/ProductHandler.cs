@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.Design;
 using System.Data;
 using System.Data.SqlClient;
+using static System.Net.Mime.MediaTypeNames;
 namespace findit_backend.Handlers
 {
   public class ProductHandler : BaseHandler
@@ -177,15 +178,117 @@ namespace findit_backend.Handlers
       return products;
     }
 
-    private bool isPerishable(string productId)
-    {
-      string query = $"SELECT * FROM dbo.PerishableProducts WHERE ProductID = '{productId}'";
-      DataTable tableResult = CreateQueryTable(query);
-      if (tableResult.Rows.Count == 0) {
-        return false;
-      } else {
-        return true;
-      }
+        public string ObtainProductID(string companyId, string categoryId, string name, string description, string img, decimal price)
+        {
+            string productId = "";
+            string query = $"SELECT * FROM dbo.Products WHERE CompanyID = '{companyId}' AND CategoryID = '{categoryId}' AND ProductName = '{name}' AND Description = '{description}' AND Image = '{img}' AND Price = {price}";
+            DataTable tableResult = CreateQueryTable(query);
+
+            foreach (DataRow column in tableResult.Rows)
+            {
+                productId = Convert.ToString(column["ProductID"]);
+            }
+            return productId;
+        }
+
+        public bool CreateProduct(string companyId, string categoryId, string name, string description, string img, decimal price)
+        {
+            var query = @"INSERT INTO [dbo].[Products] ([CategoryID], [CompanyID], [ProductName], [Description], [Image], 
+                                                      [Price])
+                        VALUES (@CategoryID, @CompanyID, @Name, @Description, @Image, @Price)";
+
+            var queryCommand = new SqlCommand(query, _connection);
+
+            queryCommand.Parameters.AddWithValue("@CompanyID", Guid.Parse(companyId));
+            queryCommand.Parameters.AddWithValue("@CategoryID", Guid.Parse(categoryId));
+            queryCommand.Parameters.AddWithValue("@Name", name);
+            queryCommand.Parameters.AddWithValue("@Description", description);
+            queryCommand.Parameters.AddWithValue("@Image", img);
+            queryCommand.Parameters.AddWithValue("@Price", price);
+
+            return ExecuteNonQuery(queryCommand);
+        }
+        public string UpdateProductImage(string productId, IFormFile image)
+        {
+            ImageHandler imgHandler = new ImageHandler();
+            string response = imgHandler.isImageValid(image);
+            if (response != null)
+            {
+                System.Diagnostics.Debug.WriteLine("Test");
+                return response;
+            }
+
+            string imagePath = Path.Combine("Assets", "ProductImages", productId, image.FileName);
+
+            var query = $"UPDATE dbo.Products SET Image = '{imagePath}' WHERE ProductID = '{productId}'";
+
+            var queryCommand = new SqlCommand(query, _connection);
+
+            if (ExecuteNonQuery(queryCommand))
+            {
+                imgHandler.saveProductImage(productId, image);
+                return null;
+            }
+            return "Error";
+        }
+
+        public string CreateNonPerishableProduct(FullNonPerishableProductModel product)
+        {
+            System.Diagnostics.Debug.WriteLine("Test 1: " );
+            bool query1Value = CreateProduct(product.Product.CompanyID, product.Product.CategoryID, product.Product.Name, product.Product.Description, product.Product.Image, product.Product.Price);
+            System.Diagnostics.Debug.WriteLine("Test 2");
+            string productId = ObtainProductID(product.Product.CompanyID, product.Product.CategoryID, product.Product.Name, product.Product.Description, product.Product.Image, product.Product.Price);
+            System.Diagnostics.Debug.WriteLine("Test 3");
+            var query2 = @"INSERT INTO [dbo].[NonPerishableProducts] ([ProductID], [Amount])
+                        VALUES (@ProductID, @Stock)";
+
+            var queryCommand = new SqlCommand(query2, _connection);
+
+            queryCommand.Parameters.AddWithValue("@ProductID", Guid.Parse(productId));
+            queryCommand.Parameters.AddWithValue("@Stock", product.Stock);
+
+            System.Diagnostics.Debug.WriteLine("Test 4");
+            bool query2Value = ExecuteNonQuery(queryCommand);
+            System.Diagnostics.Debug.WriteLine("Test 5");
+
+            return productId;
+        }
+
+        public string CreatePerishableProduct(FullPerishableProductModel product)
+        {
+            System.Diagnostics.Debug.WriteLine("Test 1: ");
+            bool query1Value = CreateProduct(product.Product.CompanyID, product.Product.CategoryID, product.Product.Name, product.Product.Description, product.Product.Image, product.Product.Price);
+            System.Diagnostics.Debug.WriteLine("Test 2");
+            string productId = ObtainProductID(product.Product.CompanyID, product.Product.CategoryID, product.Product.Name, product.Product.Description, product.Product.Image, product.Product.Price);
+            System.Diagnostics.Debug.WriteLine("Test 3");
+
+            product.productionBatch.ProductID = productId;
+            ProductionBatchHandler _productionBatchHandler = new ProductionBatchHandler();
+            _productionBatchHandler.AddProductionBatch(product.productionBatch);
+            System.Diagnostics.Debug.WriteLine("Test 4");
+            foreach (string Day in product.ProductionDays)
+            {
+                var query = $"INSERT INTO dbo.PerishableProducts (ProductID, Lifespan, ProductionDay) VALUES ('{productId}', '{product.Lifespan}', '{Day}')";
+                var newQueryCommand = new SqlCommand(query, _connection);
+                ExecuteNonQuery(newQueryCommand);
+                System.Diagnostics.Debug.WriteLine("Test 5");
+            }
+
+            return productId;
+        }
+
+        private bool isPerishable(string productId)
+        {
+            string query = $"SELECT * FROM dbo.PerishableProducts WHERE ProductID = '{productId}'";
+            DataTable tableResult = CreateQueryTable(query);
+            if (tableResult.Rows.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
-  }
 }

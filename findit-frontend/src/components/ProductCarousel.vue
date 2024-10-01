@@ -6,7 +6,7 @@
       <div v-for="(group, index) in groupedProducts" :key="index" :class="['carousel-item', { active: index == 0 }]">
         <div class="row">
           <div class="col-md-2" v-for="product in group" :key="product.name">
-            <button class="product-card" @click="clickOnProduct(product)">
+            <button class="product-card" @click="this.$router.push('/product-details/' + product.productId)">
               <img :src="require(`@/${product.image}`)" class="d-block w-100" :alt="product.name">
               <div class="product-card-info">
                 <div class="product-name" :title="product.name">{{ product.name }}</div>
@@ -117,6 +117,7 @@
     display: -webkit-box; 
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1; 
+    line-clamp: 1;
     overflow: hidden; 
     text-overflow: ellipsis; 
     max-width: 100%; 

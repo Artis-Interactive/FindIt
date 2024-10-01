@@ -9,6 +9,7 @@ import SignUp from './components/SignUp.vue'
 import GeneralCompanyList from './components/GeneralCompanyList.vue';
 import GeneralUserList from './components/GeneralUserList.vue'
 import EmailVerification from './components/EmailVerification.vue'
+import ProductCreation from './components/ProductCreation.vue'
 import CompanyRegistrationForm from './components/CompanyRegistrationForm.vue'
 import PersonalCompanyList from './components/PersonalCompanyList.vue'
 import GeneralProductList from './components/GeneralProductList.vue'
@@ -33,6 +34,12 @@ const router = createRouter({
                 email: route.params.email
             })
         },
+        { path: '/product-creation/', name: 'ProductCreation', component: ProductCreation},
+        // { path: '/product-creation/:companyID', name: 'ProductCreation', component: ProductCreation, 
+        //     props: route => ({
+        //         companyID: route.params.companyID
+        //     })
+        // },
         {path: "/allcompanies", name: "AllCompanies", component: GeneralCompanyList},
         {path: "/mycompanies", name: "MyCompanies", component: PersonalCompanyList},
         {path: "/allproducts", name: "AllProducts", component: GeneralProductList},

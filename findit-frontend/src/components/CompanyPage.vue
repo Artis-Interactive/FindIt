@@ -31,7 +31,7 @@
     <div class="catalog-header">
       <h3 class="catalog-title">Catálogo</h3>
       <div v-if="isCompanyUser">
-        <button class="create-product" @click="clickOnCreate()">Añadir producto</button>
+        <button class="create-product" @click="this.$router.push('/product-creation')">Añadir producto</button>
       </div>
     </div>
     <div class="catalog-carousel">

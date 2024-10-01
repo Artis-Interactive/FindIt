@@ -1,5 +1,6 @@
 ﻿using findit_backend.Models;
 using System.Data;
+using System.ComponentModel.Design;
 using System.Data.Common;
 using System.Data.SqlClient;
 
@@ -10,14 +11,15 @@ namespace findit_backend.Handlers
         public List<CategoryModel> GetCategories()
         {
             List<CategoryModel> categories = new List<CategoryModel>();
-            string query = "SELECT CategoryName FROM dbo.Categories";
+            string query = "SELECT * FROM dbo.Categories";
             DataTable tableResult = CreateQueryTable(query);
             foreach (DataRow row in tableResult.Rows)
             {
                 categories.Add(
                 new CategoryModel
                 {
-                    CategoryName = Convert.ToString(row["CategoryName"]),
+                    CategoryID = Convert.ToString(row["CategoryID"]),
+                    CategoryName = Convert.ToString(row["CategoryName"])
                 });
             }
             return categories;

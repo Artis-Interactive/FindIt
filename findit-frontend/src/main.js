@@ -12,11 +12,15 @@ import EmailVerification from './components/EmailVerification.vue'
 import CompanyRegistrationForm from './components/CompanyRegistrationForm.vue'
 import PersonalCompanyList from './components/PersonalCompanyList.vue'
 import GeneralProductList from './components/GeneralProductList.vue'
+import MyProfile from './components/MyProfile.vue'
+import CompanyProductList from './components/CompanyProductList.vue'
+import CompanyUserList from './components/CompanyUserList.vue'
 import HomePage from './components/HomePage.vue'
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+        { path: "/UsersCompany", name: "CompanyUserList", component: CompanyUserList },
         { path: "/Users", name: "UsersList", component: GeneralUserList },
         { path: "/", name: "Log In", component: LogIn },
         { path: "/home", name: "HomePage", component: HomePage },
@@ -32,6 +36,11 @@ const router = createRouter({
         {path: "/allcompanies", name: "AllCompanies", component: GeneralCompanyList},
         {path: "/mycompanies", name: "MyCompanies", component: PersonalCompanyList},
         {path: "/allproducts", name: "AllProducts", component: GeneralProductList},
+        {path: "/profile", name: "Profile", component: MyProfile},
+        {path: "/companyproducts", name: "CompanyProducts", component: CompanyProductList},
+        {path: "/profile/settings", name: "ProfileSettings"},
+        {path: "/profile/payment-methods", name: "ProfilePaymentMethods"},
+        {path: "/profile/addresses", name: "ProfileAddresses"}
     ]
 })
 

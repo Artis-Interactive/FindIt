@@ -96,8 +96,7 @@ export default {
     },
   },
   created() {
-    this.getCompanyUsers();
-    //this.verifyLogin();
+    this.verifyLogin();
   },
 };
 </script>

@@ -161,6 +161,7 @@ export default {
     async registerCompany() {
       try {
         await axios.post("https://localhost:7262/api/Company/CreateCompany",  {
+          companyId: "",
           name: this.formData.companyName,
           email: this.formData.companyEmail,
           phoneNumber: this.formData.phoneNumber,

@@ -20,7 +20,7 @@
       </form>
       <nav class="auth-nav">
         <a href="#" class="auth-link">Registrarme</a>
-        <a href="/home" class="auth-link">Continuar sin cuenta</a>
+        <a href="/business/register" class="auth-link">Continuar sin cuenta</a>
       </nav>
       <!-- modal component for alerts -->
       <ModalComponent
@@ -86,7 +86,7 @@ export default {
             // Store log in token:
             localStorage.setItem('token', data.token);
             // Go to home menu:
-            this.$router.push("/home");
+            this.$router.push("/business/register");
           }
         })
         .catch((error) => {
@@ -141,7 +141,7 @@ export default {
   font-size: 96px;
   font-style: normal;
   font-weight: 600;
-  line-height: 130%; /* 124.8px */
+  line-height: 130%;
   margin: 40px 0 0 0;
 }
 
@@ -247,7 +247,7 @@ export default {
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
-  line-height: 130%; /* 23.4px */
+  line-height: 130%;
   text-decoration-line: underline;
 }
 

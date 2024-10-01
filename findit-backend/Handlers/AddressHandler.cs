@@ -5,26 +5,42 @@ using System.Data.SqlClient;
 
 namespace findit_backend.Handlers
 {
-  public class AddressHandler : BaseHandler
-  {
-    public List<AddressModel> GetAddresses()
+    public class AddressHandler : BaseHandler
     {
-      List<AddressModel> addresses = new List<AddressModel>();
-      string query = "SELECT Province, Canton, District, Details FROM dbo.Address";
-      DataTable tableResult = CreateQueryTable(query);
-      foreach (DataRow row in tableResult.Rows)
-      {
-        addresses.Add(
-        new AddressModel
+        public bool CreateAddress(AddressModel address, Guid userId)
+        {
+            var query = @"INSERT INTO dbo.Address (UserID, Province, Canton, District, Details)
+                  VALUES (@UserID, @Province, @Canton, @District, @Details)";
+
+            var queryCommand = new SqlCommand(query, _connection);
+            
+            queryCommand.Parameters.AddWithValue("@UserID", userId);
+            queryCommand.Parameters.AddWithValue("@Province", address.Province);
+            queryCommand.Parameters.AddWithValue("@Canton", address.Canton);
+            queryCommand.Parameters.AddWithValue("@District", address.District);
+            queryCommand.Parameters.AddWithValue("@Details", address.Details);
+
+            return ExecuteNonQuery(queryCommand);  
+        }
+
+        public List<AddressModel> GetAddresses() 
         { 
-          Province = Convert.ToString(row["Province"]),
-          Canton = Convert.ToString(row["Canton"]),
-          District = Convert.ToString(row["District"]),
-          Details = Convert.ToString(row["Details"]),
-        });
-      }
-      return addresses;
-    }
+            List<AddressModel> addresses = new List<AddressModel>();
+            string query = "SELECT Province, Canton, District, Details FROM dbo.Address"; ;
+            DataTable tableResult = CreateQueryTable(query);
+            foreach (DataRow row in tableResult.Rows)
+            {
+                addresses.Add(
+                new AddressModel
+                {
+                    Province = Convert.ToString(row["Province"]),
+                    Canton = Convert.ToString(row["Canton"]),
+                    District = Convert.ToString(row["District"]),
+                    Details = Convert.ToString(row["Details"]),
+                });
+            }
+            return addresses;
+        }
 
     public AddressModel GetByCompany(string companyId)
     {

@@ -25,6 +25,7 @@ namespace findit_backend.Handlers
           Type = Convert.ToString(column["Type"]),
           Description = Convert.ToString(column["Description"]),
           PhoneNumber = Convert.ToInt32(column["PhoneNumber"]),
+          Email = Convert.ToString(column["Email"]),
           Logo = Convert.ToString(column["Logo"]),
           HeroImage = Convert.ToString(column["HeroImage"])
         };
@@ -56,6 +57,7 @@ namespace findit_backend.Handlers
         Type = Convert.ToString(column["Type"]),
         Description = Convert.ToString(column["Description"]),
         PhoneNumber = Convert.ToInt32(column["PhoneNumber"]),
+        Email = Convert.ToString(column["Email"]),
         Logo = Convert.ToString(column["Logo"]),
         HeroImage = Convert.ToString(column["HeroImage"])
       };
@@ -66,6 +68,29 @@ namespace findit_backend.Handlers
       AddressHandler _addressHandler = new AddressHandler();
       company.Address = _addressHandler.GetByCompany(companyId);
       return company;
+    }
+    public List<CompanyModel>OobtainUserCompanies(string userID)
+    {
+
+      List<CompanyModel> companies = new List<CompanyModel>();
+            
+      string query = $"SELECT * FROM dbo.UsersCompany WHERE UserID = '{userID}'";
+      DataTable tableResult = CreateQueryTable(query);
+
+      string companyId;
+      foreach (DataRow column in tableResult.Rows)
+      {
+        companyId = Convert.ToString(column["CompanyID"]);
+        CompanyModel company = this.GetByCompany(companyId);
+
+        WorkingDayHandler _workingDayHandler = new WorkingDayHandler();
+        company.workingDays = _workingDayHandler.GetByCompany(companyId);
+
+        AddressHandler _addressHandler = new AddressHandler();
+        company.Address = _addressHandler.GetByCompany(companyId);
+        companies.Add(company);
+      }  
+      return companies;
     }
   }
 }

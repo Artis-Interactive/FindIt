@@ -13,10 +13,12 @@ import CompanyRegistrationForm from './components/CompanyRegistrationForm.vue'
 import PersonalCompanyList from './components/PersonalCompanyList.vue'
 import GeneralProductList from './components/GeneralProductList.vue'
 import CompanyProductList from './components/CompanyProductList.vue'
+import CompanyUserList from './components/CompanyUserList.vue'
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+        { path: "/UsersCompany", name: "CompanyUserList", component: CompanyUserList },
         { path: "/Users", name: "UsersList", component: GeneralUserList },
         { path: "/", name: "Log In", component: LogIn },
         { path: "/company", name: "Empresa", component: CompanyPage },

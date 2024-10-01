@@ -12,11 +12,21 @@ namespace findit_backend.Controllers
     public class UserDataSignUpController : ControllerBase
     {
         private readonly UserHandler _userHandler;
+        private readonly UserCompanyHandler _userCompanyHandler;
 
         public UserDataSignUpController()
         {
             _userHandler = new UserHandler();
+            _userCompanyHandler = new UserCompanyHandler();
         }
+
+        [HttpGet("CompanyUsers")]
+        public List<UserCompanyModel> GetAllWorkingUsers()
+        {
+            var workingUsers = _userCompanyHandler.GetAllUsersInCompanies();
+            return workingUsers;
+        }
+
 
         [HttpGet]
         public List<UserModel> Get()

@@ -9,6 +9,7 @@ import SignUp from './components/SignUp.vue'
 import GeneralCompanyList from './components/GeneralCompanyList.vue';
 import EmailVerification from './components/EmailVerification.vue'
 import PersonalCompanyList from './components/PersonalCompanyList.vue'
+import GeneralProductList from './components/GeneralProductList.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -24,6 +25,7 @@ const router = createRouter({
         },
         {path: "/allcompanies", name: "AllCompanies", component: GeneralCompanyList},
         {path: "/mycompanies", name: "MyCompanies", component: PersonalCompanyList},
+        {path: "/allproducts", name: "AllProducts", component: GeneralProductList},
     ]
 })
 

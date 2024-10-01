@@ -40,11 +40,14 @@ namespace findit_backend.Handlers
         product.category = _categoryHandler.GetByCategory(categoryId);
 
         product.productionBatch = new ProductionBatchModel();
+        product.perishableProducts = new List<PerishableProductModel>();
         product.nonPerishableProduct = new NonPerishableProductModel();
         if(isPerishable(productId)) {
           product.Type = "Perecedero";
           ProductionBatchHandler _productionBatchHandler = new ProductionBatchHandler();
           product.productionBatch = _productionBatchHandler.GetByProduct(productId);
+          PerishableProductHandler _perishableProductHandler = new PerishableProductHandler();
+          product.perishableProducts = _perishableProductHandler.GetByProduct(productId);
           product.nonPerishableProduct.Amount = 0;
         } else{
           product.Type = "No perecedero";

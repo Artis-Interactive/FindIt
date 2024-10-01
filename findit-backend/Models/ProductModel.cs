@@ -14,5 +14,6 @@
     public CategoryModel category { get; set; }
     public NonPerishableProductModel nonPerishableProduct { get; set; }
     public ProductionBatchModel productionBatch { get; set; }
+    public List<PerishableProductModel> perishableProducts { get; set; }
   }
 }

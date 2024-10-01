@@ -3,5 +3,6 @@
     public class PerishableProductModel
     {
         public string Lifespan { get; set; }
+        public string ProductionDay { get; set; }
     }
 }

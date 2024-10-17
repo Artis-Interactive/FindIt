@@ -9,6 +9,7 @@
         public string BirthDate { get; set; }
         public string PhoneNumber { get; set; }
         public string? AccountState { get; set; }
+        public string? Role { get; set; }
         public string Password { get; set; }
     }
 

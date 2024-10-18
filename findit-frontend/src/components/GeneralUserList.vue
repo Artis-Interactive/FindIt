@@ -16,6 +16,7 @@
           <th>Cédula</th>
           <th>Correo</th>
           <th>Estado</th>
+          <th>Rol</th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +26,7 @@
           <td>{{ user.legalId }}</td>
           <td>{{ user.email }}</td>
           <td>{{ getAccountStateLabel(user.accountState) }}</td>
+          <td>{{ getAccountRoleLabel(user.role) }}</td>
         </tr>
       </tbody>
     </table>
@@ -91,6 +93,14 @@ export default {
         'BAN': 'Bloqueado',
       };
       return stateLabels[state] || 'Estado desconocido';
+    },
+    getAccountRoleLabel(role) {
+      const stateLabels = {
+        'ADM': 'Administrador',
+        'CON': 'Consumidor',
+        'EMP': 'Empresario',
+      };
+      return stateLabels[role] || 'Rol desconocido';
     },
   },
   created() {

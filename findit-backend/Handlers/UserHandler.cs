@@ -24,6 +24,7 @@ public class UserHandler : BaseHandler
                 BirthDate = Convert.ToString(column["BirthDate"]),
                 PhoneNumber = Convert.ToString(column["PhoneNumber"]),
                 AccountState = Convert.ToString(column["AccountState"]),
+                Role = Convert.ToString(column["UserType"])
                 
             });
         }

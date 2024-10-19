@@ -109,12 +109,25 @@ namespace findit_backend.Controllers
         [HttpPost("UpdateImage")]
         public async Task<IActionResult> UpdateImage([FromForm] string productId, [FromForm] IFormFile image)
         {
-          string response = _productHandler.UpdateProductImage(productId, image);
-            if (response != null) {
+            string response = await _productHandler.UpdateProductImage(productId, image);
+            if (response != null)
+            {
                 return BadRequest(response);
             }
 
             return Ok(new { fileName = productId + image.FileName, fileSize = image.Length });
         }
-  }
+
+        [HttpGet("LoadProductImage")]
+        public IActionResult LoadProductImage(string productId)
+        {
+            var img = _productHandler.LoadProductImage(productId);
+            if (img == null)
+            {
+                return BadRequest();
+            }
+
+            return img;
+        }
+    }
 }

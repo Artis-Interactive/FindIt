@@ -4,7 +4,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace findit_backend.Handlers
 {
-    public class ImageHandler
+    public class ImageHandler : ControllerBase
     {
         private readonly string[] permittedExtensions = { ".jpg", ".jpeg", ".png"};
         
@@ -28,16 +28,42 @@ namespace findit_backend.Handlers
             return null;
         }
 
-        public void saveProductImage(string productId, [FromForm] IFormFile image)
+        public async Task saveProductImage(string productId, IFormFile image)
         {
-            var savePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets", "ProductImages", productId, image.FileName);
+            var extension = Path.GetExtension(image.FileName);
+            var savePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets", "ProductImages", productId + extension);
 
             Directory.CreateDirectory(Path.GetDirectoryName(savePath));
 
             using (var stream = new FileStream(savePath, FileMode.Create))
             {
-                image.CopyToAsync(stream);
+                await image.CopyToAsync(stream); // Await the asynchronous operation
             }
         }
-  }
+
+
+        public IActionResult loadProductImage(string productId)
+        {
+
+            productId = productId.ToLowerInvariant();
+            var imageDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Assets", "ProductImages");
+            var imageFile = Directory.GetFiles(imageDirectory).FirstOrDefault(file => Path.GetFileNameWithoutExtension(file) == productId);
+            if (imageFile == null)
+            {
+                return NotFound();
+            }
+            var extension = Path.GetExtension(imageFile).ToLowerInvariant();
+            var extensionType = getExtensionType(extension);
+
+            // Return the file
+            byte[] fileBytes = System.IO.File.ReadAllBytes(imageFile);
+            return File(fileBytes, extensionType);
+        }
+
+
+        public string getExtensionType(string extension)
+        {
+            return extension == ".png" ? "image/png" : "image/jpeg";
+        }
+    }
 }

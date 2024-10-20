@@ -23,7 +23,8 @@
 
 <script>
 	import axios from 'axios';
-
+	import { BACKEND_URL } from "@/config";
+  
 	export default {
 
 		data() {
@@ -32,7 +33,7 @@
 		},
 		methods: {
 			handleVerification() {
-				axios.post(`https://localhost:7262/api/UserDataSignUp/Verify?email=${encodeURIComponent(this.$route.params.email)}`)
+				axios.post(`${BACKEND_URL}/UserDataSignUp/Verify?email=${encodeURIComponent(this.$route.params.email)}`)
 				.then(function (response) {
 					alert('Correo verifiado con éxito.');
 					console.log(response);

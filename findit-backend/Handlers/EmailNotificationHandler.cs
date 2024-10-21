@@ -7,14 +7,14 @@ public class EmailNotificationHandler : BaseHandler
 {
     public async Task SendEmailAsync(string to, string subject, string body)
     {
-        var fromAddress = new MailAddress("no-reply@bolanos.cr", "FindIt - NoReply");
+        var fromAddress = new MailAddress("findit@bolanos.cr", "FindIt - NoReply");
         var toAddress = new MailAddress(to);
-        const string fromPassword = "xxxx";
+        const string fromPassword = "v]1JGsEB";
 
         var smtp = new SmtpClient
         {
-            Host = "smtp.example.com",
-            Port = 587,
+            Host = "smtp.hostinger.com",
+            Port = 465,
             EnableSsl = true,
             DeliveryMethod = SmtpDeliveryMethod.Network,
             UseDefaultCredentials = false,

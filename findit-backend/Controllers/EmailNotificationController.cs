@@ -10,9 +10,9 @@ public class EmailNotificationController : ControllerBase
 {
     private readonly EmailNotificationHandler _emailNotificationHandler;
 
-    public EmailNotificationController(EmailNotificationHandler emailNotificationHandler)
+    public EmailNotificationController()
     {
-        _emailNotificationHandler = emailNotificationHandler;
+        _emailNotificationHandler = new EmailNotificationHandler();
     }
 
     [HttpPost("send")]

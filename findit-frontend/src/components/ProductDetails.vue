@@ -5,7 +5,7 @@
     <div class="card_container">
 
       <div class="imgbox">
-        <img src="../assets/image.png" alt="Vue logo">
+        <img src="../assets/product_image_placeholder.png" alt="Vue logo">
       </div>
       <div class="card details">
         <h2>Brazalete Aura 14K</h2>
@@ -32,8 +32,9 @@
       </div>
       <div class="about-product">
       <h3>Sobre este producto</h3>
-      <p>Brazalete de alta calidad hecho con oro de 14k. Ligero y ajustable, ideal para pasar el día sin molestias.</p></div>
-  </div>
+      <p>Brazalete de alta calidad hecho con oro de 14k. Ligero y ajustable, ideal para pasar el día sin molestias.</p>
+    </div>
+    </div>
     </div>
   </div>
 
@@ -49,7 +50,8 @@ export default {
       return {
         stock_amount: 10,
         quantity_amount: 1,
-        available_stock: true
+        available_stock: true,
+        productID: this.$route.params.productID
       }
   },
   methods: {
@@ -128,6 +130,7 @@ export default {
   .card{
     position: relative;
     padding: 15px;
+    border-color: transparent;
   }
 
   .card h2{
@@ -245,3 +248,5 @@ export default {
     border-radius: 10px;
     grid-column: 1/4;
   }
+
+</style>

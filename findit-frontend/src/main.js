@@ -18,6 +18,7 @@ import CompanyProductList from './components/CompanyProductList.vue'
 import CompanyUserList from './components/CompanyUserList.vue'
 import HomePage from './components/HomePage.vue'
 import ProfileAddresses from './components/ProfileAddresses'
+import ProductDetails from './components/ProductDetails.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -40,7 +41,12 @@ const router = createRouter({
         //     props: route => ({
         //         companyID: route.params.companyID
         //     })
-        // },
+        // }, ProductDetails
+        { path: '/product/:productID', name: 'ProductDetails', component: ProductDetails, 
+            props: route => ({
+                productID: route.params.productID
+            })
+        },
         {path: "/allcompanies", name: "AllCompanies", component: GeneralCompanyList},
         {path: "/mycompanies", name: "MyCompanies", component: PersonalCompanyList},
         {path: "/allproducts", name: "AllProducts", component: GeneralProductList},

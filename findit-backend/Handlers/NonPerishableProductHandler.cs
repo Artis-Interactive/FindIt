@@ -37,5 +37,30 @@ namespace findit_backend.Handlers
             };
             return nonPerishableProducts;
         }
+
+        public FullNonPerishableProductModel GetFullByProductID(string productId)
+        {
+            FullNonPerishableProductModel fullNonPerishableProducts;
+            BaseProductModel baseProductModel;
+
+            string query = $"SELECT Amount FROM dbo.NonPerishableProducts" +
+                           $" WHERE ProductID = '{productId}'";
+            DataTable tableResult = CreateQueryTable(query);
+
+            if (tableResult.Rows.Count == 0)
+            {
+                return null;
+            }
+            DataRow row = tableResult.Rows[0];
+            ProductHandler productHandler = new ProductHandler();
+            baseProductModel = productHandler.ObtainBaseProductByProductId(productId);
+
+            fullNonPerishableProducts = new FullNonPerishableProductModel
+            {
+                Product = baseProductModel,
+                Stock = Convert.ToInt32(row["Amount"]),
+            };
+            return fullNonPerishableProducts;
+        }
     }
 }

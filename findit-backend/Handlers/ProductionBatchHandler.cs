@@ -32,6 +32,11 @@ namespace findit_backend.Handlers
             string query = $"SELECT Amount, OrderDeadline, ProductionDate FROM dbo.ProductionBatch" +
                            $" WHERE ProductID = '{productId}'";
             DataTable tableResult = CreateQueryTable(query);
+
+            if (tableResult.Rows.Count == 0)
+            {
+                return null;
+            }
             DataRow row = tableResult.Rows[0];
 
             productionBatch = new ProductionBatchModel

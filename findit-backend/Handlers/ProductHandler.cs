@@ -289,18 +289,37 @@ namespace findit_backend.Handlers
             return productId;
         }
 
-        private bool isPerishable(string productId)
+        public BaseProductModel ObtainBaseProductByProductId(string productId)
+        {
+            BaseProductModel product;
+            string query = $"SELECT * FROM dbo.Products WHERE ProductID = '{productId}'";
+            DataTable tableResult = CreateQueryTable(query);
+
+            if (tableResult.Rows.Count == 0)
+            {
+                return null;
+            }
+
+            var productColumn = tableResult.Rows[0];
+
+            product = new BaseProductModel
+            {
+                ProductID = Convert.ToString(productColumn["ProductID"]),
+                CategoryID = Convert.ToString(productColumn["CategoryID"]),
+                CompanyID = Convert.ToString(productColumn["CompanyID"]),
+                Name = Convert.ToString(productColumn["ProductName"]),
+                Description = Convert.ToString(productColumn["Description"]),
+                Image = Convert.ToString(productColumn["Image"]),
+                Price = Convert.ToDecimal(productColumn["Price"])
+            };
+
+            return product;
+        }
+        public bool isPerishable(string productId)
         {
             string query = $"SELECT * FROM dbo.PerishableProducts WHERE ProductID = '{productId}'";
             DataTable tableResult = CreateQueryTable(query);
-            if (tableResult.Rows.Count == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return tableResult.Rows.Count != 0;
         }
     }
 }

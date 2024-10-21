@@ -129,5 +129,16 @@ namespace findit_backend.Controllers
 
             return img;
         }
+
+        [HttpGet("IsProductPerishable/{productId}")]
+        public ActionResult IsProductPerishable(string productId)
+        {
+            var perishable = _productHandler.isPerishable(productId);
+            if (perishable == null)
+            {
+                return BadRequest();
+            }
+            return Ok(perishable);
+        }
     }
 }

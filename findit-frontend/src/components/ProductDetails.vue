@@ -1,7 +1,7 @@
 <template>
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <div class="body_div">
-    <div class="wrapper">
+    <div v-if="isProductLoaded" class="wrapper">
     <div class="card_container">
 
       <div class="imgbox">
@@ -9,19 +9,17 @@
         <img v-else src="../assets/product_image_placeholder.png" alt="Product Image">
       </div>
       <div class="card details">
-        <h2>Brazalete Aura 14K</h2>
-        <p class="label">Categoría: Accesorios</p>
+        <h2> {{ this.productData.product.name }} </h2>
+        <p class="label">Categoría: {{ this.productData.product.category }}</p>
         <p class="label">Perecedero</p>
         <div class="description">
           <p>
             Este producto posee una fecha de caducidad.
           </p>
-          <!-- <img v-if="imgURL" :src="imgURL" alt="Product Image" />
-          <p v-else>No Image Found</p> -->
         </div>
       </div>
       <div class="card buy">
-        <div class="price"><span>₡20.000</span><p>Envío gratis</p></div>
+        <div class="price"><span>₡{{ this.productData.product.price }}</span><p>Envío gratis</p></div>
         <div class="btns">
           <div class="stock-btns">
             <button @click="restarQuantity" class="minus-btn b-stock">-</button>
@@ -55,18 +53,62 @@ export default {
         quantity_amount: 1,
         available_stock: true,
         productID: this.$route.params.productID,
-        imgURL: null
+        productData: null,
+        categoryName: null,
+        imgURL: null,
+        isPerishable: false,
+        isProductLoaded: false
       }
   },
   methods: {
-    loadProductData() {
+    loadImageData() {
       axios.get(`https://localhost:7262/api/Product/LoadProductImage?productId=${this.productID}`, {
         responseType: 'blob'
       }).then((response) => {
-        this.imgURL = response.data;
-        console.log(this.imgURL);
-        console.log(URL.createObjectURL(this.imgURL))
-        this.imgURL = URL.createObjectURL(this.imgURL)
+        this.imgURL = URL.createObjectURL(response.data);
+      });
+    },
+    loadProductData() {
+      axios.get(`https://localhost:7262/api/Product/IsProductPerishable/${this.productID}`
+      ).then((response) => {
+        this.isPerishable = response.data;
+        if (this.isPerishable) {
+          this.loadPerishableData();
+        } else {
+          this.loadNonPerishableData();
+        }
+      });
+    },
+    loadPerishableData() {
+      axios.get(`https://localhost:7262/api/PerishableProduct/GetFullProduct?productId=${this.productID}`
+      ).then((response) => {
+        this.productData = response.data;
+        console.log("Is it perishable?")
+        console.log(this.isPerishable);
+        console.log("The product data:")
+        console.log(this.productData);
+        this.isProductLoaded = true;
+        this.loadCategoryData()
+      });
+    },
+    loadNonPerishableData() {
+      axios.get(`https://localhost:7262/api/NonPerishableProduct/GetFullProduct?productId=${this.productID}`
+      ).then((response) => {
+        this.productData = response.data;
+        console.log("Is it perishable?")
+        console.log(this.isPerishable);
+        console.log("The product data:")
+        console.log(this.productData);
+        this.loadCategoryData()
+      });
+    },
+    loadCategoryData() {
+      axios.get(`https://localhost:7262/api/NonPerishableProduct/GetFullProduct?productId=${this.productID}`
+      ).then((response) => {
+        this.productData = response.data;
+        console.log("The category name is:")
+        console.log(this.isPerishable);
+        this.isProductLoaded = true;
       });
     },
     sumarQuantity() {
@@ -81,6 +123,7 @@ export default {
     }
   },
   created() {
+    this.loadImageData();
     this.loadProductData();
   }
 }
@@ -121,7 +164,7 @@ export default {
     grid-row: 1fr 1fr;
     border-radius: 10px;
     margin: 2.5em 0;
-    box-shadow: 0 10px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     height: 100%;
   }
 

@@ -35,6 +35,17 @@ namespace findit_backend.Controllers
             }
             return Ok(perishableProduct);
         }
+
+        [HttpGet("GetFullProduct")]
+        public ActionResult GetFullProductById(string productId)
+        {
+            var perishableProduct = _perishableProductHandler.GetFullByProductID(productId);
+            if (perishableProduct == null)
+            {
+                return BadRequest();
+            }
+            return Ok(perishableProduct);
+        }
     }
 }
 

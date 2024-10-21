@@ -10,17 +10,20 @@
       </div>
       <div class="card details">
         <h2> {{ this.productData.product.name }} </h2>
-        <p class="label">Categoría: {{ this.productData.product.category }}</p>
-        <p class="label">Perecedero</p>
+        <p class="label">Categoría: {{ this.categoryName }}</p>
+        <p class="label"> {{ this.isPerishable ? "Perecedero" : "No perecedero" }} </p>
         <div class="description">
-          <p>
-            Este producto posee una fecha de caducidad.
+          <p v-if="this.isPerishable">
+            Este producto caducará el 
+            {{ this.productExpirationDay }} de 
+            {{ this.productExpirationMonthName }} de 
+            {{ this.productExpirationYear }}
           </p>
         </div>
       </div>
       <div class="card buy">
         <div class="price"><span>₡{{ this.productData.product.price }}</span><p>Envío gratis</p></div>
-        <div class="btns">
+        <div v-if="stock_amount != 0" class="btns">
           <div class="stock-btns">
             <button @click="restarQuantity" class="minus-btn b-stock">-</button>
             <p class="quantity p-stock"> {{ quantity_amount }}</p>
@@ -30,10 +33,13 @@
           <button class="buy-btn purchase-btn"><i class="uil uil-shopping-bag"></i>Comprar ahora</button>
           <button class="cart-btn purchase-btn"><i class="uil uil-shopping-cart"></i>Agregar al carrito</button>
         </div>
+        <div v-else>
+          <p class="out-of-stock">No hay existencias</p>
+        </div>
       </div>
       <div class="about-product">
       <h3>Sobre este producto</h3>
-      <p>Brazalete de alta calidad hecho con oro de 14k. Ligero y ajustable, ideal para pasar el día sin molestias.</p>
+      <p>{{ this.productData.product.description }}</p>
     </div>
     </div>
     </div>
@@ -49,15 +55,18 @@ export default {
   }, 
   data() {
       return {
-        stock_amount: 10,
+        stock_amount: 0,
         quantity_amount: 1,
         available_stock: true,
         productID: this.$route.params.productID,
         productData: null,
         categoryName: null,
+        productExpirationDay: null,
+        productExpirationMonthName: null,
+        productExpirationYear: null,
         imgURL: null,
         isPerishable: false,
-        isProductLoaded: false
+        isProductLoaded: false,
       }
   },
   methods: {
@@ -88,7 +97,7 @@ export default {
         console.log("The product data:")
         console.log(this.productData);
         this.isProductLoaded = true;
-        this.loadCategoryData()
+        this.formatData()
       });
     },
     loadNonPerishableData() {
@@ -99,21 +108,55 @@ export default {
         console.log(this.isPerishable);
         console.log("The product data:")
         console.log(this.productData);
-        this.loadCategoryData()
+        this.formatData()
       });
     },
     loadCategoryData() {
-      axios.get(`https://localhost:7262/api/NonPerishableProduct/GetFullProduct?productId=${this.productID}`
+      axios.get(`https://localhost:7262/api/Category/CategoryID/${this.productData.product.categoryID}`
       ).then((response) => {
-        this.productData = response.data;
+        this.categoryName = response.data.categoryName;
         console.log("The category name is:")
-        console.log(this.isPerishable);
+        console.log(this.categoryName);
         this.isProductLoaded = true;
       });
     },
+    formatPrice() {
+      var price = this.productData.product.price
+      price = price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+      this.productData.product.price = price;
+    },
+    setStock() {
+      this.stock_amount = this.isPerishable ? this.productData.productionBatch.amount : this.productData.stock;
+    },
+    formatExpirationDate() {
+      var dateString = this.productData.productionBatch.productionDate.slice(0, 10);
+      var lifespan = this.productData.lifespan;
+      var day   = parseInt(dateString.substring(0,2));
+      var month  = parseInt(dateString.substring(3,5));
+      var year   = parseInt(dateString.substring(6,10));
+      var date = new Date(year, month - 1, day);
+      date.setDate(date.getDate() + lifespan);
+      this.productExpirationDay = date.getDate();
+      this.productExpirationMonthName = date.toLocaleString('default', { month: 'long' });
+      this.productExpirationYear = date.getUTCFullYear();
+      console.log(this.productExpirationDay);
+      console.log(this.productExpirationMonthName);
+      console.log(this.productExpirationYear);
+    },
+    formatData() {
+      this.loadCategoryData();
+      this.formatPrice();
+      this.setStock();
+      if (this.isPerishable) {
+        this.formatExpirationDate();
+      }
+    },
     sumarQuantity() {
       if (this.quantity_amount < 99 && this.quantity_amount < this.stock_amount) {
+        var price = parseFloat(this.productData.product.price)/this.quantity_amount;
         this.quantity_amount++;
+        this.productData.product.price = price * this.quantity_amount;
+        this.formatPrice()
       }
     },
     restarQuantity() {

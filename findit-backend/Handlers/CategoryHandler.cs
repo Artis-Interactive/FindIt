@@ -31,6 +31,11 @@ namespace findit_backend.Handlers
             string query = $"SELECT CategoryName FROM dbo.Categories" +
                            $" WHERE CategoryID = '{categoryId}'";
             DataTable tableResult = CreateQueryTable(query);
+
+            if (tableResult.Rows.Count == 0)
+            {
+                return null;
+            }
             DataRow row = tableResult.Rows[0];
 
             category = new CategoryModel

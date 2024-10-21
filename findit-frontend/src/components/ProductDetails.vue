@@ -61,6 +61,7 @@ export default {
         productID: this.$route.params.productID,
         productData: null,
         categoryName: null,
+        originalPrice: null,
         productExpirationDay: null,
         productExpirationMonthName: null,
         productExpirationYear: null,
@@ -144,6 +145,7 @@ export default {
       console.log(this.productExpirationYear);
     },
     formatData() {
+      this.originalPrice = this.productData.product.price
       this.loadCategoryData();
       this.formatPrice();
       this.setStock();
@@ -153,15 +155,16 @@ export default {
     },
     sumarQuantity() {
       if (this.quantity_amount < 99 && this.quantity_amount < this.stock_amount) {
-        var price = parseFloat(this.productData.product.price)/this.quantity_amount;
         this.quantity_amount++;
-        this.productData.product.price = price * this.quantity_amount;
+        this.productData.product.price = this.originalPrice * this.quantity_amount;
         this.formatPrice()
       }
     },
     restarQuantity() {
       if (this.quantity_amount > 1) {
         this.quantity_amount--;
+        this.productData.product.price = this.originalPrice * this.quantity_amount;
+        this.formatPrice()
       }
     }
   },

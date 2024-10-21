@@ -46,7 +46,8 @@
 import axios from "axios";
 import ModalComponent from "./ModalComponent.vue";
 import { jwtDecode } from 'jwt-decode';
-
+import { BACKEND_URL } from "@/config";
+  
 export default {
   name: "GeneralUsersist",
   components: {
@@ -82,7 +83,7 @@ export default {
         }
     },
     getCompanyUsers() {
-      axios.get("https://localhost:7262/api/UserDataSignUp/CompanyUsers").then((response) => {
+      axios.get(`${BACKEND_URL}/UserDataSignUp/CompanyUsers`).then((response) => {
         this.companyUsers = response.data;
       });
     },

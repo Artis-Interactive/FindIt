@@ -42,6 +42,7 @@ create table UserCards(
 create table Companies(
 	CompanyID		uniqueidentifier	NOT NULL PRIMARY KEY DEFAULT NewID(),
 	Name			varchar(150)		NOT NULL UNIQUE,
+	LegalID			varchar(15)			NOT NULL UNIQUE,
 	Type			varchar(8)			CHECK (Type IN ('physical', 'legal')),
 	Description		varchar(1000),		
 	Email			varchar(50),
@@ -74,7 +75,7 @@ create table Address(
 -- Create WorkingDays table:
 create table WorkingDays(
 	CompanyID		uniqueidentifier	FOREIGN KEY REFERENCES Companies(CompanyID),
-	Day				varchar(9)			NOT NULL	CHECK (Day IN ('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo')),
+	Day				varchar(9)			NOT NULL	CHECK (Day IN ('Lunes', 'Martes', 'Miï¿½rcoles', 'Jueves', 'Viernes', 'Sï¿½bado', 'Domingo')),
 	StartTime		time				NOT NULL,
 	EndTime			time				NOT NULL
 )
@@ -100,4 +101,19 @@ create table Products(
 create table NonPerishableProducts(
 	ProductID		uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Products(ProductID) ON DELETE CASCADE,
 	Amount 			int 				NOT NULL
+)
+
+-- Create PerishableProducts table:
+create table PerishableProducts(
+	ProductID		uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Products(ProductID) ON DELETE CASCADE,
+	Lifespan 			int 				NOT NULL,
+	ProductionDay varchar(9) NOT NULL CHECK (ProductionDay IN ('Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'))
+)
+
+-- Create ProductionBatch table:
+create table ProductionBatch(
+	ProductID		uniqueidentifier	NOT NULL FOREIGN KEY REFERENCES Products(ProductID) ON DELETE CASCADE,
+	Amount 			int 				NOT NULL,
+	OrderDeadline	time				NOT NULL,
+	ProductionDate	date				NOT NULL
 )

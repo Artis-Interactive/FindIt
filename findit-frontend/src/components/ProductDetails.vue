@@ -17,7 +17,11 @@
             Este producto caducará el 
             {{ this.productExpirationDay }} de 
             {{ this.productExpirationMonthName }} de 
-            {{ this.productExpirationYear }}
+            {{ this.productExpirationYear }} a las 
+            {{ this.productExpirationTime }}
+          </p>
+          <p v-if="this.isPerishable">
+            {{ this.productionDaysText }}
           </p>
         </div>
       </div>
@@ -62,9 +66,11 @@ export default {
         productData: null,
         categoryName: null,
         originalPrice: null,
+        productionDaysText: null,
         productExpirationDay: null,
         productExpirationMonthName: null,
         productExpirationYear: null,
+        productExpirationTime: null,
         imgURL: null,
         isPerishable: false,
         isProductLoaded: false,
@@ -143,6 +149,60 @@ export default {
       console.log(this.productExpirationDay);
       console.log(this.productExpirationMonthName);
       console.log(this.productExpirationYear);
+      this.productExpirationTime = this.formatExpirationTime();
+    },
+    formatExpirationTime() {
+      var unparsedTime = this.productData.productionBatch.orderDeadline;
+      var time;
+      var hours = parseInt(unparsedTime.substring(0,2))
+      var minutes = parseInt(unparsedTime.substring(3, 5))
+      var postfix = hours < 12 ? "AM" : "PM";
+      hours = (hours % 12) == 0 ? 12 : hours % 12;
+      hours = hours < 10 ? "0" + hours.toString() : hours.toString()
+      minutes = minutes < 10 ? "0" + minutes.toString() : minutes.toString()
+      time = parseInt(minutes) ? hours + ":" + minutes + postfix : hours + postfix;
+      return time
+    },
+    formatProductionDays() {
+      var days = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabados", "domingos"]
+      var productionDaysString = "Este producto está disponible los ";
+      var productionDaysList = this.productData.productionDays;
+      var productionDaysNumbered = []
+      for (let i = 0; i < productionDaysList.length; i++) {
+        switch(productionDaysList[i]) {
+          case "Lunes":
+            productionDaysNumbered[i] = 0; break;
+          case "Martes":
+            productionDaysNumbered[i] = 1; break;
+          case "Miercoles":
+            productionDaysNumbered[i] = 2; break;
+          case "Jueves":
+            productionDaysNumbered[i] = 3; break;
+          case "Viernes":
+            productionDaysNumbered[i] = 4; break;
+          case "Sabado":
+            productionDaysNumbered[i] = 5; break;
+          case "Domingo":
+            productionDaysNumbered[i] = 6; break;
+          default:
+            productionDaysNumbered[i] = 7
+        }
+      }
+
+      productionDaysNumbered.sort()
+      for (let i = 0; i < productionDaysList.length - 1; i++) {
+        productionDaysString += days[productionDaysNumbered[i]];
+        if (i == productionDaysList.length - 2) {
+          productionDaysString += " y ";
+        } else {
+          productionDaysString += ", ";
+        }
+      }
+      productionDaysString += days[productionDaysNumbered[productionDaysList.length - 1]];
+      productionDaysString += "."
+      this.productionDaysText = productionDaysString;
+      console.log(productionDaysList)
+      console.log(productionDaysString)
     },
     formatData() {
       this.originalPrice = this.productData.product.price
@@ -151,6 +211,7 @@ export default {
       this.setStock();
       if (this.isPerishable) {
         this.formatExpirationDate();
+        this.formatProductionDays();
       }
     },
     sumarQuantity() {

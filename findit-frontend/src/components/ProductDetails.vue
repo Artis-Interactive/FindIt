@@ -5,7 +5,8 @@
     <div class="card_container">
 
       <div class="imgbox">
-        <img src="../assets/product_image_placeholder.png" alt="Vue logo">
+        <img v-if="imgURL" :src="imgURL" alt="Product Image" />
+        <img v-else src="../assets/product_image_placeholder.png" alt="Product Image">
       </div>
       <div class="card details">
         <h2>Brazalete Aura 14K</h2>
@@ -15,6 +16,8 @@
           <p>
             Este producto posee una fecha de caducidad.
           </p>
+          <!-- <img v-if="imgURL" :src="imgURL" alt="Product Image" />
+          <p v-else>No Image Found</p> -->
         </div>
       </div>
       <div class="card buy">
@@ -41,7 +44,7 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
   name: 'ProductDetails',
   components: {
@@ -51,10 +54,21 @@ export default {
         stock_amount: 10,
         quantity_amount: 1,
         available_stock: true,
-        productID: this.$route.params.productID
+        productID: this.$route.params.productID,
+        imgURL: null
       }
   },
   methods: {
+    loadProductData() {
+      axios.get(`https://localhost:7262/api/Product/LoadProductImage?productId=${this.productID}`, {
+        responseType: 'blob'
+      }).then((response) => {
+        this.imgURL = response.data;
+        console.log(this.imgURL);
+        console.log(URL.createObjectURL(this.imgURL))
+        this.imgURL = URL.createObjectURL(this.imgURL)
+      });
+    },
     sumarQuantity() {
       if (this.quantity_amount < 99 && this.quantity_amount < this.stock_amount) {
         this.quantity_amount++;
@@ -65,6 +79,9 @@ export default {
         this.quantity_amount--;
       }
     }
+  },
+  created() {
+    this.loadProductData();
   }
 }
 

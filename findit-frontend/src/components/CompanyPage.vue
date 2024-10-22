@@ -56,6 +56,7 @@
   import ProductCarousel from './ProductCarousel.vue'
   import ModalComponent from "./ModalComponent.vue";
   import { jwtDecode } from 'jwt-decode';
+  import { BACKEND_URL } from "@/config";
 
   export default {
     name: 'CompanyPage',
@@ -111,12 +112,12 @@
 
       async obtainData(email) {
         try {
-          const responseCompany = await axios.get(`https://localhost:7262/api/Company/Email/${email}`);
+          const responseCompany = await axios.get(`${BACKEND_URL}/Company/Email/${email}`);
           this.companyData = responseCompany.data;
           console.log("Datos empresa: ", this.companyData);
           this.isCompanyDataReady = true;
 
-          const responseProducts = await axios.get(`https://localhost:7262/api/Product/Email/${email}`);
+          const responseProducts = await axios.get(`${BACKEND_URL}/Product/Email/${email}`);
           this.products = responseProducts.data;
           console.log("Datos productos: ", this.products);
         } catch (error) {

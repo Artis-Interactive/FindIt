@@ -61,6 +61,7 @@
   import axios from "axios";
   import ModalComponent from "./ModalComponent.vue";
   import { jwtDecode } from 'jwt-decode';
+  import { BACKEND_URL } from "@/config";
   
   export default {
     name: "CompanyProductList",
@@ -91,7 +92,7 @@
         }
     },
     getProducts(email) {
-      axios.get(`https://localhost:7262/api/Product/Email/${email}`,
+      axios.get(`${BACKEND_URL}/Product/Email/${email}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`

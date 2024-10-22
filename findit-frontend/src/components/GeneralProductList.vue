@@ -61,6 +61,7 @@
 import axios from "axios";
 import ModalComponent from "./ModalComponent.vue";
 import { jwtDecode } from 'jwt-decode';
+import { BACKEND_URL } from "@/config";
 
 export default {
   name: "GeneralProductList",
@@ -97,7 +98,7 @@ export default {
         }
     },
     getProducts() {
-      axios.get("https://localhost:7262/api/Product").then((response) => {
+      axios.get(`${BACKEND_URL}/Product`).then((response) => {
         this.products = response.data;
       });
     },

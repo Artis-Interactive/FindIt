@@ -207,6 +207,7 @@
 	import ModalComponent from './ModalComponent.vue';
 	import bcrypt from 'bcryptjs';
 	import axios from 'axios';
+	import { BACKEND_URL } from '@/config';
 
 	export default {
 		name: 'SignUpComponent',
@@ -348,9 +349,9 @@
 			},
 			async emailAndLegalIDExists(email, legalID) {
 				try{
-					await axios.get(`https://localhost:7262/api/UserDataSignUp/GetUserByEmail/${encodeURIComponent(email)}`);
+					await axios.get(`${BACKEND_URL}/UserDataSignUp/GetUserByEmail/${encodeURIComponent(email)}`);
 					
-					await axios.get(`https://localhost:7262/api/UserDataSignUp/LegalID/${legalID}`);
+					await axios.get(`${BACKEND_URL}/UserDataSignUp/LegalID/${legalID}`);
 					
 					return true;
 				}
@@ -377,7 +378,7 @@
 				const salt = '$2b$10$eImiTXuWVyfVz1uFyyf065'
 				const hash = bcrypt.hashSync(this.form.password, salt);
 				try {
-					await axios.post("https://localhost:7262/api/UserDataSignUp",  {
+					await axios.post(`${BACKEND_URL}/UserDataSignUp`,  {
 						name: this.form.name,
 						LastNames: this.form.LastNames,
 						birthdate: this.form.birthdate,
@@ -392,7 +393,7 @@
 			},
 			async registerAddress(legalID) {
 				try {
-					await axios.post(`https://localhost:7262/api/Address/AddAddress?legalId=${legalID}`, {
+					await axios.post(`${BACKEND_URL}/Address/AddAddress?legalId=${legalID}`, {
 						province: this.form.province,
 						canton: this.form.canton,
 						district: this.form.district,
@@ -404,7 +405,7 @@
 			},
 			async registerCardInfo(legalID) {
 				try {
-					await axios.post(`https://localhost:7262/api/Card?legalId=${legalID}`, {
+					await axios.post(`${BACKEND_URL}/Card?legalId=${legalID}`, {
 						cardNumber: this.form.cardNumber,
 						nameOnCard: this.form.nameOnCard,
 						expirationDate: this.form.expirationDate

@@ -42,7 +42,8 @@
   import axios from "axios";
   import ModalComponent from "./ModalComponent.vue";
   import { jwtDecode } from 'jwt-decode';
-  
+  import { BACKEND_URL } from "@/config";
+
   export default {
     name: "GeneralProductList",
     components: {
@@ -71,7 +72,7 @@
           }
       },
       getAddresses(email) {
-        axios.get(`https://localhost:7262/api/Address/UserAddresses/${email}`).then((response) => {
+        axios.get(`${BACKEND_URL}/Address/UserAddresses/${email}`).then((response) => {
           this.addresses = response.data;
         });
       },

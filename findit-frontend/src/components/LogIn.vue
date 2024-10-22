@@ -39,7 +39,8 @@
 import axios from "axios";
 import ModalComponent from './ModalComponent.vue';
 import bcrypt from 'bcryptjs';
-
+import { BACKEND_URL } from "@/config";
+  
 export default {
   name: 'LoginComponent',
   components: {
@@ -59,7 +60,7 @@ export default {
       const salt = '$2b$10$eImiTXuWVyfVz1uFyyf065'
 			const password = bcrypt.hashSync(document.getElementById("password").value, salt);
       // Send to backend:
-      axios.post("https://localhost:7262/api/User", { email, password })
+      axios.post(`${BACKEND_URL}/User`, { email, password })
         .then((response) => {
           // Process response:
           const data = response.data;

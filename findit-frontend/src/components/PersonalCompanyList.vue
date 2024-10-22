@@ -48,6 +48,7 @@
 import axios from "axios";
 import ModalComponent from "./ModalComponent.vue";
 import { jwtDecode } from 'jwt-decode';
+import { BACKEND_URL } from "@/config";
 
 export default {
   name: "PersonalCompanyList",
@@ -78,7 +79,7 @@ export default {
         }
     },
     getUserCompanies(email) {
-      axios.get(`https://localhost:7262/api/Company/UserCompanies/${email}`,
+      axios.get(`${BACKEND_URL}/Company/UserCompanies/${email}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`

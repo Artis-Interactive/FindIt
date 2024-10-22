@@ -79,76 +79,15 @@
 										min="1924-01-01"
 										required />
 					</div>
-
-					<div class="radio-group">
-						<h3>Dirección:<span class="required-asterisk">*</span></h3>
-						<label>
-							<input type="radio"
-											name="direction"
-											value="manual"
-											v-model="selectedDirection" />
-											Manual
-						</label>
-
-						<label>
-							<input type="radio"
-											name="direction"
-											value="map"
-											v-model="selectedDirection" />
-											Marcar en mapa
-						</label>
-					</div>
-
-					<!-- Aditional spaces if manual is selected -->
-					<div v-if="selectedDirection === 'manual'">
-						<div>
-							<label for="province">Provincia:</label>
-							<select v-model="form.province"
-											id="province"
-											required
-											class="form-control custom-select">
-								<option value="" disabled>Seleccione una provincia</option>
-								<option>Alajuela</option>
-								<option>Cartago</option>
-								<option>Guanacaste</option>
-								<option>Heredia</option>
-								<option>Limón</option>
-								<option>San José</option>
-								<option>Puntarenas</option>
-							</select>
-						</div>
-
-						<div>
-							<label for="canton">Cantón:</label>
-							<input type="text"
-											id="canton"
-											v-model="form.canton"
-											placeholder="Montes de Oca"
-											required
-											pattern="[A-Za-zÀ-ÿ\s]+" 
-											title="El cantón sólo debe tener números"/>
-						</div>
-
-						<div>
-							<label for="district">Distrito:</label>
-							<input type="text"
-											id="district"
-											v-model="form.district"
-											placeholder="San Pedro"
-											required
-											pattern="[A-Za-zÀ-ÿ\s]+" 
-											title="El distrito sólo debe tener letras."/>
-						</div>
-
-						<div>
-							<label for="details">Otras señas:</label>
-							<input type="text"
-											id="details"
-											v-model="form.details"
-											placeholder="De la Iglesia de San Pedro 200 metros al sur"
-											required
-											pattern="[A-Za-zÀ-ÿ0-9\s\.\-,#]+" />
-						</div>
+				
+					<div class="map">
+						<h3>Ingresar su dirección o marcar en el mapa:<span class="required-asterisk">*</span></h3>
+						<input
+							type="text"
+							id="location-input"
+							placeholder="Ingrese su dirección"
+						/> <br> <br/>
+						<div id="map" style="height: 500px; width: 100%;"></div>
 
 					</div>
 
@@ -264,6 +203,7 @@
 </template>
 
 <script>
+	/* global google */
 	import ModalComponent from './ModalComponent.vue';
 	import bcrypt from 'bcryptjs';
 	import axios from 'axios';
@@ -293,6 +233,9 @@
 				selectedPaymentMethod: ""
 			};
 		},
+		mounted() {
+			this.loadGoogleMapsScript();
+		},
 		methods: {
 			async handleSubmit() {
 				if (!this.validatePassword()) {
@@ -318,13 +261,82 @@
 					this.isModalVisible = true;
 					window.location.href = `/email-verification/${email}`;
 
-			} catch(error) {
+				} catch(error) {
 					console.log("Error al registrar usuario: ", error);
 					this.modalTitle = "Error en el registro";
 					this.modalMessage = error.response?.data || "Ocurrió un error durante el registro.";
 					this.isModalVisible = true;
 				}
 			},
+			
+			loadGoogleMapsScript() {
+				const apiKey = process.env.VUE_APP_GOOGLE_MAPS_API_KEY;
+				const script = document.createElement('script');
+				script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker`;
+				script.async = true;
+				script.defer = true;
+				document.head.appendChild(script);
+
+				// Listener to initialize the map once the script is loaded
+				script.onload = () => {
+					this.initMap();
+				};
+			},
+
+			initMap() {
+				const ucr = { lat: 9.937256786417928, lng: -84.05086517247322 };
+				const costaRicaLimit = {
+					north: 11.219,
+					south: 8.032,
+					west: -86.745,
+					east: -82.555,
+				};
+				const map = new google.maps.Map(document.getElementById("map"), {
+					zoom: 8,
+					center: ucr,
+					mapId: "c08b039bbc429250",
+					restriction: {
+						latLngBounds: costaRicaLimit,
+						strictBounds: true,
+					},
+				});
+				const marker = new google.maps.marker.AdvancedMarkerElement({
+					position: ucr,
+					map: map,
+					draggable: true,
+				});
+				map.addListener("click", (event) => {
+					marker.position = event.latLng;
+					map.setCenter(event.latLng);
+				});
+				const input = document.getElementById("location-input");
+				const autocomplete = new google.maps.places.Autocomplete(input);
+
+				// Set bounds and component restrictions
+				const defaultBounds = new google.maps.LatLngBounds(
+					new google.maps.LatLng(9.5, -85.0),
+					new google.maps.LatLng(10.5, -83.0)
+				);
+
+				autocomplete.setBounds(defaultBounds);
+				autocomplete.setComponentRestrictions({ country: "cr" });
+				
+				autocomplete.addListener("place_changed", function () {
+					const place = autocomplete.getPlace();
+
+					if (!place.geometry) {
+						window.alert("No details available for that address.");
+						return;
+					}
+
+					// Set map and marker to new location
+					map.setCenter(place.geometry.location);
+					marker.position = place.geometry.location;
+					// Zoom in when the marker's position is updated
+					map.setZoom(15);
+				});
+			},
+			
 			validatePassword() {
 				if (this.form.password !== this.form.confirmPassword) {
 					this.modalTitle = "Error de contraseña";
@@ -423,6 +435,10 @@
 		align-items: center;
 		justify-content: center;
 	}
+
+	#map {
+    height: 100%;
+  }
 
 	.image-container {
 		position: absolute;

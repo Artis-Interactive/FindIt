@@ -117,6 +117,7 @@
 <script>
 import axios from "axios";
 import { jwtDecode } from 'jwt-decode';
+import { BACKEND_URL } from "@/config";
 
 export default {
   data() {
@@ -160,7 +161,7 @@ export default {
 
     async registerCompany() {
       try {
-        await axios.post("https://localhost:7262/api/Company/CreateCompany",  {
+        await axios.post(`${BACKEND_URL}/Company/CreateCompany`,  {
           companyId: "",
           name: this.formData.companyName,
           email: this.formData.companyEmail,
@@ -181,7 +182,7 @@ export default {
         });
 
         if (this.formData.addressType === 'manual') {
-          await axios.post(`https://localhost:7262/api/Address/AddCompanyAddress?legalId=${this.formData.legalId}`, {
+          await axios.post(`${BACKEND_URL}/Address/AddCompanyAddress?legalId=${this.formData.legalId}`, {
             province: this.addressForm.province,
             canton: this.addressForm.canton,
             district: this.addressForm.district,
@@ -192,7 +193,7 @@ export default {
 
         const token = localStorage.getItem('token');
         const decodedToken = jwtDecode(token);
-        await axios.post(`https://localhost:7262/api/Company/AddCompanyToUser?userToken=${decodedToken.email}&companyLegalId=${this.formData.legalId}`);
+        await axios.post(`${BACKEND_URL}/Company/AddCompanyToUser?userToken=${decodedToken.email}&companyLegalId=${this.formData.legalId}`);
 
         alert ('Empresa registrada con éxito.');
         window.location.href = "/";

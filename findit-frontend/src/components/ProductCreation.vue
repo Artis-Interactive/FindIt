@@ -116,6 +116,7 @@
 <script>
     import axios from 'axios';
     import AppHeader from './AppHeader.vue';
+    import { BACKEND_URL } from "@/config";
     export default {
         name: 'ProductCreation',
         components: {
@@ -169,7 +170,7 @@
 
                     if (this.productData.image) {
 
-                        axios.post('https://localhost:7262/api/Product/CreateNonPerishableProduct', jsonMsg)
+                        axios.post(`${BACKEND_URL}/Product/CreateNonPerishableProduct`, jsonMsg)
                         .then(response => {
                         console.log('Product created successfully:', response.data);
                         this.productID = response.data;
@@ -177,7 +178,7 @@
                         formData.append('image', this.productData.image);
                         formData.append('productId', this.productID);
 
-                        axios.post('https://localhost:7262/api/Product/UpdateImage', formData, {
+                        axios.post(`${BACKEND_URL}/Product/UpdateImage`, formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -219,7 +220,7 @@
 
                     if (this.productData.image) {
 
-                        axios.post('https://localhost:7262/api/Product/CreatePerishableProduct', jsonMsg)
+                        axios.post(`${BACKEND_URL}/Product/CreatePerishableProduct`, jsonMsg)
                         .then(response => {
                         console.log('Product created successfully:', response.data);
                         this.productID = response.data;
@@ -227,7 +228,7 @@
                         formData.append('image', this.productData.image);
                         formData.append('productId', this.productID);
 
-                        axios.post('https://localhost:7262/api/Product/UpdateImage', formData, {
+                        axios.post(`${BACKEND_URL}/Product/UpdateImage`, formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -249,7 +250,7 @@
                 }
             },
             async getCategories() {
-                axios.get("https://localhost:7262/api/Category").then(
+                axios.get(`${BACKEND_URL}/Category`).then(
                     (response) => {
                         console.log(response.data);
                         this.categories = response.data;

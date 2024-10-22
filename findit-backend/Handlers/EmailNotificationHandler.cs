@@ -1,5 +1,6 @@
-﻿using System.Net.Mail;
-using System.Net;
+﻿using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace findit_backend.Handlers;
 
@@ -14,8 +15,9 @@ public class EmailNotificationHandler : BaseHandler
         var smtp = new SmtpClient
         {
             Host = "smtp.hostinger.com",
-            Port = 465,
-            EnableSsl = true,
+            Port = 587,
+            EnableSsl = false
+            ,
             DeliveryMethod = SmtpDeliveryMethod.Network,
             UseDefaultCredentials = false,
             Credentials = new NetworkCredential(fromAddress.Address, fromPassword)

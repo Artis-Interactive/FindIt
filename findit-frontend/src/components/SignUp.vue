@@ -267,7 +267,7 @@
 	import ModalComponent from './ModalComponent.vue';
 	import bcrypt from 'bcryptjs';
 	import axios from 'axios';
-	import { BACKEND_URL } from '@/config';
+	import { BACKEND_URL, HOSTED_URL } from '@/config';
 
 	export default {
 		name: 'SignUpComponent',
@@ -313,11 +313,10 @@
 					if (this.selectedPaymentMethod === 'card') {
 						await this.registerCardInfo(this.form.legalID);
 					}
-					const email = this.form.email;
 					this.modalTitle = "Usuario registrado";
-					this.modalMessage = "El usuario fue registrado exitosamente.";
+					this.modalMessage = "El usuario fue registrado exitosamente. ¡Por favor revisa tu bandeja de entrada para verificar tu cuenta!";
 					this.isModalVisible = true;
-					window.location.href = `/email-verification/${email}`;
+					window.location.href = `/`;
 
 			} catch(error) {
 					console.log("Error al registrar usuario: ", error);
@@ -374,6 +373,12 @@
 						email: this.form.email,
 						PhoneNumber: this.form.PhoneNumber,
 						password: hash,
+					});
+
+					await axios.post(`${BACKEND_URL}/EmailNotification/send`,  {
+						to: this.form.email,
+						subject: "Verificación de correo electrónico",
+						body: `Ingresa a la siguiente dirección url para verificar tu cuenta de FindIt: ${HOSTED_URL}/email-verification/${this.form.email}`,
 					});
 				} catch (error) {
 					throw new Error("Error al registrar usuario."+ (error.response?.data || error.message));

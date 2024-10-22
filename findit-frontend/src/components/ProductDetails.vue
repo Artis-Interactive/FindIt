@@ -37,8 +37,12 @@
           <button class="buy-btn purchase-btn"><i class="uil uil-shopping-bag"></i>Comprar ahora</button>
           <button class="cart-btn purchase-btn"><i class="uil uil-shopping-cart"></i>Agregar al carrito</button>
         </div>
-        <div v-else>
-          <p class="out-of-stock">No hay existencias</p>
+        <div v-else class="btns">
+          <div class="stock-btns">
+            <p class="stock-amount out-of-stock">Existencias agotadas</p>
+          </div>
+          <button class="buy-btn purchase-btn btn-disabled" disabled><i class="uil uil-shopping-bag"></i>Comprar ahora</button>
+          <button class="cart-btn purchase-btn btn-disabled" disabled><i class="uil uil-shopping-cart"></i>Agregar al carrito</button>
         </div>
       </div>
       <div class="about-product">
@@ -414,6 +418,23 @@ export default {
     padding: 1em 4em;
     border-radius: 10px;
     grid-column: 1/4;
+  }
+
+  .buy div .out-of-stock {
+    color: lightcoral;
+    font-weight: 300;
+    /* height: 180px; */
+  }
+
+  .btns .btn-disabled {
+    background-color: #eaeaea;
+    color: #818181;
+    cursor:default;
+  }
+
+  .btns .btn-disabled:hover {
+    background-color: #eaeaea;
+    color: #818181;
   }
 
 </style>

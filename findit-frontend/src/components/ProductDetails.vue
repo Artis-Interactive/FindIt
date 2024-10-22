@@ -57,6 +57,7 @@
 
 <script>
 import axios from 'axios';
+import { BACKEND_URL } from "@/config";
 export default {
   name: 'ProductDetails',
   components: {
@@ -82,14 +83,14 @@ export default {
   },
   methods: {
     loadImageData() {
-      axios.get(`https://localhost:7262/api/Product/LoadProductImage?productId=${this.productID}`, {
+      axios.get(`${BACKEND_URL}/Product/LoadProductImage?productId=${this.productID}`, {
         responseType: 'blob'
       }).then((response) => {
         this.imgURL = URL.createObjectURL(response.data);
       });
     },
     loadProductData() {
-      axios.get(`https://localhost:7262/api/Product/IsProductPerishable/${this.productID}`
+      axios.get(`${BACKEND_URL}/Product/IsProductPerishable/${this.productID}`
       ).then((response) => {
         this.isPerishable = response.data;
         if (this.isPerishable) {
@@ -100,7 +101,7 @@ export default {
       });
     },
     loadPerishableData() {
-      axios.get(`https://localhost:7262/api/PerishableProduct/GetFullProduct?productId=${this.productID}`
+      axios.get(`${BACKEND_URL}/PerishableProduct/GetFullProduct?productId=${this.productID}`
       ).then((response) => {
         this.productData = response.data;
         console.log("Is it perishable?")
@@ -112,7 +113,7 @@ export default {
       });
     },
     loadNonPerishableData() {
-      axios.get(`https://localhost:7262/api/NonPerishableProduct/GetFullProduct?productId=${this.productID}`
+      axios.get(`${BACKEND_URL}/NonPerishableProduct/GetFullProduct?productId=${this.productID}`
       ).then((response) => {
         this.productData = response.data;
         console.log("Is it perishable?")
@@ -123,7 +124,7 @@ export default {
       });
     },
     loadCategoryData() {
-      axios.get(`https://localhost:7262/api/Category/CategoryID/${this.productData.product.categoryID}`
+      axios.get(`${BACKEND_URL}/Category/CategoryID/${this.productData.product.categoryID}`
       ).then((response) => {
         this.categoryName = response.data.categoryName;
         console.log("The category name is:")
@@ -221,15 +222,15 @@ export default {
     sumarQuantity() {
       if (this.quantity_amount < 99 && this.quantity_amount < this.stock_amount) {
         this.quantity_amount++;
-        this.productData.product.price = this.originalPrice * this.quantity_amount;
-        this.formatPrice()
+        // this.productData.product.price = this.originalPrice * this.quantity_amount;
+        // this.formatPrice()
       }
     },
     restarQuantity() {
       if (this.quantity_amount > 1) {
         this.quantity_amount--;
-        this.productData.product.price = this.originalPrice * this.quantity_amount;
-        this.formatPrice()
+        // this.productData.product.price = this.originalPrice * this.quantity_amount;
+        // this.formatPrice()
       }
     }
   },
@@ -357,6 +358,7 @@ export default {
     width: 90%;
     font-size: 80%;
     cursor: pointer;
+    transition: all ease 0.2s;
   }
 
   .btns .buy-btn{
@@ -365,9 +367,12 @@ export default {
     color: white;
   }
 
-  .btns .purchase-btn:hover{
-    background-color: tomato;
-    color: white;
+  .btns .buy-btn:hover{
+    background-color: #6b4f8d;
+  }
+
+  .btns .cart-btn:hover{
+    background-color: #d9d9d9;
   }
 
   .stock-btns{
@@ -410,6 +415,7 @@ export default {
     font-weight: 300;
     color: #818181;
     font-size: 16px;
+    font-size: 95%;
   }
 
   .about-product{

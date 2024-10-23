@@ -16,14 +16,14 @@ namespace findit_backend.Controllers
             _addToCartManager = addToCartManager;
         }
 
-        [HttpGet("AddToCart/{productId}")]
-        public ActionResult AddProductToCart(string productId, int quantity)
+        [HttpGet("AddToCart/{email}/{productId}")]
+        public ActionResult AddProductToCart(string email, string productId, int quantity)
         {
-            string result = this._addToCartManager.AddProductToCart(productId, quantity);
+            string result = this._addToCartManager.AddProductToCart(email, productId, quantity);
             Console.WriteLine(result);
-            if (result != "valid")
+            if (result != "success")
             {
-                return BadRequest();
+                return BadRequest(result);
             }
             return Ok(result);
         }

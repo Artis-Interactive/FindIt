@@ -9,7 +9,7 @@ namespace findit_backend.Handlers.ProductHandler
 {
     public class ProductHandler : BaseHandler, IProductHandler
     {
-        public bool checkProductExistance(string productId)
+        public bool checkProductExistence(string productId)
         {
             string query = $"SELECT * FROM dbo.Products WHERE ProductID = '{productId}'";
             DataTable resultingTable = CreateQueryTable(query);

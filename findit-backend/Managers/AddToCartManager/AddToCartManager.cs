@@ -11,11 +11,19 @@ namespace findit_backend.Managers.AddToCartManager
         {
             this._productValidationHelper = productValidationHelper;
         }
-        public string AddProductToCart(string productId, int quantity)
+        public string AddProductToCart(string email, string productId, int quantity)
         {
+            string result = "success";
             string validation = _productValidationHelper.ValidateProductAddition(productId, quantity);
-            return validation;
-
+            if (validation == "valid")
+            {
+                // Addition logic
+            }
+            else
+            {
+                result = validation;
+            }
+            return result;
         }
     }
 }

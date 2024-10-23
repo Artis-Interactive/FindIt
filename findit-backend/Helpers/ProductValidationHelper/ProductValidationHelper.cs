@@ -13,7 +13,7 @@ namespace findit_backend.Helpers.ProductValidationHelper
         public string ValidateProductAddition(string productId, int quantity)
         {
             string result = "valid";
-            if(!_productHandler.checkProductExistance(productId))
+            if(!_productHandler.checkProductExistence(productId))
             {
                 result = "noProduct";
             }

@@ -2,7 +2,7 @@
 {
     public interface IProductHandler
     {
-        bool checkProductExistance(string productId);
+        bool checkProductExistence(string productId);
         bool isPerishable(string productId);
         int getProductStock(string productId);
 

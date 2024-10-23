@@ -185,7 +185,6 @@
 					</div>
 					<span class="required-text">* Campos requeridos</span>
 					
-					
 				</form>
 			</div>
 			<ModalComponent
@@ -288,32 +287,49 @@
 
 			initMap() {
 				const ucr = { lat: 9.937256786417928, lng: -84.05086517247322 };
-				const costaRicaLimit = {
+				const costaRicaLimit = this.getCostaRicaBounds();
+
+				const map = this.createMap(ucr, costaRicaLimit);
+				const marker = this.createMarker(ucr, map);
+				// Event listener for map clicks
+				this.addMapClickListener(map, marker);
+				this.initAutocomplete(map, marker);
+			},
+			getCostaRicaBounds() {
+				return {
 					north: 11.219,
 					south: 8.032,
 					west: -86.745,
 					east: -82.555,
 				};
-				const map = new google.maps.Map(document.getElementById("map"), {
+			},
+			createMap(center, bounds) {
+				return new google.maps.Map(document.getElementById("map"), {
 					zoom: 8,
-					center: ucr,
+					center: center,
 					mapId: "c08b039bbc429250",
 					restriction: {
-						latLngBounds: costaRicaLimit,
+						latLngBounds: bounds,
 						strictBounds: true,
 					},
 				});
-				const marker = new google.maps.marker.AdvancedMarkerElement({
-					position: ucr,
+			},
+			createMarker(position, map) {
+				return new google.maps.marker.AdvancedMarkerElement({
+					position: position,
 					map: map,
 					draggable: true,
 				});
+			},
+			addMapClickListener(map, marker) {
 				map.addListener("click", (event) => {
 					marker.position = event.latLng;
 					this.latitude = event.latLng.lat();
 					this.longitude = event.latLng.lng();
 					map.setCenter(event.latLng);
 				});
+			},
+			initAutocomplete(map, marker) {
 				const input = document.getElementById("location-input");
 				const autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -322,26 +338,24 @@
 					new google.maps.LatLng(9.5, -85.0),
 					new google.maps.LatLng(10.5, -83.0)
 				);
-
 				autocomplete.setBounds(defaultBounds);
 				autocomplete.setComponentRestrictions({ country: "cr" });
-				
-				autocomplete.addListener("place_changed", function () {
-					const place = autocomplete.getPlace();
 
+				// Event listener for place selection
+				autocomplete.addListener("place_changed", () => {
+					const place = autocomplete.getPlace();
 					if (!place.geometry) {
 						window.alert("No details available for that address.");
 						return;
 					}
-
+					
 					// Set map and marker to new location
 					map.setCenter(place.geometry.location);
 					marker.position = place.geometry.location;
-					// Zoom in when position is updated
 					map.setZoom(15);
 				});
 			},
-			
+
 			validatePassword() {
 				if (this.form.password !== this.form.confirmPassword) {
 					this.modalTitle = "Error de contraseña";

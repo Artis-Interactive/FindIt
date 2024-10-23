@@ -22,125 +22,125 @@
 </template>
 
 <script>
-import axios from "axios";
-import ModalComponent from "./ModalComponent.vue";
-import { jwtDecode } from 'jwt-decode';
-import { BACKEND_URL } from "@/config";
-import { Grid } from "gridjs";
-import "gridjs/dist/theme/mermaid.css";
+  import axios from "axios";
+  import ModalComponent from "./ModalComponent.vue";
+  import { jwtDecode } from 'jwt-decode';
+  import { BACKEND_URL } from "@/config";
+  import { Grid } from "gridjs";
+  import "gridjs/dist/theme/mermaid.css";
 
-export default {
-  name: "GeneralProductList",
-  components: {
-    ModalComponent,
-  },
-  data() {
-    return {
-      products: [],
-      modalTitle: '',
-      modalMessage: '',
-      isModalVisible: false,
-    };
-  },
-  methods: {
-    verifyLogin() {
-      // get token and verify user being admin:
-      const token = localStorage.getItem('token');
-        if (token) {
-          const decodedToken = jwtDecode(token);     
-          if (decodedToken.role === 'ADM') {
-            this.getProducts();
+  export default {
+    name: "GeneralProductList",
+    components: {
+      ModalComponent,
+    },
+    data() {
+      return {
+        products: [],
+        modalTitle: '',
+        modalMessage: '',
+        isModalVisible: false,
+      };
+    },
+    methods: {
+      verifyLogin() {
+        // get token and verify user being admin:
+        const token = localStorage.getItem('token');
+          if (token) {
+            const decodedToken = jwtDecode(token);     
+            if (decodedToken.role === 'ADM') {
+              this.getProducts();
+            }
+            else {
+              this.modalTitle = "Acceso Restringido";
+              this.modalMessage = "Para visualizar estos datos debe haber iniciado sesión como administrador";
+              this.isModalVisible = true;
+            }
           }
           else {
             this.modalTitle = "Acceso Restringido";
             this.modalMessage = "Para visualizar estos datos debe haber iniciado sesión como administrador";
             this.isModalVisible = true;
           }
-        }
-        else {
-          this.modalTitle = "Acceso Restringido";
-          this.modalMessage = "Para visualizar estos datos debe haber iniciado sesión como administrador";
-          this.isModalVisible = true;
-        }
-    },
-    getProducts() {
-      axios.get(`${BACKEND_URL}/Product`).then((response) => {
-        this.products = response.data;
-        this.renderGrid();
-      });
-    },
-    renderGrid() {
-      new Grid({
-        columns: [
-          "Nombre",
-          "Empresa",
-          "Categoría",
-          "Tipo",
-          "Precio",
-          "Días de entrega",
-          "Inventario",
-          "Producción max. por día",
-        ],
-        style: {
-          td: {
-            border: '1px solid #ccc',
-            'background-color': '#E3DDEC'
+      },
+      getProducts() {
+        axios.get(`${BACKEND_URL}/Product`).then((response) => {
+          this.products = response.data;
+          this.renderGrid();
+        });
+      },
+      renderGrid() {
+        new Grid({
+          columns: [
+            "Nombre",
+            "Empresa",
+            "Categoría",
+            "Tipo",
+            "Precio",
+            "Días de entrega",
+            "Inventario",
+            "Producción max. por día",
+          ],
+          style: {
+            td: {
+              border: '1px solid #ccc',
+              'background-color': '#E3DDEC'
+            },
+            th: {
+              'font-size': '15px',
+              'background-color': '#8263a8',
+              'color': 'white'
+            },
           },
-          th: {
-            'font-size': '15px',
-            'background-color': '#8263a8',
-            'color': 'white'
+          data: this.products.map((product) => [
+            product.name,
+            product.companyName,
+            product.category.categoryName,
+            product.type,
+            product.price,
+            product.perishableProducts.every(
+              (p) => p.productionDay === null
+            )
+              ? "No aplica"
+              : product.perishableProducts
+                  .filter((p) => p.productionDay !== null)
+                  .map((p) => p.productionDay)
+                  .join(", "),
+            product.nonPerishableProduct.amount,
+            product.productionBatch.amount,
+          ]),
+          pagination: {
+            enabled: true,
+            limit: 6,
           },
-        },
-        data: this.products.map((product) => [
-          product.name,
-          product.companyName,
-          product.category.categoryName,
-          product.type,
-          product.price,
-          product.perishableProducts.every(
-            (p) => p.productionDay === null
-          )
-            ? "No aplica"
-            : product.perishableProducts
-                .filter((p) => p.productionDay !== null)
-                .map((p) => p.productionDay)
-                .join(", "),
-          product.nonPerishableProduct.amount,
-          product.productionBatch.amount,
-        ]),
-        pagination: {
-          enabled: true,
-          limit: 6,
-        },
-        sort: true, 
-        search: true,
-        resizable: true, 
-        fixedHeader: true,
-        width: '100%',
-        height: '500px',
-        language: {
-        search: {
-          placeholder: "Buscar",
-        },
-        pagination: {
-          previous: "Anterior", 
-          next: "Siguiente",
-          showing: " ",
-          results: () => "",
-        },
-        sort: {
-          sortAsc: "Ordenar de forma ascendente",
-          sortDesc: "Ordenar de forma descendente",
-        },
-      }
-      }).render(this.$refs.grid);
+          sort: true, 
+          search: true,
+          resizable: true, 
+          fixedHeader: true,
+          width: '100%',
+          height: '500px',
+          language: {
+          search: {
+            placeholder: "Buscar",
+          },
+          pagination: {
+            previous: "Anterior", 
+            next: "Siguiente",
+            showing: " ",
+            results: () => "",
+          },
+          sort: {
+            sortAsc: "Ordenar de forma ascendente",
+            sortDesc: "Ordenar de forma descendente",
+          },
+        }
+        }).render(this.$refs.grid);
+      },
     },
-  },
-  created() {
-    this.verifyLogin();
-  },
-};
+    created() {
+      this.verifyLogin();
+    },
+  };
 </script>
 
 <style scoped>

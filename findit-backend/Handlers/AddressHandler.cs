@@ -9,16 +9,13 @@ namespace findit_backend.Handlers
     {
         public bool CreateAddress(AddressModel address, Guid userId)
         {
-            var query = @"INSERT INTO dbo.Address (UserID, Province, Canton, District, Details)
-                  VALUES (@UserID, @Province, @Canton, @District, @Details)";
+            var query = @"INSERT INTO dbo.Address (UserID, Coords)
+           VALUES (@UserID, @Coords)";
 
             var queryCommand = new SqlCommand(query, _connection);
 
             queryCommand.Parameters.AddWithValue("@UserID", userId);
-            queryCommand.Parameters.AddWithValue("@Province", address.Province);
-            queryCommand.Parameters.AddWithValue("@Canton", address.Canton);
-            queryCommand.Parameters.AddWithValue("@District", address.District);
-            queryCommand.Parameters.AddWithValue("@Details", address.Details);
+            queryCommand.Parameters.AddWithValue("@Coords", address.Coords);
 
             return ExecuteNonQuery(queryCommand);
         }
@@ -42,17 +39,14 @@ namespace findit_backend.Handlers
         public List<AddressModel> GetAddresses()
         {
             List<AddressModel> addresses = new List<AddressModel>();
-            string query = "SELECT Province, Canton, District, Details FROM dbo.Address"; ;
+            string query = "SELECT Coords FROM dbo.Address"; ;
             DataTable tableResult = CreateQueryTable(query);
             foreach (DataRow row in tableResult.Rows)
             {
                 addresses.Add(
                 new AddressModel
                 {
-                    Province = Convert.ToString(row["Province"]),
-                    Canton = Convert.ToString(row["Canton"]),
-                    District = Convert.ToString(row["District"]),
-                    Details = Convert.ToString(row["Details"]),
+                    Coords = Convert.ToString(row["Coords"])
                 });
             }
             return addresses;
@@ -79,18 +73,14 @@ namespace findit_backend.Handlers
         public List<AddressModel> GetUserAddresses(string userId)
         {
             List<AddressModel> addresses = [];
-            string query = $"SELECT Province, Canton, District, Details FROM dbo.Address" +
+            string query = $"SELECT Coords FROM dbo.Address" +
                            $" WHERE UserID = '{userId}'";
             DataTable tableResult = CreateQueryTable(query);
 
             foreach (DataRow row in tableResult.Rows)
             {
                 addresses.Add(new AddressModel {
-                    Province = Convert.ToString(row["Province"])!,
-                    Canton = Convert.ToString(row["Canton"])!,
-                    District = Convert.ToString(row["District"])!,
-                    Details = Convert.ToString(row["Details"])!,
-
+                    Coords = Convert.ToString(row["Coords"])!
                 });
             }
 

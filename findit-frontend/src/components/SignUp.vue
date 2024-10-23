@@ -228,6 +228,8 @@
 					PhoneNumber: "",
 					password: "",
 				},
+				latitude: null,
+				longitude: null,
 				submitted: false,
 				currentDate: new Date().toISOString().split('T')[0],
 				selectedDirection: "",
@@ -249,7 +251,7 @@
 					}
 					await this.registerUser();
 
-					if (this.selectedDirection === 'manual') {
+					if(this.latitude !== null && this.longitude !== null) {
 						await this.registerAddress(this.form.legalID);
 					}
 
@@ -308,6 +310,8 @@
 				});
 				map.addListener("click", (event) => {
 					marker.position = event.latLng;
+					this.latitude = event.latLng.lat();
+					this.longitude = event.latLng.lng();
 					map.setCenter(event.latLng);
 				});
 				const input = document.getElementById("location-input");
@@ -333,7 +337,7 @@
 					// Set map and marker to new location
 					map.setCenter(place.geometry.location);
 					marker.position = place.geometry.location;
-					// Zoom in when the marker's position is updated
+					// Zoom in when position is updated
 					map.setZoom(15);
 				});
 			},
@@ -393,11 +397,9 @@
 			},
 			async registerAddress(legalID) {
 				try {
+					const coords = `${this.latitude},${this.longitude}`;
 					await axios.post(`${BACKEND_URL}/Address/AddAddress?legalId=${legalID}`, {
-						province: this.form.province,
-						canton: this.form.canton,
-						district: this.form.district,
-						details: this.form.details
+						coords: coords	
 					});
 				} catch (error) {
 					throw new Error("Error al registrar dirección."+ (error.response?.data || error.message));

@@ -126,8 +126,8 @@ export default {
         pagination: {
           previous: "Anterior", 
           next: "Siguiente",
-          showing: "Mostrando",
-          results: () => "resultados",
+          showing: " ",
+          results: () => "",
         },
         sort: {
           sortAsc: "Ordenar de forma ascendente",

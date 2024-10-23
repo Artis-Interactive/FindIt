@@ -27,7 +27,7 @@
   import { jwtDecode } from 'jwt-decode';
   import { BACKEND_URL } from "@/config";
   import { Grid } from "gridjs";
-import "gridjs/dist/theme/mermaid.css";
+  import "gridjs/dist/theme/mermaid.css";
   
   export default {
     name: "CompanyProductList",

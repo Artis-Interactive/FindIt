@@ -18,6 +18,8 @@
   import { jwtDecode } from 'jwt-decode';
   import axios from 'axios';
   import AppHeader from './AppHeader.vue'
+  import { BACKEND_URL } from "@/config";
+  
   export default {
     name: "MyProfile",
     components: {
@@ -34,7 +36,7 @@
           if (token) {
             const decodedToken = jwtDecode(token); 
             console.log(decodedToken.email);
-            axios.get(`https://localhost:7262/api/User/User/${encodeURIComponent(decodedToken.email)}`,
+            axios.get(`${BACKEND_URL}/User/User/${encodeURIComponent(decodedToken.email)}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`

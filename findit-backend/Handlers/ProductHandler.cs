@@ -1,4 +1,5 @@
 ﻿using findit_backend.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.Design;
 using System.Data;
@@ -208,7 +209,9 @@ namespace findit_backend.Handlers
 
             return ExecuteNonQuery(queryCommand);
         }
-        public string UpdateProductImage(string productId, IFormFile image)
+
+        // TO BE REFACTORED
+        public async Task<string> UpdateProductImage(string productId, IFormFile image)
         {
             ImageHandler imgHandler = new ImageHandler();
             string response = imgHandler.isImageValid(image);
@@ -218,20 +221,27 @@ namespace findit_backend.Handlers
                 return response;
             }
 
-            string imagePath = Path.Combine("Assets", "ProductImages", productId, image.FileName);
+            string imagePath = Path.Combine("Assets", "ProductImages", productId);
 
             var query = $"UPDATE dbo.Products SET Image = '{imagePath}' WHERE ProductID = '{productId}'";
-
             var queryCommand = new SqlCommand(query, _connection);
 
             if (ExecuteNonQuery(queryCommand))
             {
-                imgHandler.saveProductImage(productId, image);
+                await imgHandler.saveProductImage(productId, image); // Await the save method
                 return null;
             }
             return "Error";
         }
 
+
+        public IActionResult LoadProductImage(string productId)
+        {
+            ImageHandler imgHandler = new ImageHandler();
+            return imgHandler.loadProductImage(productId);
+        }
+
+        // TO BE REFACTORED
         public string CreateNonPerishableProduct(FullNonPerishableProductModel product)
         {
             System.Diagnostics.Debug.WriteLine("Test 1: " );
@@ -254,6 +264,8 @@ namespace findit_backend.Handlers
             return productId;
         }
 
+
+        // TO BE REFACTORED
         public string CreatePerishableProduct(FullPerishableProductModel product)
         {
             System.Diagnostics.Debug.WriteLine("Test 1: ");

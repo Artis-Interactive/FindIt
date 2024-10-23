@@ -42,6 +42,7 @@
 import axios from "axios";
 import ModalComponent from "./ModalComponent.vue";
 import { jwtDecode } from 'jwt-decode';
+import { BACKEND_URL } from "@/config";
 
 export default {
   name: "GeneralCompanyList",
@@ -78,7 +79,7 @@ export default {
         }
     },
     getCompanies() {
-      axios.get("https://localhost:7262/api/Company").then((response) => {
+      axios.get(`${BACKEND_URL}/Company`).then((response) => {
         this.companies = response.data;
       });
     },

@@ -8,155 +8,169 @@
     <div class="row justify-content-center">
       <h1 class="title">Usuarios de empresa registrados</h1>
     </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Empresas</th>
-          <th>Nombre</th>
-          <th>Apellidos</th>
-          <th>Cédula</th>
-          <th>Correo</th>
-          <th>Estado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(user, index) in companyUsers" :key="index">
-          <td>{{ user.companyName }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.lastNames }}</td>
-          <td>{{ user.legalId }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ getAccountStateLabel(user.accountState) }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <ModalComponent
-        :isVisible="isModalVisible"
-        :title="modalTitle"
-        @close="isModalVisible = false"
-      >
-        <template #body>
-          <p>{{ modalMessage }}</p>
-        </template>
-      </ModalComponent>
+    <div ref="grid"></div>
   </div>
+  <ModalComponent
+    :isVisible="isModalVisible"
+    :title="modalTitle"
+    @close="isModalVisible = false"
+  >
+    <template #body>
+      <p>{{ modalMessage }}</p>
+    </template>
+  </ModalComponent>
 </template>
 
 <script>
-import axios from "axios";
-import ModalComponent from "./ModalComponent.vue";
-import { jwtDecode } from 'jwt-decode';
-import { BACKEND_URL } from "@/config";
-  
-export default {
-  name: "GeneralUsersist",
-  components: {
-    ModalComponent,
-  },
-  data() {
-    return {
-      companyUsers: [],
-      modalTitle: '',
-      modalMessage: '',
-      isModalVisible: false,
-    };
-  },
-  methods: {
-    verifyLogin() {
-      // get token and verify user being admin:
-      const token = localStorage.getItem('token');
-        if (token) {
-          const decodedToken = jwtDecode(token);     
-          if (decodedToken.role === 'ADM') {
-            this.getCompanyUsers();
+  import axios from "axios";
+  import ModalComponent from "./ModalComponent.vue";
+  import { jwtDecode } from 'jwt-decode';
+  import { BACKEND_URL } from "@/config";
+  import { Grid } from "gridjs";
+  import "gridjs/dist/theme/mermaid.css";
+
+  export default {
+    name: "GeneralUsersist",
+    components: {
+      ModalComponent,
+    },
+    data() {
+      return {
+        companyUsers: [],
+        modalTitle: '',
+        modalMessage: '',
+        isModalVisible: false,
+      };
+    },
+    methods: {
+      verifyLogin() {
+        // get token and verify user being admin:
+        const token = localStorage.getItem('token');
+          if (token) {
+            const decodedToken = jwtDecode(token);     
+            if (decodedToken.role === 'EMP') {
+              this.getCompanyUsers();
+            }
+            else {
+              this.modalTitle = "Acceso Restringido";
+              this.modalMessage = "Para visualizar estos datos debe haber iniciado sesión como empresario";
+              this.isModalVisible = true;
+            }
           }
           else {
             this.modalTitle = "Acceso Restringido";
-            this.modalMessage = "Para visualizar estos datos debe haber iniciado sesión como administrador";
+            this.modalMessage = "Para visualizar estos datos debe haber iniciado sesión como empresario";
             this.isModalVisible = true;
           }
-        }
-        else {
-          this.modalTitle = "Acceso Restringido";
-          this.modalMessage = "Para visualizar estos datos debe haber iniciado sesión como administrador";
-          this.isModalVisible = true;
-        }
+      },
+      getCompanyUsers() {
+        axios.get(`${BACKEND_URL}/UserDataSignUp/CompanyUsers`).then((response) => {
+          this.companyUsers = response.data;
+          this.renderGrid();
+        });
+      },
+      getAccountStateLabel(state) {
+        const stateLabels = {
+          'ACT': 'Verificado',
+          'NotVER': 'No verificado',
+          'BAN': 'Bloqueado',
+        };
+        return stateLabels[state] || 'Estado desconocido';
+      },
+
+      renderGrid() {
+        new Grid({
+          columns: [
+            "Nombre",
+            "Apellidos",
+            "Cédula",
+            "Correo",
+            "Estado",
+          ],
+          style: {
+            td: {
+              border: '1px solid #ccc',
+              'background-color': '#E3DDEC'
+            },
+            th: {
+              'font-size': '15px',
+              'background-color': '#8263a8',
+              'color': 'white'
+            },
+          },
+          data: this.companyUsers.map((user) => [
+            user.name,
+            user.lastNames,
+            user.legalId,
+            user.email,
+            this.getAccountStateLabel(user.accountState),
+          ]),
+          pagination: {
+            enabled: true,
+            limit: 6,
+          },
+          sort: true, 
+          search: true,
+          resizable: true, 
+          fixedHeader: true,
+          width: '100%',
+          height: '500px',
+          language: {
+            search: {
+              placeholder: "Buscar",
+            },
+            pagination: {
+              previous: "Anterior", 
+              next: "Siguiente",
+              showing: " ",
+              results: () => "",
+            },
+            sort: {
+              sortAsc: "Ordenar de forma ascendente",
+              sortDesc: "Ordenar de forma descendente",
+            },
+          }
+        }).render(this.$refs.grid);
+      },
     },
-    getCompanyUsers() {
-      axios.get(`${BACKEND_URL}/UserDataSignUp/CompanyUsers`).then((response) => {
-        this.companyUsers = response.data;
-      });
+    created() {
+      this.verifyLogin();
     },
-    getAccountStateLabel(state) {
-      const stateLabels = {
-        'ACT': 'Verificado',
-        'NotVER': 'No verificado',
-        'BAN': 'Bloqueado',
-      };
-      return stateLabels[state] || 'Estado desconocido';
-    },
-  },
-  created() {
-    this.verifyLogin();
-  },
-};
+  };
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-.container {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: Montserrat;
-}
+  .container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Montserrat;
+  }
 
-.row {
-  margin-bottom: 20px;
-}
+  .row {
+    margin-bottom: 20px;
+  }
 
-.go_back_button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: Montserrat;
-  background-color: #8263a8;
-  color: white;
-}
+  .go_back_button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Montserrat;
+    background-color: #8263a8;
+    color: white;
+  }
 
-.title {
-  font-size: 2rem;
-  text-align: center;
-  margin-top: 10px; 
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: Montserrat;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: Montserrat;
-}
-
-.table td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: left;
-  background-color: #E3DDEC;
-}
-
-.table th {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: left;
-  background-color: #8263a8;
-  color: white;
-}
-
+  .title {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 10px; 
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Montserrat;
+  }
 </style>
 

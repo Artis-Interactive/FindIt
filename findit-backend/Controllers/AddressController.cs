@@ -45,10 +45,10 @@ namespace findit_backend.Controllers
             return Ok(address);
         }
 
-        [HttpGet("CompanyID/{companyId}")]
-        public ActionResult GetAddressById(string companyId)
+        [HttpGet("CompanyName/{companyName}")]
+        public ActionResult GetAddressByCompanyName(string companyName)
         {
-            var address = _addressHandler.GetByCompany(companyId);
+            var address = _addressHandler.GetByCompanyName(companyName);
             if (address == null)
             {
                 return BadRequest();

@@ -74,7 +74,7 @@
         companyEndTime:"",
         companyAddress:"",
         isCompanyUser: false,
-        companyId: "763E3ADF-A045-4B46-B9FB-40619B2F0220",
+        companyId: "",
         companyData: "",
         isCompanyDataReady: false,
         products: [],
@@ -88,18 +88,18 @@
       verifyLogin() {
       // get token and verify open session:
         const token = localStorage.getItem('token');
-          if (token) {
-            const decodedToken = jwtDecode(token);
-            if(decodedToken.role === "EMP"){
-              this.isCompanyUser = true;
-            }
-            this.obtainData(decodedToken.email);
+        if (token) {
+          const decodedToken = jwtDecode(token);
+          if(decodedToken.role === "EMP"){
+            this.isCompanyUser = true;
           }
-          else {
-            this.modalTitle = "Acceso Restringido";
-            this.modalMessage = "Para visualizar estos datos debe iniciar sesión";
-            this.isModalVisible = true;
-          }
+          this.obtainData(decodedToken.email);
+        }
+        else {
+          this.modalTitle = "Acceso Restringido";
+          this.modalMessage = "Para visualizar estos datos debe iniciar sesión";
+          this.isModalVisible = true;
+        }
       },
 
       clickOnCreate() {
@@ -114,12 +114,25 @@
         try {
           const responseCompany = await axios.get(`${BACKEND_URL}/Company/Email/${email}`);
           this.companyData = responseCompany.data;
-          console.log("Datos empresa: ", this.companyData);
           this.isCompanyDataReady = true;
 
           const responseProducts = await axios.get(`${BACKEND_URL}/Product/Email/${email}`);
           this.products = responseProducts.data;
-          console.log("Datos productos: ", this.products);
+
+          const companyAddress = await axios.get(`${BACKEND_URL}/Address/CompanyName/${this.companyData.name}`)
+          const coords = companyAddress.data.coords.split(','); 
+          const latitude = parseFloat(coords[0].trim()); 
+          const longitude = parseFloat(coords[1].trim());
+
+          const apiKey = process.env.VUE_APP_GOOGLE_MAPS_API_KEY;
+          const geocodeResponse = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`);
+
+          if (geocodeResponse.data && geocodeResponse.data.results.length > 0) {
+            let formattedAddress = geocodeResponse.data.results[0].formatted_address;
+            this.companyAddress = formattedAddress;
+          } else {
+            console.error("No address found for the given coordinates.");
+          }
         } catch (error) {
           console.error("Cannot obtain data:", error);
         }
@@ -130,15 +143,7 @@
 
           this.companyProfileImage = require(`@/${this.companyData.logo}`);
         
-          this.companyHeroImage = require(`@/${this.companyData.heroImage}`);
-
-          this.companyAddress = this.companyData.address.details +
-                                ', ' + 
-                                this.companyData.address.district +
-                                ', ' + 
-                                this.companyData.address.canton +
-                                ', ' + 
-                                this.companyData.address.province;   
+          this.companyHeroImage = require(`@/${this.companyData.heroImage}`);  
 
           for(let index = 0; index < this.companyData.workingDays.length; index++) {
             this.modalMessage += this.companyData.workingDays[index].day + ": " 
@@ -171,7 +176,6 @@
           this.companyData.workingDays[index].endTime = this.toAMPM(this.companyData.workingDays[index].endTime);
         }
       }
-
     },
 
     watch: {
@@ -179,7 +183,6 @@
         if (newValue && this.companyData) {
           this.formatSchedule();
           this.setCompanyData();
-          console.log("Horario: ", this.companyData.workingDays);
         }
       },
     },

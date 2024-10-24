@@ -12,17 +12,26 @@ namespace findit_backend.Handlers
         {
             var builder = WebApplication.CreateBuilder();
             _connectionRoute = builder.Configuration.GetConnectionString("FindItDatabase");
-            _connection = new SqlConnection(_connectionRoute);
+            this._connection = new SqlConnection(_connectionRoute);
         }
 
-        protected DataTable CreateQueryTable(string query)
+        protected DataTable CreateQueryTable(string query, params SqlParameter[] parameters)
         {
-            SqlCommand commandForQuery = new SqlCommand(query, _connection);
-            SqlDataAdapter tableAdapter = new SqlDataAdapter(commandForQuery);
             DataTable queryTableFormat = new DataTable();
-            _connection.Open();
-            tableAdapter.Fill(queryTableFormat);
-            _connection.Close();
+
+            using (SqlCommand commandForQuery = new SqlCommand(query, this._connection))
+            {
+                if (parameters != null && parameters.Length > 0)
+                {
+                    commandForQuery.Parameters.AddRange(parameters);
+                }
+                using (SqlDataAdapter tableAdapter = new SqlDataAdapter(commandForQuery))
+                {
+                    this._connection.Open();
+                    tableAdapter.Fill(queryTableFormat);
+                    this._connection.Close();
+                }
+            }
             return queryTableFormat;
         }
 

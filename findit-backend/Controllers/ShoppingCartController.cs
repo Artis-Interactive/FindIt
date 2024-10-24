@@ -17,9 +17,9 @@ namespace findit_backend.Controllers
         }
 
         [HttpGet("AddToCart/{email}/{productId}")]
-        public ActionResult AddProductToCart(string email, string productId, int quantity)
+        public async Task<ActionResult> AddProductToCart(string email, string productId, int quantity)
         {
-            string result = this._addToCartManager.AddProductToCart(email, productId, quantity);
+            string result = await this._addToCartManager.AddProductToCart(email, productId, quantity);
             if (result != "success")
             {
                 return BadRequest(result);

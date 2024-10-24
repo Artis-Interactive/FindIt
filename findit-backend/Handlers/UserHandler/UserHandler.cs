@@ -1,11 +1,11 @@
-﻿namespace findit_backend.Handlers;
+﻿namespace findit_backend.Handlers.UserHandler;
 
 using findit_backend.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System.Data;
 using System.Data.SqlClient;
 
-public class UserHandler : BaseHandler
+public class UserHandler : BaseHandler, IUserHandler
 {
     public List<UserModel> ObtainUsers()
     {
@@ -140,9 +140,13 @@ public class UserHandler : BaseHandler
         // Creates query and stores resulting table:
         string query = $"SELECT * FROM dbo.Users WHERE Email = '{email}'";
         DataTable resultingTable = this.CreateQueryTable(query);
-        DataRow userRow = resultingTable.Rows[0];
-        return Convert.ToString(userRow["UserID"]);
+        string result = "NoUser";
+        if (resultingTable.Rows.Count > 0)
+        {
+            DataRow userRow = resultingTable.Rows[0];
+            result = Convert.ToString(userRow["UserID"]);
+        }
+        Console.WriteLine(result);
+        return result;
     }
-
-
 }

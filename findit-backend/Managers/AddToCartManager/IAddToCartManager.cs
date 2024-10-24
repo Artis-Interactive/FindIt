@@ -2,6 +2,6 @@
 {
     public interface IAddToCartManager
     {
-        string AddProductToCart(string email, string productId, int quantity);
+        Task<string> AddProductToCart(string email, string productId, int quantity);
     }
 }

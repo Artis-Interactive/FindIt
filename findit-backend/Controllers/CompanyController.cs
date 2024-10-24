@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using findit_backend.Handlers;
 using findit_backend.Models;
 using Microsoft.AspNetCore.Authorization;
+using findit_backend.Handlers.UserHandler;
 
 [Route("api/[controller]")]
 [ApiController]

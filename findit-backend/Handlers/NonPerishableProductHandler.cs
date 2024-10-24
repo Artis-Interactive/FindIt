@@ -10,7 +10,7 @@ namespace findit_backend.Handlers
         public List<NonPerishableProductModel> GetNonPerishableProducts()
         {
             List<NonPerishableProductModel> nonPerishableProducts = new List<NonPerishableProductModel>();
-            string query = "SELECT Amount FROM dbo.NonPerishableProducts";
+            string query = "SELECT Stock FROM dbo.NonPerishableProducts";
             DataTable tableResult = CreateQueryTable(query);
             foreach (DataRow row in tableResult.Rows)
             {
@@ -26,7 +26,7 @@ namespace findit_backend.Handlers
         public NonPerishableProductModel GetByProduct(string productId)
         {
             NonPerishableProductModel nonPerishableProducts = new NonPerishableProductModel();
-            string query = $"SELECT Amount FROM dbo.NonPerishableProducts" +
+            string query = $"SELECT Stock FROM dbo.NonPerishableProducts" +
                            $" WHERE ProductID = '{productId}'";
             DataTable tableResult = CreateQueryTable(query);
             DataRow row = tableResult.Rows[0];

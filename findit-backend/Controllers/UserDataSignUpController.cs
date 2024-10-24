@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using findit_backend.Models;
 using findit_backend.Handlers;
 using System.Linq.Expressions;
+using findit_backend.Handlers.UserHandler;
 
 namespace findit_backend.Controllers
 {

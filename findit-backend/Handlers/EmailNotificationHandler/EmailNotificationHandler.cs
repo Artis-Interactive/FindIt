@@ -50,10 +50,26 @@ public class EmailNotificationHandler : BaseHandler, IEmailNotificationHandler
             Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
         };
 
+        string styledHtml = $@"
+            <html>
+                <head>
+                    <title>{subject}</title>
+                </head>
+                <body style='font-family: Arial, sans-serif; margin: 0; padding: 20px;'>
+                    <div style='max-width: 600px; margin: 0 auto; border: 1px solid #dddddd; padding: 20px;'>
+                        <h1 style='color: #333333; text-align: center;'>{subject}</h1>
+                        {htmlBody}
+                        <footer style='margin-top: 20px; border-top: 1px solid #eeeeee; padding-top: 10px; text-align: center; font-size: 12px; color: #aaaaaa;'>
+                            <p>&copy; 2024 FindIt. Todos los derechos reservados.</p>
+                        </footer>
+                    </div>
+                </body>
+            </html>";
+
         using (var message = new MailMessage(fromAddress, toAddress)
         {
             Subject = subject,
-            Body = htmlBody,
+            Body = styledHtml,
             IsBodyHtml = true
         })
         {

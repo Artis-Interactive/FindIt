@@ -33,4 +33,31 @@ public class EmailNotificationController : ControllerBase
             return StatusCode(500, $"Error sending email: {ex.Message}");
         }
     }
+
+    [HttpPost("sendNewOrderEmail")]
+    public async Task<IActionResult> SendNewOrderEmail()
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        try
+        {
+            string to = "sebasbose@gmail.com";
+            string subject = "¡Nuevo pedido recibido!";
+            string htmlContent = $"" +
+                $"<h1>{subject}</h1>" +
+                $"<p>¡Se ha recibido un nuevo pedido! ¿Deseas aprobarlo o rechazarlo?</p>" +
+                $"<a href=\"https://google.com\">Aprobar!</a>   o   <a href=\"https://google.com\">Rechazar!</a>";
+
+            // Llamamos a la función que envía el correo con HTML
+            await _emailNotificationHandler.SendHtmlEmailAsync(to, subject, htmlContent);
+            return Ok("New order email sent successfully.");
+        }
+        catch (System.Exception ex)
+        {
+            return StatusCode(500, $"Error sending new order email: {ex.Message}");
+        }
+    }
 }

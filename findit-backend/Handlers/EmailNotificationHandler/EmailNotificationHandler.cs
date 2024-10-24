@@ -17,8 +17,7 @@ public class EmailNotificationHandler : BaseHandler, IEmailNotificationHandler
         {
             Host = "smtp.hostinger.com",
             Port = 587,
-            EnableSsl = false
-            ,
+            EnableSsl = false,
             DeliveryMethod = SmtpDeliveryMethod.Network,
             UseDefaultCredentials = false,
             Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
@@ -27,7 +26,35 @@ public class EmailNotificationHandler : BaseHandler, IEmailNotificationHandler
         using (var message = new MailMessage(fromAddress, toAddress)
         {
             Subject = subject,
-            Body = body
+            Body = body,
+            IsBodyHtml = false
+        })
+        {
+            await smtp.SendMailAsync(message);
+        }
+    }
+
+    public async Task SendHtmlEmailAsync(string to, string subject, string htmlBody)
+    {
+        var fromAddress = new MailAddress("findit@bolanos.cr", "FindIt - NoReply");
+        var toAddress = new MailAddress(to);
+        const string fromPassword = "v]1JGsEB";
+
+        var smtp = new SmtpClient
+        {
+            Host = "smtp.hostinger.com",
+            Port = 587,
+            EnableSsl = false,
+            DeliveryMethod = SmtpDeliveryMethod.Network,
+            UseDefaultCredentials = false,
+            Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+        };
+
+        using (var message = new MailMessage(fromAddress, toAddress)
+        {
+            Subject = subject,
+            Body = htmlBody,
+            IsBodyHtml = true
         })
         {
             await smtp.SendMailAsync(message);

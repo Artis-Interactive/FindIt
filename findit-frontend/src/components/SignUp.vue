@@ -88,7 +88,6 @@
 							placeholder="Ingrese su dirección"
 						/> <br> <br/>
 						<div id="map" style="height: 500px; width: 100%;"></div>
-
 					</div>
 
 					<div class="radio-group">

@@ -40,69 +40,15 @@
               placeholder="Utiliza este espacio para describir que tipos de productos planeas vender..." required pattern="[A-Za-zÀ-ÿ0-9\s\.\-,#]+"></textarea>
           </div>
 
-          <div>
-            <h3>Dirección:</h3>
-            <div class="radio-group">
-              <label>
-                <input type="radio" name="addressType" value="manual" v-model="formData.addressType" required />
-                Manual
-              </label>
-              <label>
-                <input type="radio" name="addressType" value="map" v-model="formData.addressType" required />
-                Mapa
-              </label>
-            </div>
-  
-            <!-- Aditional spaces if manual address is selected -->
-            <div v-if="formData.addressType === 'manual'">
-              <div class="row">
-                <div class="column-3">
-                  <div>
-                    <label for="addressProvince">Provincia:</label>
-                    <select v-model="addressForm.province" id="addressProvince" required class="form-control custom-select">
-                      <option value="" disabled>Seleccione una provincia</option>
-                      <option>Alajuela</option>
-                      <option>Cartago</option>
-                      <option>Guanacaste</option>
-                      <option>Heredia</option>
-                      <option>Limón</option>
-                      <option>San José</option>
-                      <option>Puntarenas</option>
-                    </select>
-                  </div>
-                </div>
-  
-                <div class="column-3">
-                  <div>
-                    <label for="addressCanton">Cantón:</label>
-                    <input type="text" id="addressCanton" v-model="addressForm.canton" placeholder="Montes de Oca" required
-                      pattern="[A-Za-zÀ-ÿ\s]+" title="El cantón sólo debe tener letras" />
-                  </div>
-                </div>
-  
-                <div class="column-3">
-                  <div>
-                    <label for="addressDistrict">Distrito:</label>
-                    <input type="text" id="addressDistrict" v-model="addressForm.district" placeholder="San Pedro" required
-                      pattern="[A-Za-zÀ-ÿ\s]+" title="El distrito sólo debe tener letras" />
-                  </div>
-                </div>
-  
-              </div>
-              <div>
-                <label for="addressAdditionalDetails">Otras señas:</label>
-                <textarea type="text" id="addressAditionalDetails" v-model="addressForm.details"
-                  placeholder="De la Iglesia de San Pedro 200 metros al sur" required pattern="[A-Za-zÀ-ÿ0-9\s\.\-,#]+" ></textarea>
-              </div>
-            </div>
-  
-            <!-- Aditional spaces if map address is selected -->
-            <div v-if="formData.addressType === 'map'">
-              <div>
-                <!-- Map Selection Component -->
-              </div>
-            </div>
-          </div>
+          <div class="map">
+						<h3>Ingresar su dirección o marcar en el mapa:<span class="required-asterisk">*</span></h3>
+						<input
+							type="text"
+							id="location-input"
+							placeholder="Ingrese su dirección"
+						/> <br> <br/>
+						<div id="map" style="height: 500px; width: 100%;"></div>
+					</div>
 
           <div class="button-container">
             <button type="submit">Registrar Empresa</button>
@@ -115,6 +61,7 @@
 </template>
 
 <script>
+/* global google */
 import axios from "axios";
 import { jwtDecode } from 'jwt-decode';
 import { BACKEND_URL } from "@/config";
@@ -131,32 +78,130 @@ export default {
         legalId: "",
         logo: "",
         heroImage: "",
-        addressType: ""
       },
-
-      addressForm: {
-        province: "",
-        canton: "",
-        district: "",
-        details: ""
-      }
+      latitude: null,
+			longitude: null,
     };
+  },
+  mounted() {
+    this.loadGoogleMapsScript();
   },
   methods: {
     verifyLogin() {
       // get token and verify open session:
       
       const token = localStorage.getItem('token');
-        if (!token) {
-          this.modalTitle = "Acceso Restringido";
-          this.modalMessage = "Para visualizar estos datos debe iniciar sesión";
-          this.isModalVisible = true;
-        }
+      if (!token) {
+        this.modalTitle = "Acceso Restringido";
+        this.modalMessage = "Para visualizar estos datos debe iniciar sesión";
+        this.isModalVisible = true;
+      }
     },
 
-    handleSubmit() {
-      console.log("Datos: ", this.formData);
-      this.registerCompany();
+    async handleSubmit() {
+      try {
+        await this.registerCompany();
+
+        if (this.latitude !== null && this.longitude !== null) {
+          await this.registerAddress(this.formData.legalId);
+          alert ('Empresa registrada con éxito.');
+          window.location.href = "/";
+        } else {
+          console.error("Latitude or Longitude is missing.");
+        }
+      } catch (error) {
+        console.log("Error during submission:", error);
+      }
+    },
+    
+    loadGoogleMapsScript() {
+      const apiKey = process.env.VUE_APP_GOOGLE_MAPS_API_KEY;
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker`;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+
+      // Listener to initialize the map once the script is loaded
+      script.onload = () => {
+        this.initMap();
+      };
+		},
+
+    initMap() {
+      const ucr = { lat: 9.937256786417928, lng: -84.05086517247322 };
+      const costaRicaLimit = this.getCostaRicaBounds();
+
+      const map = this.createMap(ucr, costaRicaLimit);
+      const marker = this.createMarker(ucr, map);
+      // Event listener for map clicks
+      this.addMapClickListener(map, marker);
+      this.initAutocomplete(map, marker);
+    },
+
+    getCostaRicaBounds() {
+      return {
+        north: 11.219,
+        south: 8.032,
+        west: -86.745,
+        east: -82.555,
+      };
+    },
+
+		createMap(center, bounds) {
+      return new google.maps.Map(document.getElementById("map"), {
+        zoom: 8,
+        center: center,
+        mapId: "c08b039bbc429250",
+        restriction: {
+          latLngBounds: bounds,
+          strictBounds: true,
+        },
+      });
+    },
+
+    createMarker(position, map) {
+      return new google.maps.marker.AdvancedMarkerElement({
+        position: position,
+        map: map,
+        draggable: true,
+      });
+    },
+
+    addMapClickListener(map, marker) {
+      map.addListener("click", (event) => {
+        marker.position = event.latLng;
+        this.latitude = event.latLng.lat();
+        this.longitude = event.latLng.lng();
+        map.setCenter(event.latLng);
+      });
+      map.setZoom(15);
+    },
+
+    initAutocomplete(map, marker) {
+      const input = document.getElementById("location-input");
+      const autocomplete = new google.maps.places.Autocomplete(input);
+
+      // Set bounds and component restrictions
+      const defaultBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(9.5, -85.0),
+        new google.maps.LatLng(10.5, -83.0)
+      );
+      autocomplete.setBounds(defaultBounds);
+      autocomplete.setComponentRestrictions({ country: "cr" });
+
+      // Event listener for place selection
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        if (!place.geometry) {
+          window.alert("No details available for that address.");
+          return;
+        }
+        
+        // Set map and marker to new location
+        map.setCenter(place.geometry.location);
+        marker.position = place.geometry.location;
+      });
     },
 
     async registerCompany() {
@@ -173,33 +218,26 @@ export default {
           heroImage: "",
           workingDays: [],
           address: {
-            province: this.addressForm.province,
-            canton: this.addressForm.canton,
-            district: this.addressForm.district,
-            details: this.addressForm.details,
             coords: "",
           },
         });
-
-        if (this.formData.addressType === 'manual') {
-          await axios.post(`${BACKEND_URL}/Address/AddCompanyAddress?legalId=${this.formData.legalId}`, {
-            province: this.addressForm.province,
-            canton: this.addressForm.canton,
-            district: this.addressForm.district,
-            details: this.addressForm.details,
-            coords: ""
-          });
-        }
-
         const token = localStorage.getItem('token');
         const decodedToken = jwtDecode(token);
         await axios.post(`${BACKEND_URL}/Company/AddCompanyToUser?userToken=${decodedToken.email}&companyLegalId=${this.formData.legalId}`);
 
-        alert ('Empresa registrada con éxito.');
-        window.location.href = "/";
-
       } catch (error) {
         console.log(error);
+      }
+    },
+
+    async registerAddress(legalID) {
+      try {
+        const coords = `${this.latitude},${this.longitude}`;
+        await axios.post(`${BACKEND_URL}/Address/AddCompanyAddress?legalId=${legalID}`, {
+          coords: coords	
+        });
+      } catch (error) {
+        throw new Error("Error al registrar dirección."+ (error.response?.data || error.message));
       }
     },
   },

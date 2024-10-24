@@ -1,10 +1,11 @@
-﻿using System.Net;
+﻿using findit_backend.Handlers.EmailNotificationHandler;
+using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace findit_backend.Handlers;
+namespace findit_backend.Handlers.EmailNotificationHandler;
 
-public class EmailNotificationHandler : BaseHandler
+public class EmailNotificationHandler : BaseHandler, IEmailNotificationHandler
 {
     public async Task SendEmailAsync(string to, string subject, string body)
     {

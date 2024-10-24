@@ -1,4 +1,4 @@
-﻿using findit_backend.Handlers;
+﻿using findit_backend.Handlers.EmailNotificationHandler;
 using findit_backend.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +8,11 @@ namespace findit_backend.Controllers;
 [ApiController]
 public class EmailNotificationController : ControllerBase
 {
-    private readonly EmailNotificationHandler _emailNotificationHandler;
+    private readonly IEmailNotificationHandler _emailNotificationHandler;
 
-    public EmailNotificationController()
+    public EmailNotificationController(IEmailNotificationHandler emailNotificationHandler)
     {
-        _emailNotificationHandler = new EmailNotificationHandler();
+        _emailNotificationHandler = emailNotificationHandler;
     }
 
     [HttpPost("send")]

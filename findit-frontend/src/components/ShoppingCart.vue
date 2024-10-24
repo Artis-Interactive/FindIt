@@ -1,7 +1,8 @@
 <template>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <div>
     <AppHeader></AppHeader>
-    <div class="cartTitle"><i class="uil uil-shopping-cart"></i><h1>Mi carrito</h1></div>
+    <div class="cartTitle"><h1><i class="uil uil-shopping-cart"></i>Mi carrito</h1></div>
     <div class="cartBody"></div>
   </div>
 </template>
@@ -11,7 +12,7 @@
   import AppHeader from './AppHeader.vue';
   // import { BACKEND_URL } from "@/config";
   export default {
-    name: 'ProductCreation',
+    name: 'ShoppingCart',
         components: {
             AppHeader
         }, 

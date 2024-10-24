@@ -18,6 +18,7 @@ import CompanyProductList from './components/CompanyProductList.vue'
 import CompanyUserList from './components/CompanyUserList.vue'
 import HomePage from './components/HomePage.vue'
 import ProfileAddresses from './components/ProfileAddresses'
+import NewOrderConfirmation from './components/NewOrderConfirmation.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -33,6 +34,11 @@ const router = createRouter({
         { path: "/email-verification/:email", name: "EmailVerification", component: EmailVerification, 
             props: route => ({
                 email: route.params.email
+            })
+        },
+        { path: "/admin/newOrder/:orderId", name: "NewOrderConfirmation", component: NewOrderConfirmation, 
+            props: route => ({
+                orderId: route.params.orderId
             })
         },
         { path: '/product-creation/', name: 'ProductCreation', component: ProductCreation},

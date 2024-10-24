@@ -1,3 +1,6 @@
+using findit_backend.Handlers.ProductHandler;
+using findit_backend.Helpers.ProductValidationHelper;
+using findit_backend.Managers.AddToCartManager;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -18,6 +21,10 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<IAddToCartManager, AddToCartManager>();
+builder.Services.AddScoped<IProductValidationHelper, ProductValidationHelper>();
+builder.Services.AddScoped<IProductHandler, ProductHandler>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -1,11 +1,11 @@
-﻿using findit_backend.Handlers;
+﻿using findit_backend.Handlers.ProductHandler;
 using findit_backend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace findit_backend.Controllers
 {
-  [Route("api/[controller]")]
+    [Route("api/[controller]")]
   [ApiController]
   public class ProductController : ControllerBase
   {

@@ -8,6 +8,9 @@
     <div class="row justify-content-center">
       <h1 class="title">Usuarios de empresa registrados</h1>
     </div>
+    <div v-if="companyUsers.length === 0" class="no-users">
+      <p class = "no-users-message">No hay usuarios registrados</p>
+    </div>
     <div ref="grid"></div>
   </div>
   <ModalComponent
@@ -66,7 +69,11 @@
       getCompanyUsers() {
         axios.get(`${BACKEND_URL}/UserDataSignUp/CompanyUsers`).then((response) => {
           this.companyUsers = response.data;
-          this.renderGrid();
+          if (this.companyUsers.length > 0) {
+            this.$nextTick(() => {
+              this.renderGrid(); 
+            });
+          }
         });
       },
       getAccountStateLabel(state) {
@@ -169,6 +176,19 @@
     font-size: 2rem;
     text-align: center;
     margin-top: 10px; 
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Montserrat;
+  }
+
+  .no-users {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .no-users-message {
+    font-size: 20px;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Montserrat;
   }

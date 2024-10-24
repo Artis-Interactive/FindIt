@@ -8,6 +8,9 @@
     <div class="row justify-content-center">
       <h1 class="title">Empresas Registradas</h1>
     </div>
+    <div v-if="companies.length === 0" class="no-companies">
+      <p class = "no-companies-message">No hay empresas registradas</p>
+    </div>
     <div ref="grid"></div>  
   </div>
   <ModalComponent
@@ -66,7 +69,11 @@
       getCompanies() {
         axios.get(`${BACKEND_URL}/Company`).then((response) => {
           this.companies = response.data;
-          this.renderGrid();
+          if (this.companies.length > 0) {
+            this.$nextTick(() => {
+              this.renderGrid(); 
+            });
+          }
         });
       },
       renderGrid() {
@@ -159,6 +166,19 @@
     font-size: 2rem;
     text-align: center;
     margin-top: 10px; 
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Montserrat;
+  }
+
+  .no-products {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .no-products-message {
+    font-size: 20px;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Montserrat;
   }

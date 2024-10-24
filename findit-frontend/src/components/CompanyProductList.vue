@@ -8,6 +8,9 @@
     <div class="row justify-content-center">
       <h1 class="title">Mis Productos</h1>
     </div>
+    <div v-if="products.length === 0" class="no-products">
+      <p class = "no-products-message">No hay productos registrados</p>
+    </div>
     <div ref="grid"></div>    
   </div>
   <ModalComponent
@@ -64,7 +67,11 @@
           }
         }).then((response) => {
           this.products = response.data;
-          this.renderGrid();
+          if (this.products.length > 0) {
+            this.$nextTick(() => {
+              this.renderGrid(); 
+            });
+          }
         });
       },
       renderGrid() {
@@ -171,6 +178,19 @@
     font-size: 2rem;
     text-align: center;
     margin-top: 10px; 
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Montserrat;
+  }
+
+  .no-products {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .no-products-message {
+    font-size: 20px;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Montserrat;
   }

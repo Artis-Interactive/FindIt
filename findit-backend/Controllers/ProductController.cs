@@ -124,7 +124,7 @@ namespace findit_backend.Controllers
             var img = _productHandler.LoadProductImage(productId);
             if (img == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             return img;

@@ -234,9 +234,31 @@ namespace findit_backend.Handlers
             return "Error";
         }
 
+        public bool productExists(string productId) 
+        {
+            try
+            {
+                Guid.Parse(productId);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("This is not a valid GUID");
+                return false;
+            }
+            string query = $"SELECT * FROM dbo.Products WHERE ProductID = '{Guid.Parse(productId)}'";
+            DataTable tableResult = CreateQueryTable(query);
+            return tableResult.Rows.Count != 0;
+        }
 
         public IActionResult LoadProductImage(string productId)
         {
+            System.Diagnostics.Debug.WriteLine("Testing image");
+            if (!productExists(productId))
+            {
+                System.Diagnostics.Debug.WriteLine("Testing image null");
+                return null;
+            }
+            System.Diagnostics.Debug.WriteLine("Testing image success");
             ImageHandler imgHandler = new ImageHandler();
             return imgHandler.loadProductImage(productId);
         }

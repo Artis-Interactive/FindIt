@@ -1,6 +1,7 @@
 <template>
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <div class="body_div">
+    <AppHeader></AppHeader>
     <div v-if="isProductLoaded" class="wrapper">
     <div class="card_container">
 
@@ -14,11 +15,7 @@
         <p class="label"> {{ this.isPerishable ? "Perecedero" : "No perecedero" }} </p>
         <div class="description">
           <p v-if="this.isPerishable">
-            Este producto caducará el 
-            {{ this.productExpirationDay }} de 
-            {{ this.productExpirationMonthName }} de 
-            {{ this.productExpirationYear }} a las 
-            {{ this.productExpirationTime }}
+            Consumir antes de: {{ this.productData.lifespan }} días
           </p>
           <p v-if="this.isPerishable">
             {{ this.productionDaysText }}
@@ -32,7 +29,7 @@
             <button @click="restarQuantity" class="minus-btn b-stock">-</button>
             <p class="quantity p-stock"> {{ quantity_amount }}</p>
             <button @click="sumarQuantity" class="plus-btn b-stock">+</button>
-            <p class="stock-amount p-stock"> Unidades disponibles: {{ stock_amount }}</p>
+            <p v-if="!this.isPerishable" class="stock-amount p-stock"> Unidades disponibles: {{ stock_amount }}</p>
           </div>
           <button class="buy-btn purchase-btn"><i class="uil uil-shopping-bag"></i>Comprar ahora</button>
           <button class="cart-btn purchase-btn"><i class="uil uil-shopping-cart"></i>Agregar al carrito</button>
@@ -51,6 +48,12 @@
     </div>
     </div>
     </div>
+    <div v-else>
+      <div>
+        <h1>El producto no existe</h1>
+        <p>{{ this.errorMsg }}</p>
+      </div>
+    </div>
   </div>
 
 </template>
@@ -58,9 +61,12 @@
 <script>
 import axios from 'axios';
 import { BACKEND_URL } from "@/config";
+import AppHeader from './AppHeader.vue';
+
 export default {
   name: 'ProductDetails',
   components: {
+  AppHeader
   }, 
   data() {
       return {
@@ -77,6 +83,7 @@ export default {
         productExpirationYear: null,
         productExpirationTime: null,
         imgURL: null,
+        errorMsg: null,
         isPerishable: false,
         isProductLoaded: false,
       }
@@ -87,6 +94,11 @@ export default {
         responseType: 'blob'
       }).then((response) => {
         this.imgURL = URL.createObjectURL(response.data);
+        this.loadProductData();
+      }).catch(error => {
+        console.error('Error loading image', error);
+        console.log(error)
+        this.errorMsg = "Status code: " + error.status;
       });
     },
     loadProductData() {
@@ -110,6 +122,8 @@ export default {
         console.log(this.productData);
         this.isProductLoaded = true;
         this.formatData()
+      }).catch(error => {
+        console.error('Error loading perishable product', error);
       });
     },
     loadNonPerishableData() {
@@ -121,6 +135,8 @@ export default {
         console.log("The product data:")
         console.log(this.productData);
         this.formatData()
+      }).catch(error => {
+        console.error('Error loading image', error);
       });
     },
     loadCategoryData() {
@@ -138,7 +154,7 @@ export default {
       this.productData.product.price = price;
     },
     setStock() {
-      this.stock_amount = this.isPerishable ? this.productData.productionBatch.amount : this.productData.stock;
+      this.stock_amount = this.isPerishable ? 1 : this.productData.stock;
     },
     formatExpirationDate() {
       var dateString = this.productData.productionBatch.productionDate.slice(0, 10);
@@ -169,8 +185,8 @@ export default {
       return time
     },
     formatProductionDays() {
-      var days = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabados", "domingos"]
-      var productionDaysString = "Este producto está disponible los ";
+      var days = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábados", "domingos"]
+      var productionDaysString = "Días de entrega: ";
       var productionDaysList = this.productData.productionDays;
       var productionDaysNumbered = []
       for (let i = 0; i < productionDaysList.length; i++) {
@@ -220,23 +236,22 @@ export default {
       }
     },
     sumarQuantity() {
-      if (this.quantity_amount < 99 && this.quantity_amount < this.stock_amount) {
+      if (this.quantity_amount < this.stock_amount || this.isPerishable) {
         this.quantity_amount++;
-        // this.productData.product.price = this.originalPrice * this.quantity_amount;
-        // this.formatPrice()
+        this.productData.product.price = this.originalPrice * this.quantity_amount;
+        this.formatPrice()
       }
     },
     restarQuantity() {
       if (this.quantity_amount > 1) {
         this.quantity_amount--;
-        // this.productData.product.price = this.originalPrice * this.quantity_amount;
-        // this.formatPrice()
+        this.productData.product.price = this.originalPrice * this.quantity_amount;
+        this.formatPrice()
       }
     }
   },
   created() {
     this.loadImageData();
-    this.loadProductData();
   }
 }
 
@@ -441,6 +456,10 @@ export default {
   .btns .btn-disabled:hover {
     background-color: #eaeaea;
     color: #818181;
+  }
+
+  .pad {
+    padding: 20px;
   }
 
 </style>

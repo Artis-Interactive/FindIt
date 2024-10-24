@@ -113,7 +113,7 @@ export default {
         console.log("Error during submission:", error);
       }
     },
-    
+
     loadGoogleMapsScript() {
       const apiKey = process.env.VUE_APP_GOOGLE_MAPS_API_KEY;
       const script = document.createElement('script');

@@ -20,7 +20,6 @@ namespace findit_backend.Controllers
         public ActionResult AddProductToCart(string email, string productId, int quantity)
         {
             string result = this._addToCartManager.AddProductToCart(email, productId, quantity);
-            Console.WriteLine(result);
             if (result != "success")
             {
                 return BadRequest(result);
